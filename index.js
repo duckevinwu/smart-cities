@@ -23,6 +23,7 @@ app.get('/people', routes.getAllPeople);
 app.get('/friends/:login', routes.getFriends); // Hint: Replace () => {} with the appropriate route handler in routes.js.
 
 
-app.listen(8081, () => {
-	console.log(`Server listening on PORT 8081`);
-});
+const port = process.env.PORT || 8081;
+app.listen(port);
+
+console.log(`Listening on ${port}`);
