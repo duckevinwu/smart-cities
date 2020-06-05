@@ -1,4 +1,11 @@
-var config = require('./db-config.js');
+//var config = require('./db-config.js');
+var config = {
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE
+}
+
 var mysql = require('mysql');
 
 config.connectionLimit = 10;
