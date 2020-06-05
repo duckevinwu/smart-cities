@@ -1,4 +1,7 @@
-//var config = require('./db-config.js');
+// var config = require('./db-config.js');
+
+// Code below for testing in production
+
 var config = {
   host: process.env.HOST,
   user: process.env.USER,
