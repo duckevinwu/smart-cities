@@ -5,8 +5,8 @@ import {
 	Switch
 } from 'react-router-dom';
 import Test from './Test';
-//import Dashboard from './Dashboard';
-//import FindFriends from './FindFriends';
+import Login from './Login';
+import Register from './Register';
 
 export default class App extends React.Component {
 
@@ -18,7 +18,7 @@ export default class App extends React.Component {
 						<Route
 							exact
 							path="/"
-							
+
 						/>
 						<Route
 							exact
@@ -27,13 +27,18 @@ export default class App extends React.Component {
 								<Test />
 							)}
 						/>
-						{/* ---- Part 2 (FindFriends) ---- */}
-						{/* TODO (1) - Add a Route for the path "/FindFriends" */}
 						<Route
 							exact
-							path="/FindFriends"
+							path="/login"
 							render={() => (
-								<Test />
+								<Login />
+							)}
+						/>
+						<Route
+							exact
+							path="/register"
+							render={() => (
+								<Register />
 							)}
 						/>
 					</Switch>
