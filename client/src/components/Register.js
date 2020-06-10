@@ -39,7 +39,8 @@ export default class Dashboard extends React.Component {
     })
   }
 
-  submitRegister() {
+  submitRegister(e) {
+    e.preventDefault();
     console.log(this.state)
   }
 
@@ -50,7 +51,7 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <form action="#">
+      <form onSubmit={this.submitRegister}>
         <div>
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
@@ -70,7 +71,7 @@ export default class Dashboard extends React.Component {
 
           <br/>
 
-          <button onClick={this.submitRegister}>Register</button>
+          <button type="submit">Register</button>
         </div>
 
         <div>

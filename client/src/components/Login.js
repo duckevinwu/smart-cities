@@ -31,7 +31,8 @@ export default class Dashboard extends React.Component {
     })
   }
 
-  submitLogin() {
+  submitLogin(e) {
+    e.preventDefault();
     console.log(this.state);
   }
 
@@ -41,7 +42,7 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <form action="#">
+      <form onSubmit={this.submitLogin}>
         <div>
           <h1>Login</h1>
 
@@ -55,7 +56,7 @@ export default class Dashboard extends React.Component {
 
           <br/>
 
-          <button onClick={this.submitLogin}>Login</button>
+          <button type="submit">Login</button>
         </div>
 
         <div>
