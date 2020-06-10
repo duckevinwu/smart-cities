@@ -2,7 +2,7 @@ import React from 'react';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
-export default class Dashboard extends React.Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
