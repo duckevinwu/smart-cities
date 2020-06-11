@@ -7,6 +7,7 @@ import {
 import Test from './Test';
 import Login from './Login';
 import Register from './Register';
+import Profile from './Profile';
 
 export default class App extends React.Component {
 
@@ -39,6 +40,13 @@ export default class App extends React.Component {
 							path="/register"
 							render={() => (
 								<Register />
+							)}
+						/>
+						<Route
+							exact
+							path="/profile"
+							render={() => (
+								<Profile />
 							)}
 						/>
 					</Switch>

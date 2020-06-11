@@ -58,6 +58,19 @@ app.post('/register', function(req, res, next) {
   })(req, res, next);
 });
 
+// Logout
+app.get('/logout', (req, res) => {
+  req.logout();
+});
+
+// check if user is authenticated
+app.get('/auth/isAuthenticated', function(req, res) {
+  if (req.isAuthenticated()) {
+    return res.status(200).send({ authenticated: 'true', user: req.user})
+  }
+  return res.status(401).send({ authenticated: 'false', user: req.user })
+});
+
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
