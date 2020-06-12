@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,6 +35,32 @@ export default class Login extends React.Component {
   submitLogin(e) {
     e.preventDefault();
     console.log(this.state);
+
+    fetch("/login", {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      //make sure to serialize your JSON body
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+    .then(res => {
+
+      if (res.status === 200) {
+        this.props.history.push('/profile');
+      }
+
+			return res.json();
+		}, err => {
+			console.log(err);
+		})
+    .then(data => {
+      console.log(data);
+    });
   }
 
   // React function that is called when the page load.
@@ -66,3 +93,5 @@ export default class Login extends React.Component {
     );
   }
 }
+
+export default withRouter(Login);

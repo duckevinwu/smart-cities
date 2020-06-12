@@ -5,8 +5,8 @@ import {
 	Switch
 } from 'react-router-dom';
 import Test from './Test';
-import Login from './Login';
-import Register from './Register';
+import LoginWrapper from './LoginWrapper';
+import RegisterWrapper from './RegisterWrapper';
 import Profile from './Profile';
 
 export default class App extends React.Component {
@@ -32,14 +32,14 @@ export default class App extends React.Component {
 							exact
 							path="/login"
 							render={() => (
-								<Login />
+								<LoginWrapper />
 							)}
 						/>
 						<Route
 							exact
 							path="/register"
 							render={() => (
-								<Register />
+								<RegisterWrapper />
 							)}
 						/>
 						<Route

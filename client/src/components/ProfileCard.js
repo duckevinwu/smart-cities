@@ -1,12 +1,32 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class ProfileCard extends React.Component {
+class ProfileCard extends React.Component {
 	constructor(props) {
 		super(props);
 
     this.state = {
-      
+
     }
+
+		this.handleLogout = this.handleLogout.bind(this);
+	}
+
+	handleLogout() {
+		fetch("/logout",
+		{
+			method: "GET"
+		}).then(res => {
+			if (res.status === 200) {
+				this.props.history.push('/login');
+				return;
+			}
+			return res.json();
+		}, err => {
+			console.log(err);
+		}).then(data => {
+
+		});
 	}
 
 	render() {
@@ -17,6 +37,7 @@ export default class ProfileCard extends React.Component {
   				<div>{this.props.user.login}</div>
   				<div>{this.props.user.name}</div>
   				<div>{this.props.user.birthyear}</div>
+					<button onClick={this.handleLogout}>Log out</button>
   			</div>
   		);
     } else {
@@ -30,3 +51,5 @@ export default class ProfileCard extends React.Component {
 
 	}
 }
+
+export default withRouter(ProfileCard);

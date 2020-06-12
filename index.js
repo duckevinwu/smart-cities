@@ -58,9 +58,28 @@ app.post('/register', function(req, res, next) {
   })(req, res, next);
 });
 
+// Login
+app.post('/login', function(req, res, next) {
+  passport.authenticate('local-login', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).send({message: info.message});
+    }
+    req.login(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).send({message: 'authentication suceeded'});
+    });
+  }) (req, res, next);
+});
+
 // Logout
-app.get('/logout', (req, res) => {
+app.get('/logout', function(req, res) {
   req.logout();
+  return res.status(200).send();
 });
 
 // check if user is authenticated

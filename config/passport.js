@@ -1,13 +1,13 @@
-// var config = require('../db-config.js');
+var config = require('../db-config.js');
 
 // Code below for testing in production
 
-var config = {
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
-}
+// var config = {
+//   host: process.env.HOST,
+//   user: process.env.USER,
+//   password: process.env.PASSWORD,
+//   database: process.env.DATABASE
+// }
 
 var mysql = require('mysql');
 const LocalStrategy = require('passport-local').Strategy;
@@ -22,7 +22,7 @@ module.exports = function(passport) {
 
   // used to serialize the user for the session
   passport.serializeUser(function(user, done) {
-      done(null, user.email);
+      done(null, user.login);
   });
 
   // used to deserialize the user
@@ -65,7 +65,7 @@ module.exports = function(passport) {
           bcrypt.hash(password, saltRounds, function(err, hash) {
               // Store hash in your password DB.
               var newUser = {
-                email: email,
+                login: email,
                 password: hash,
                 birthyear: 2020
               }
@@ -74,7 +74,7 @@ module.exports = function(passport) {
                 INSERT INTO Person (login, name, birthyear)
                 VALUES (?, ?, ?);
               `;
-              connection.query(insertQuery, [newUser.email, newUser.password, newUser.birthyear], function(err, rows, fields) {
+              connection.query(insertQuery, [newUser.login, newUser.password, newUser.birthyear], function(err, rows, fields) {
                 if (err) console.log(err);
                 else {
                   return done(null, newUser);
@@ -89,5 +89,43 @@ module.exports = function(passport) {
     }
   )
   );
+
+  // login
+  passport.use(
+    'local-login',
+    new LocalStrategy({
+      usernameField: 'email'
+    },
+    function(email, password, done) {
+      var query = `
+        SELECT *
+        FROM Person
+        WHERE login = ?;
+      `;
+      connection.query(query, [email], function(err, rows, fields) {
+        if (err) {
+          return done(err);
+        }
+
+        // email doesn't exist
+        if (!rows.length) {
+          return done(null, false, {message: 'no user found with that email'});
+        }
+
+        bcrypt.compare(password, rows[0].name, function(err, result) {
+          // incorrect password
+          if (!result) {
+            return done(null, false, {message: 'incorrect password'});
+          }
+
+          // correct password
+          return done(null, rows[0]);
+
+        })
+
+      });
+    }
+  )
+  )
 
 }
