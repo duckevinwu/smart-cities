@@ -26,15 +26,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Connects React app with Express server in production
-if (process.env.NODE_ENV === 'production') {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client/build')));
-// Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
 
 /* ---------------------------------------------------------------- */
 /* ------------------- Route handler registration ----------------- */
@@ -99,6 +90,16 @@ app.get('/auth/isAuthenticated', function(req, res) {
   }
   return res.status(401).send({ authenticated: 'false', user: req.user })
 });
+
+// Connects React app with Express server in production
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'client/build')));
+// Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
 
 // set port
