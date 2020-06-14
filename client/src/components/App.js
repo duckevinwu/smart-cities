@@ -10,6 +10,7 @@ import Register from './Register';
 import Profile from './Profile';
 import Login from './Login';
 import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 export default class App extends React.Component {
 
@@ -56,6 +57,13 @@ export default class App extends React.Component {
 							path="/forgotpassword"
 							render={() => (
 								<AuthenticatedRoute success="/profile" fail={<ForgotPassword/>} />
+							)}
+						/>
+						<Route
+							exact
+							path="/resetpassword/:email/:token"
+							render={(props) => (
+								<ResetPassword {...props} />
 							)}
 						/>
 					</Switch>

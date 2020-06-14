@@ -14,8 +14,14 @@ var config = {
 
 var randToken = require('rand-token');
 var bcrypt = require('bcrypt');
+var sgMail = require('@sendgrid/mail');
+
+// configure sendgrid
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 var mysql = require('mysql');
+
+var domain = 'http://localhost:3000';
 
 const saltRounds = 12;
 
@@ -80,23 +86,42 @@ function saveToken(req, res) {
     } else {
       var currTime = Date.now().toString();
       var token = randToken.generate(16);
-      var isUsed = 'false';
+      var isUsed = 'f';
 
       bcrypt.hash(token, saltRounds, function(err, hash) {
         // save into db
-        /*
         var query = `
           INSERT INTO Password (email, token, time, used)
           VALUES (?, ?, ?, ?);
         `;
-        connection.query(query, [email, token, currTime, isUsed], function(err, rows, fields) {
+        connection.query(query, [email, hash, currTime, isUsed], function(err, rows, fields) {
           if (err) console.log(err);
           else {
+
+            var resetUrl = domain + '/resetpassword/' + email + '/' + token;
+
             // send email
+            var msg = {
+              to: email,
+              from: 'thecollectivecause@gmail.com',
+              subject: 'Password Reset',
+              text: resetUrl,
+              html: '<a href="' + resetUrl + '">Reset password</a>'
+            }
+
+            sgMail
+              .send(msg)
+              .then(() => {
+                res.send({message: 'success'});
+              }, error => {
+                console.log(error);
+                res.send({message: 'error sending email'});
+              });
+
           }
         });
-        */
       });
+
     }
   });
 
