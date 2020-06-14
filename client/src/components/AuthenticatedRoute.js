@@ -1,10 +1,9 @@
 import React from 'react';
-import Register from './Register'
 import { withRouter } from 'react-router-dom';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
-class RegisterWrapper extends React.Component {
+class AuthenticatedRoute extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,11 +28,13 @@ class RegisterWrapper extends React.Component {
       console.log(data)
       var isAuthenticated = data.authenticated
       if (isAuthenticated === 'true') {
-        this.props.history.push('/profile');
+        // go here if user is already authenticated (logged in)
+        this.props.history.push(this.props.success);
       } else {
-        var registerPage = <Register/>;
+        // render this component if user is not authenticated (logged in)
+        var loginPage = this.props.fail;
         this.setState({
-          pageData: registerPage
+          pageData: loginPage
         })
       }
 		});
@@ -44,4 +45,4 @@ class RegisterWrapper extends React.Component {
   }
 }
 
-export default withRouter(RegisterWrapper);
+export default withRouter(AuthenticatedRoute);

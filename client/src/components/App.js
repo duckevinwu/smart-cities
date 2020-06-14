@@ -5,9 +5,11 @@ import {
 	Switch
 } from 'react-router-dom';
 import Test from './Test';
-import LoginWrapper from './LoginWrapper';
-import RegisterWrapper from './RegisterWrapper';
+import AuthenticatedRoute from './AuthenticatedRoute';
+import Register from './Register';
 import Profile from './Profile';
+import Login from './Login';
+import ForgotPassword from './ForgotPassword';
 
 export default class App extends React.Component {
 
@@ -32,14 +34,14 @@ export default class App extends React.Component {
 							exact
 							path="/login"
 							render={() => (
-								<LoginWrapper />
+								<AuthenticatedRoute success="/profile" fail={<Login/>}/>
 							)}
 						/>
 						<Route
 							exact
 							path="/register"
 							render={() => (
-								<RegisterWrapper />
+								<AuthenticatedRoute success="/profile" fail={<Register/>} />
 							)}
 						/>
 						<Route
@@ -47,6 +49,13 @@ export default class App extends React.Component {
 							path="/profile"
 							render={() => (
 								<Profile />
+							)}
+						/>
+						<Route
+							exact
+							path="/forgotpassword"
+							render={() => (
+								<AuthenticatedRoute success="/profile" fail={<ForgotPassword/>} />
 							)}
 						/>
 					</Switch>

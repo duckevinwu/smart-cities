@@ -91,6 +91,9 @@ app.get('/auth/isAuthenticated', function(req, res) {
   return res.status(401).send({ authenticated: 'false', user: req.user })
 });
 
+//---------------------FORGOT PASSWORD--------------------
+app.post('/forgotpassword', routes.saveToken);
+
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

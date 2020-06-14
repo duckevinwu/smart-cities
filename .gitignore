@@ -3,3 +3,6 @@ node_modules/
 
 #Ignore these files
 db-config.js
+
+#Ignore env file
+.env

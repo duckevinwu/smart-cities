@@ -1,5 +1,8 @@
 // var config = require('./db-config.js');
 
+// read .env file config
+require('dotenv').config();
+
 // Code below for testing in production
 
 var config = {
@@ -9,7 +12,12 @@ var config = {
   database: process.env.DATABASE
 }
 
+var randToken = require('rand-token');
+var bcrypt = require('bcrypt');
+
 var mysql = require('mysql');
+
+const saltRounds = 12;
 
 config.connectionLimit = 10;
 var connection = mysql.createPool(config);
@@ -51,8 +59,53 @@ function getFriends(req, res) {
   });
 };
 
+// --------------- RESET PASSWORD ----------------------
+function saveToken(req, res) {
+  var email = req.body.email;
+
+  // check if user with that email exists
+  var existsQuery = `
+    SELECT *
+    FROM Person
+    WHERE login = ?;
+  `;
+  connection.query(existsQuery, [email],  function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    if (!rows.length) {
+      // user doesn't exist
+      return res.send({message: `user doesn't exist`});
+    } else {
+      var currTime = Date.now().toString();
+      var token = randToken.generate(16);
+      var isUsed = 'false';
+
+      bcrypt.hash(token, saltRounds, function(err, hash) {
+        // save into db
+        /*
+        var query = `
+          INSERT INTO Password (email, token, time, used)
+          VALUES (?, ?, ?, ?);
+        `;
+        connection.query(query, [email, token, currTime, isUsed], function(err, rows, fields) {
+          if (err) console.log(err);
+          else {
+            // send email
+          }
+        });
+        */
+      });
+    }
+  });
+
+
+}
+
 // The exported functions, which can be accessed in index.js.
 module.exports = {
   getAllPeople: getAllPeople,
-  getFriends: getFriends
+  getFriends: getFriends,
+  saveToken: saveToken
 }

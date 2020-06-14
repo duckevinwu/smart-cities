@@ -1,5 +1,8 @@
 // var config = require('../db-config.js');
 
+// read .env file config
+require('dotenv').config();
+
 // Code below for testing in production
 
 var config = {
