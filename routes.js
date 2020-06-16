@@ -21,7 +21,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 var mysql = require('mysql');
 
-var domain = 'http://localhost:3000';
+var domain = 'https://intense-hollows-59794.herokuapp.com';
 
 const saltRounds = 12;
 
@@ -82,7 +82,7 @@ function saveToken(req, res) {
     }
     if (!rows.length) {
       // user doesn't exist
-      return res.send({message: `user doesn't exist`});
+      return res.send({status: 'fail', message: `user doesn't exist`});
     } else {
       var currTime = Date.now().toString();
       var token = randToken.generate(16);
@@ -112,10 +112,10 @@ function saveToken(req, res) {
             sgMail
               .send(msg)
               .then(() => {
-                res.send({message: 'success'});
+                res.send({status: 'success', message: 'success'});
               }, error => {
                 console.log(error);
-                res.send({message: 'error sending email'});
+                res.send({status: 'fail', message: 'error sending email'});
               });
 
           }
@@ -124,7 +124,91 @@ function saveToken(req, res) {
 
     }
   });
+}
 
+function checkToken(req, res) {
+  var email = req.params.email;
+  var token = req.params.token;
+
+  var query = `
+    SELECT time, token
+    FROM Password
+    WHERE email = ? AND used = 'f' AND time = (
+      SELECT MAX(time)
+      FROM Password
+      WHERE email = ? AND used = 'f'
+    );
+  `;
+  connection.query(query, [email, email], function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      // tuple doesn't exist
+      if (!rows.length) {
+        res.send({status: 'fail', message: 'not valid'})
+      } else {
+        var dbTime = rows[0].time;
+        var dbToken = rows[0].token;
+
+        var prevTime = parseInt(dbTime);
+        var currTime = parseInt(Date.now().toString());
+
+        var elapsedTimeMins = ((currTime - prevTime) / 1000) / 60;
+
+        if (elapsedTimeMins > 120) {
+          res.send({status: 'fail', message: 'token expired'})
+        } else {
+          bcrypt.compare(token, dbToken, function(err, result) {
+            if (result) {
+              res.send({status: 'success', message: 'valid token', time: dbTime})
+            } else {
+              res.send({status: 'fail', message: 'invalid token'})
+            }
+          })
+        }
+
+      }
+    }
+  });
+}
+
+function updatePassword(req, res) {
+  var email = req.body.email;
+  var newPassword = req.body.newPassword;
+  var time = req.body.time;
+
+  // update previous record in Password table
+  var statusQuery = `
+    UPDATE Password
+    SET used = 't'
+    WHERE email = ? AND time = ?
+  `;
+  connection.query(statusQuery, [email, time], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      res.sent({status: 'fail'});
+    }
+    else {
+      // hash password
+      bcrypt.hash(newPassword, saltRounds, function(err, hash) {
+        // udate password
+        var passwordQuery = `
+          Update Person
+          SET name = ?
+          WHERE login = ?
+        `;
+        connection.query(passwordQuery, [hash, email], function(err, rows, fields) {
+          if (err) {
+            console.log(err);
+            res.send({status: 'fail'});
+          }
+          else {
+            res.send({status: 'success'})
+          }
+        });
+      });
+
+    }
+  });
 
 }
 
@@ -132,5 +216,7 @@ function saveToken(req, res) {
 module.exports = {
   getAllPeople: getAllPeople,
   getFriends: getFriends,
-  saveToken: saveToken
+  saveToken: saveToken,
+  checkToken: checkToken,
+  updatePassword: updatePassword
 }

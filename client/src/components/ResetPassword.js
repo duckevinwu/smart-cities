@@ -1,14 +1,20 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
-export default class ResetPassword extends React.Component {
+class ResetPassword extends React.Component {
   constructor(props) {
     super(props);
 
     // The state maintained by this React Component.
     // This component maintains the list of people.
     this.state = {
+      email: "",
+      token: "",
+      time: "",
+      isLoaded: false,
+      isValid: false,
       password: "",
       repeat: ""
     }
@@ -35,7 +41,7 @@ export default class ResetPassword extends React.Component {
     e.preventDefault();
     console.log(this.state);
 
-    fetch("/path", {
+    fetch("/reset", {
       method: "post",
       headers: {
         'Accept': 'application/json',
@@ -44,6 +50,8 @@ export default class ResetPassword extends React.Component {
       //make sure to serialize your JSON body
       body: JSON.stringify({
         email: this.state.email,
+        newPassword: this.state.password,
+        time: this.state.time
       })
     })
     .then(res => {
@@ -53,33 +61,78 @@ export default class ResetPassword extends React.Component {
 		})
     .then(data => {
       console.log(data);
-      // change state of componenet depending on response (error or success)
+      // change state of component depending on response (error or success)
+      if (data.status === 'success') {
+        this.props.history.push('/login');
+      }
     });
   }
 
   // React function that is called when the page load.
   componentDidMount() {
-    console.log(this.props.match.params);
+    var email = this.props.match.params.email;
+    var token = this.props.match.params.token;
+
+    this.setState({
+      email: email,
+      token: token
+    })
+
+    fetch("/reset/" + email + '/' + token,
+		{
+			method: "GET"
+		}).then(res => {
+			return res.json();
+		}, err => {
+			console.log(err);
+		}).then(data => {
+      console.log(data);
+      if (data.status === 'success') {
+        this.setState({
+          isValid: true,
+          time: data.time
+        })
+      }
+
+      this.setState({
+        isLoaded: true
+      })
+
+		});
   }
 
   render() {
-    return (
-      <form onSubmit={this.submitReset}>
+
+    if (this.state.isLoaded && this.state.isValid) {
+      return (
+        <form onSubmit={this.submitReset}>
+          <div>
+            <h1>Reset Password</h1>
+
+            <label htmlFor="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter New Password" value={this.state.password} onChange={this.handlePasswordChange} required />
+
+            <br/>
+
+            <label htmlFor="password-repeat"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" value={this.state.repeat} onChange={this.handleRepeatChange} required />
+            <br/>
+
+            <button type="submit">Reset Password</button>
+          </div>
+        </form>
+      );
+    } else if (this.state.isLoaded && !this.state.isValid) {
+      return (
         <div>
-          <h1>Reset Password</h1>
-
-          <label htmlFor="password"><b>Password</b></label>
-          <input type="password" placeholder="Enter New Password" value={this.state.password} onChange={this.handlePasswordChange} required />
-
-          <br/>
-
-          <label htmlFor="password-repeat"><b>Repeat Password</b></label>
-          <input type="password" placeholder="Repeat Password" value={this.state.repeat} onChange={this.handleRepeatChange} required />
-          <br/>
-
-          <button type="submit">Reset Password</button>
+          <p>Invalid link - please try <a href="/forgotpassword">Forgot Password</a> again.</p>
         </div>
-      </form>
-    );
+      );
+    } else {
+      return (<div></div>);
+    }
+
   }
 }
+
+export default withRouter(ResetPassword);

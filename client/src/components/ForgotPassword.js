@@ -9,7 +9,8 @@ export default class ForgotPassword extends React.Component {
     // The state maintained by this React Component.
     // This component maintains the list of people.
     this.state = {
-      email: ""
+      email: "",
+      isSent: false
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -46,6 +47,13 @@ export default class ForgotPassword extends React.Component {
     .then(data => {
       console.log(data);
       // change state of componenet depending on response (error or success)
+      if (data.status === 'success') {
+        this.setState({
+          isSent: true
+        })
+      } else {
+        // display the failure message
+      }
     });
   }
 
@@ -54,19 +62,27 @@ export default class ForgotPassword extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.submitEmail}>
+    if (this.state.isSent) {
+      return (
         <div>
-          <h1>Forgot Password</h1>
-
-          <label htmlFor="email"><b>Email</b></label>
-          <input type="email" placeholder="Enter Email" value={this.state.email} onChange={this.handleEmailChange} required />
-          <br/>
-          <br/>
-
-          <button type="submit">Send Confirmation Email</button>
+          <p>A password reset email has been sent to your account.</p>
         </div>
-      </form>
-    );
+      );
+    } else {
+      return (
+        <form onSubmit={this.submitEmail}>
+          <div>
+            <h1>Forgot Password</h1>
+
+            <label htmlFor="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" value={this.state.email} onChange={this.handleEmailChange} required />
+            <br/>
+            <br/>
+
+            <button type="submit">Send Confirmation Email</button>
+          </div>
+        </form>
+      );
+    }
   }
 }
