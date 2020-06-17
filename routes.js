@@ -22,6 +22,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 var mysql = require('mysql');
 
 var domain = 'https://intense-hollows-59794.herokuapp.com';
+// var domain = "http://localhost:3000";
 
 const saltRounds = 12;
 
@@ -64,6 +65,131 @@ function getFriends(req, res) {
     }
   });
 };
+
+// --------------- REGISTER USER -----------------------
+function saveRegisterToken(req, res) {
+  var email = req.body.email;
+  var password = req.body.password;
+
+  // check if user with that email exists
+  var existsQuery = `
+    SELECT *
+    FROM Person
+    WHERE login = ?;
+  `;
+  connection.query(existsQuery, [email],  function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    if (rows.length) {
+      // user already exists
+      return res.send({status: 'fail', message: 'user already exists'});
+    } else {
+      var currTime = Date.now().toString();
+      var token = randToken.generate(16);
+
+      // hash token
+      bcrypt.hash(token, saltRounds, function(err, tokenHash) {
+        // hash password
+        bcrypt.hash(password, saltRounds, function(err, pwHash) {
+          // save into db
+          var query = `
+            INSERT INTO Confirmation (email, password, token, time)
+            VALUES (?, ?, ?, ?);
+          `;
+          connection.query(query, [email, pwHash, tokenHash, currTime], function(err, rows, fields) {
+            if (err) console.log(err);
+            else {
+
+              var confirmUrl = domain + '/confirmation/' + email + '/' + token;
+
+              // send email
+              var msg = {
+                to: email,
+                from: 'thecollectivecause@gmail.com',
+                subject: 'Activate Account',
+                text: confirmUrl,
+                html: '<a href="' + confirmUrl + '">Activate Account</a>'
+              }
+
+              sgMail
+                .send(msg)
+                .then(() => {
+                  res.send({status: 'success', message: 'success'});
+                }, error => {
+                  console.log(error);
+                  res.send({status: 'fail', message: 'error sending email'});
+                });
+
+            }
+          });
+        });
+      });
+
+    }
+  });
+}
+
+function checkRegisterToken(req, res) {
+  var email = req.params.email;
+  var token = req.params.token;
+
+  var query = `
+    SELECT time, token, password
+    FROM Confirmation
+    WHERE email = ? AND time = (
+      SELECT MAX(time)
+      FROM Confirmation
+      WHERE email = ?
+    );
+  `;
+  connection.query(query, [email, email], function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      // tuple doesn't exist
+      if (!rows.length) {
+        res.send({status: 'fail', message: 'not valid'})
+      } else {
+        var dbTime = rows[0].time;
+        var dbToken = rows[0].token;
+        var dbPassword = rows[0].password;
+
+        var prevTime = parseInt(dbTime);
+        var currTime = parseInt(Date.now().toString());
+
+        var elapsedTimeMins = ((currTime - prevTime) / 1000) / 60;
+
+        if (elapsedTimeMins > 120) {
+          res.send({status: 'fail', message: 'token expired'})
+        } else {
+          bcrypt.compare(token, dbToken, function(err, result) {
+            if (result) {
+              // save user into db
+              var insertQuery = `
+                INSERT INTO Person (login, name)
+                VALUES (?, ?);
+              `;
+              connection.query(insertQuery, [email, dbPassword], function(err, rows, fields) {
+                if (err) {
+                  return res.send({status: 'fail', message: 'error creating account'});
+                } else {
+                  return res.send({status: 'success', message: 'account created'});
+                }
+              })
+
+            } else {
+              res.send({status: 'fail', message: 'invalid token'})
+            }
+          })
+        }
+
+      }
+    }
+  });
+}
+
+
 
 // --------------- RESET PASSWORD ----------------------
 function saveToken(req, res) {
@@ -218,5 +344,7 @@ module.exports = {
   getFriends: getFriends,
   saveToken: saveToken,
   checkToken: checkToken,
-  updatePassword: updatePassword
+  updatePassword: updatePassword,
+  saveRegisterToken: saveRegisterToken,
+  checkRegisterToken: checkRegisterToken
 }

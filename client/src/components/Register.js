@@ -12,7 +12,8 @@ class Register extends React.Component {
     this.state = {
       email: "",
       password: "",
-      repeat: ""
+      repeat: "",
+      isSent: false
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -57,17 +58,19 @@ class Register extends React.Component {
       })
     })
     .then(res => {
-
-      if (res.status === 200) {
-        this.props.history.push('/dashboard');
-      }
-
 			return res.json();
 		}, err => {
 			console.log(err);
 		})
     .then(data => {
       console.log(data);
+      if (data.status === 'success') {
+        this.setState({
+          isSent: true
+        })
+      } else {
+        // handle errors
+      }
     });
 
   }
@@ -78,35 +81,43 @@ class Register extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.submitRegister}>
+    if (this.state.isSent) {
+      return (
         <div>
-          <h1>Register</h1>
-          <p>Please fill in this form to create an account.</p>
-
-          <label htmlFor="email"><b>Email</b></label>
-          <input type="email" placeholder="Enter Email" value={this.state.email} onChange={this.handleEmailChange} required />
-
-          <br/>
-
-          <label htmlFor="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePasswordChange} required />
-
-          <br/>
-
-          <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
-          <input type="password" placeholder="Repeat Password" value={this.state.repeat} onChange={this.handleRepeatChange} required />
-
-          <br/>
-
-          <button type="submit">Register</button>
+          <p>Please check your email to activate your account.</p>
         </div>
+      );
+    } else {
+      return (
+        <form onSubmit={this.submitRegister}>
+          <div>
+            <h1>Register</h1>
+            <p>Please fill in this form to create an account.</p>
 
-        <div>
-          <p>Already have an account? <a href="/login">Sign in</a>.</p>
-        </div>
-      </form>
-    );
+            <label htmlFor="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" value={this.state.email} onChange={this.handleEmailChange} required />
+
+            <br/>
+
+            <label htmlFor="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePasswordChange} required />
+
+            <br/>
+
+            <label htmlFor="psw-repeat"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" value={this.state.repeat} onChange={this.handleRepeatChange} required />
+
+            <br/>
+
+            <button type="submit">Register</button>
+          </div>
+
+          <div>
+            <p>Already have an account? <a href="/login">Sign in</a>.</p>
+          </div>
+        </form>
+      );
+    }
   }
 }
 

@@ -41,6 +41,13 @@ app.get('/people', routes.getAllPeople);
 app.get('/friends/:login', routes.getFriends); // Hint: Replace () => {} with the appropriate route handler in routes.js.
 
 // Register
+
+/* ----------- email confirmation registration ----------------*/
+app.post('/register', routes.saveRegisterToken);
+app.get('/activate/:email/:token', routes.checkRegisterToken);
+
+/* ----------- no email confirmation registration -------------*/
+/*
 app.post('/register', function(req, res, next) {
   passport.authenticate('local-register', function(err, user, info) {
     if (err) {
@@ -58,6 +65,7 @@ app.post('/register', function(req, res, next) {
     });
   })(req, res, next);
 });
+*/
 
 // Login
 app.post('/login', function(req, res, next) {
