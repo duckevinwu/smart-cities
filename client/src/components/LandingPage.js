@@ -21,6 +21,7 @@ export default class LandingPage extends React.Component {
     appendScript("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js");
     appendScript("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js");
     appendScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js");
+    appendScript("https://codepen.io/duckevinwu/pen/bGEBxOj.js");
   }
 
   render() {
