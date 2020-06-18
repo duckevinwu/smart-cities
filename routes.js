@@ -281,13 +281,13 @@ function checkToken(req, res) {
         var elapsedTimeMins = ((currTime - prevTime) / 1000) / 60;
 
         if (elapsedTimeMins > 120) {
-          res.send({status: 'fail', message: 'token expired'})
+          return res.send({status: 'fail', message: 'token expired'})
         } else {
           bcrypt.compare(token, dbToken, function(err, result) {
             if (result) {
-              res.send({status: 'success', message: 'valid token', time: dbTime})
+              return res.send({status: 'success', message: 'valid token', time: dbTime})
             } else {
-              res.send({status: 'fail', message: 'invalid token'})
+              return res.send({status: 'fail', message: 'invalid token'})
             }
           })
         }
@@ -311,7 +311,7 @@ function updatePassword(req, res) {
   connection.query(statusQuery, [email, time], function(err, rows, fields) {
     if (err) {
       console.log(err);
-      res.sent({status: 'fail'});
+      return res.send({status: 'fail'});
     }
     else {
       // hash password
@@ -325,10 +325,10 @@ function updatePassword(req, res) {
         connection.query(passwordQuery, [hash, email], function(err, rows, fields) {
           if (err) {
             console.log(err);
-            res.send({status: 'fail'});
+            return res.send({status: 'fail'});
           }
           else {
-            res.send({status: 'success'})
+            return res.send({status: 'success'})
           }
         });
       });
@@ -336,6 +336,73 @@ function updatePassword(req, res) {
     }
   });
 
+}
+
+// ------------------------ CREATE CHALLENGE ------------------------
+function createChallenge(req, res) {
+  var name = req.body.name;
+  var tagline = req.body.tagline;
+  var userId = req.user.user_id;
+
+  // if user id doesn't exist, don't create challenge
+  if (!userId) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  } else {
+    // save challenge into database
+    var insertQuery = `
+      INSERT INTO Challenge (name, tagline, owner)
+      VALUES (?, ?, ?);
+    `;
+    connection.query(insertQuery, [name, tagline, userId], function(err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.send({status: 'fail'});
+      } else {
+        return res.send({status: 'success'});
+      }
+    });
+  }
+}
+
+// ----------------------- GET CREATED CHALLENGES --------------------
+function getMyChallenges(req, res) {
+  var userId = req.user.user_id;
+
+  // if user isn't signed in, don't retrieve anything
+  if (!userId) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  } else {
+    // get challenges owned by the current user
+    var query = `
+      SELECT name, tagline
+      FROM Challenge
+      WHERE owner = ?
+    `;
+    connection.query(query, [userId], function(err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.send({status: 'fail'});
+      } else {
+        return res.send({status: 'success', challenges: rows});
+      }
+    });
+  }
+}
+
+// -------------------- GET ALL CHALLENGES -------------------
+function getAllChallenges(req, res) {
+  var query = `
+    SELECT name, tagline
+    FROM Challenge
+  `;
+  connection.query(query, function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', challenges: rows});
+    }
+  });
 }
 
 // The exported functions, which can be accessed in index.js.
@@ -346,5 +413,8 @@ module.exports = {
   checkToken: checkToken,
   updatePassword: updatePassword,
   saveRegisterToken: saveRegisterToken,
-  checkRegisterToken: checkRegisterToken
+  checkRegisterToken: checkRegisterToken,
+  createChallenge: createChallenge,
+  getMyChallenges: getMyChallenges,
+  getAllChallenges: getAllChallenges
 }

@@ -2,7 +2,7 @@ import React from 'react';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
-export default class Dashboard extends React.Component {
+export default class Test extends React.Component {
   constructor(props) {
     super(props);
 
@@ -48,7 +48,7 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <div className="Dashboard">
-        
+
         <div className="container people-container">
           <br></br>
           <div className="jumbotron less-headspace">

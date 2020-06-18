@@ -99,10 +99,30 @@ app.get('/auth/isAuthenticated', function(req, res) {
   return res.status(401).send({ authenticated: 'false', user: req.user })
 });
 
+// check if user is an admin
+app.get('/auth/isAdmin', function(req, res) {
+  if (req.isAuthenticated()) {
+    // if admin flag is true
+    if (req.user.admin === 1) {
+      return res.send({authenticated: 'true'});
+    }
+  }
+  return res.send({authenticated: 'false'});
+});
+
 //---------------------FORGOT PASSWORD--------------------
 app.post('/forgotpassword', routes.saveToken);
 app.get('/reset/:email/:token', routes.checkToken);
 app.post('/reset', routes.updatePassword);
+
+//--------------------CREATE CHALLENGE--------------------
+app.post('/api/createchallenge', routes.createChallenge);
+
+// -----------------GET CREATED CHALLENGES ---------------
+app.get('/api/mychallenges', routes.getMyChallenges);
+
+// ----------------- GET ALL CHALLENGES ------------------
+app.get('/api/allchallenges', routes.getAllChallenges);
 
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {

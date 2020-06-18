@@ -13,6 +13,10 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import ActivateAccount from './ActivateAccount';
 import LandingPage from './LandingPage';
+import AdminRoute from './AdminRoute';
+import CreateChallenge from './CreateChallenge';
+import Dashboard from './Dashboard';
+import ChallengeCenter from './ChallengeCenter';
 
 export default class App extends React.Component {
 
@@ -33,6 +37,13 @@ export default class App extends React.Component {
 							path="/dashboard"
 							render={() => (
 								<Test />
+							)}
+						/>
+						<Route
+							exact
+							path="/challengecenter"
+							render={() => (
+								<ChallengeCenter />
 							)}
 						/>
 						<Route
@@ -75,6 +86,20 @@ export default class App extends React.Component {
 							path="/confirmation/:email/:token"
 							render={(props) => (
 								<ActivateAccount {...props} />
+							)}
+						/>
+						<Route
+							exact
+							path="/createchallenge"
+							render={() => (
+								<AdminRoute success={<CreateChallenge/>} fail={<Login/>} />
+							)}
+						/>
+						<Route
+							exact
+							path="/mychallenges"
+							render={() => (
+								<AdminRoute success={<Dashboard/>} fail={<Login/>} />
 							)}
 						/>
 					</Switch>
