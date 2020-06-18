@@ -25,16 +25,17 @@ module.exports = function(passport) {
 
   // used to serialize the user for the session
   passport.serializeUser(function(user, done) {
-      done(null, user.login);
+      done(null, user.user_id);
   });
 
   // used to deserialize the user
-  passport.deserializeUser(function(email, done) {
-      connection.query("SELECT * FROM Person WHERE login = ? ",[email], function(err, rows){
+  passport.deserializeUser(function(id, done) {
+      connection.query("SELECT * FROM User WHERE user_id = ? ",[id], function(err, rows){
           done(err, rows[0]);
       });
   });
 
+  /*
   // Register
   passport.use(
     'local-register',
@@ -92,6 +93,7 @@ module.exports = function(passport) {
     }
   )
   );
+  */
 
   // login
   passport.use(
@@ -102,8 +104,8 @@ module.exports = function(passport) {
     function(email, password, done) {
       var query = `
         SELECT *
-        FROM Person
-        WHERE login = ?;
+        FROM User
+        WHERE email = ?;
       `;
       connection.query(query, [email], function(err, rows, fields) {
         if (err) {
@@ -115,7 +117,7 @@ module.exports = function(passport) {
           return done(null, false, {message: 'no user found with that email'});
         }
 
-        bcrypt.compare(password, rows[0].name, function(err, result) {
+        bcrypt.compare(password, rows[0].password, function(err, result) {
           // incorrect password
           if (!result) {
             return done(null, false, {message: 'incorrect password'});

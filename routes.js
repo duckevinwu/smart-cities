@@ -74,8 +74,8 @@ function saveRegisterToken(req, res) {
   // check if user with that email exists
   var existsQuery = `
     SELECT *
-    FROM Person
-    WHERE login = ?;
+    FROM User
+    WHERE email = ?;
   `;
   connection.query(existsQuery, [email],  function(err, rows, fields) {
     if (err) {
@@ -167,7 +167,7 @@ function checkRegisterToken(req, res) {
             if (result) {
               // save user into db
               var insertQuery = `
-                INSERT INTO Person (login, name)
+                INSERT INTO User (email, password)
                 VALUES (?, ?);
               `;
               connection.query(insertQuery, [email, dbPassword], function(err, rows, fields) {
@@ -198,8 +198,8 @@ function saveToken(req, res) {
   // check if user with that email exists
   var existsQuery = `
     SELECT *
-    FROM Person
-    WHERE login = ?;
+    FROM User
+    WHERE email = ?;
   `;
   connection.query(existsQuery, [email],  function(err, rows, fields) {
     if (err) {
@@ -318,9 +318,9 @@ function updatePassword(req, res) {
       bcrypt.hash(newPassword, saltRounds, function(err, hash) {
         // udate password
         var passwordQuery = `
-          Update Person
-          SET name = ?
-          WHERE login = ?
+          Update User
+          SET password = ?
+          WHERE email = ?
         `;
         connection.query(passwordQuery, [hash, email], function(err, rows, fields) {
           if (err) {
