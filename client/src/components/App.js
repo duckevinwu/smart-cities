@@ -12,6 +12,7 @@ import Login from './Login';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import ActivateAccount from './ActivateAccount';
+import LandingPage from './LandingPage';
 
 export default class App extends React.Component {
 
@@ -23,7 +24,9 @@ export default class App extends React.Component {
 						<Route
 							exact
 							path="/"
-
+							render={() => (
+								<LandingPage />
+							)}
 						/>
 						<Route
 							exact
