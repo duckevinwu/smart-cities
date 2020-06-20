@@ -17,6 +17,7 @@ import AdminRoute from './AdminRoute';
 import CreateChallenge from './CreateChallenge';
 import Dashboard from './Dashboard';
 import ChallengeCenter from './ChallengeCenter';
+import ChallengePage from './ChallengePage';
 
 export default class App extends React.Component {
 
@@ -100,6 +101,13 @@ export default class App extends React.Component {
 							path="/mychallenges"
 							render={() => (
 								<AdminRoute success={<Dashboard/>} fail={<Login/>} />
+							)}
+						/>
+						<Route
+							exact
+							path="/challenges/:id"
+							render={(props) => (
+								<ChallengePage {...props} />
 							)}
 						/>
 					</Switch>

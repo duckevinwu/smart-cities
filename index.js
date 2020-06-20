@@ -124,6 +124,9 @@ app.get('/api/mychallenges', routes.getMyChallenges);
 // ----------------- GET ALL CHALLENGES ------------------
 app.get('/api/allchallenges', routes.getAllChallenges);
 
+// ----------------- GET CHALLENGE DETAILS ---------------
+app.get('/api/challengedetails/:id', routes.getChallengeDetails);
+
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

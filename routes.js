@@ -392,7 +392,7 @@ function getMyChallenges(req, res) {
 // -------------------- GET ALL CHALLENGES -------------------
 function getAllChallenges(req, res) {
   var query = `
-    SELECT name, tagline
+    SELECT challenge_id, name, tagline
     FROM Challenge
   `;
   connection.query(query, function(err, rows, fields) {
@@ -401,6 +401,25 @@ function getAllChallenges(req, res) {
       return res.send({status: 'fail'});
     } else {
       return res.send({status: 'success', challenges: rows});
+    }
+  });
+}
+
+// --------------- GET CHALLENGE DETAILS --------------------
+function getChallengeDetails(req, res) {
+  var id = req.params.id;
+
+  var query = `
+    SELECT *
+    FROM Challenge
+    WHERE challenge_id = ?
+  `;
+  connection.query(query, [id], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', challenge: rows});
     }
   });
 }
@@ -416,5 +435,6 @@ module.exports = {
   checkRegisterToken: checkRegisterToken,
   createChallenge: createChallenge,
   getMyChallenges: getMyChallenges,
-  getAllChallenges: getAllChallenges
+  getAllChallenges: getAllChallenges,
+  getChallengeDetails: getChallengeDetails
 }

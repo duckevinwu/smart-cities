@@ -27,6 +27,7 @@ export default class ChallengeCenter extends React.Component {
         <div key={i}>
           <div>{challenge.name}</div>
           <div>{challenge.tagline}</div>
+          <div><a href={"/challenges/" + challenge.challenge_id}>Details</a></div>
         </div>
 			  );
 
