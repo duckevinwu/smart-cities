@@ -11,6 +11,7 @@ export default class ChallengePage extends React.Component {
     // This component maintains the list of people.
     this.state = {
       isLoaded: false,
+      challengeId: "",
       challenge: {}
     }
 
@@ -20,6 +21,10 @@ export default class ChallengePage extends React.Component {
   // React function that is called when the page load.
   componentDidMount() {
     var id = this.props.match.params.id;
+
+    this.setState({
+      challengeId: id
+    })
 
     fetch("/api/challengedetails/" + id,
 		{
@@ -46,7 +51,7 @@ export default class ChallengePage extends React.Component {
           <p>{this.state.challenge.challenge_id}</p>
           <p>{this.state.challenge.name}</p>
           <p>{this.state.challenge.tagline}</p>
-          <Submission />
+          <Submission challengeId={this.state.challengeId}/>
         </div>
       );
     } else {

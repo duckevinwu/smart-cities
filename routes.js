@@ -424,6 +424,39 @@ function getChallengeDetails(req, res) {
   });
 }
 
+// --------------- CREATE IDEA --------------------------
+
+function createIdea(req, res) {
+
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var userId = req.user.user_id;
+  var challengeId = parseInt(req.body.challengeId);
+  var content = req.body.content;
+  var currTime = parseInt(Date.now().toString());
+
+  // if user id doesn't exist, don't create challenge
+  if (!userId) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  } else {
+    // save challenge into database
+    var insertQuery = `
+      INSERT INTO Idea (creator, challenge, submit_time, content)
+      VALUES (?, ?, ?, ?);
+    `;
+    connection.query(insertQuery, [userId, challengeId, currTime, content], function(err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.send({status: 'fail'});
+      } else {
+        return res.send({status: 'success'});
+      }
+    });
+  }
+}
+
 // The exported functions, which can be accessed in index.js.
 module.exports = {
   getAllPeople: getAllPeople,
@@ -436,5 +469,6 @@ module.exports = {
   createChallenge: createChallenge,
   getMyChallenges: getMyChallenges,
   getAllChallenges: getAllChallenges,
-  getChallengeDetails: getChallengeDetails
+  getChallengeDetails: getChallengeDetails,
+  createIdea: createIdea
 }

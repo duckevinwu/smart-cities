@@ -27,7 +27,7 @@ export default class Profile extends React.Component {
 		}, err => {
 			console.log(err);
 		}).then(data => {
-      var profile = <ProfileCard authenticated={data.authenticated} user={data.user} />;
+      var profile = <ProfileCard authenticated={data.authenticated} userId={data.userId} />;
       this.setState({
         profileCard: profile
       })

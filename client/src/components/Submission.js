@@ -9,7 +9,8 @@ export default class Submission extends React.Component {
     // The state maintained by this React Component.
     // This component maintains the list of people.
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      userId: ""
     }
 
   }
@@ -27,9 +28,11 @@ export default class Submission extends React.Component {
 		}).then(data => {
       console.log(data)
       var isAuthenticated = data.authenticated
+      var id = data.userId
       if (isAuthenticated === 'true') {
         this.setState({
-          isLoggedIn: true
+          isLoggedIn: true,
+          userId: id
         });
       }
 		});
@@ -39,7 +42,8 @@ export default class Submission extends React.Component {
     if (this.state.isLoggedIn) {
       return (
         <div>
-          <a>Idea</a>
+          <a href={"/submitidea/" + this.props.challengeId}>Idea</a>
+          <br/>
           <a>Proposal</a>
         </div>
       );

@@ -18,6 +18,8 @@ import CreateChallenge from './CreateChallenge';
 import Dashboard from './Dashboard';
 import ChallengeCenter from './ChallengeCenter';
 import ChallengePage from './ChallengePage';
+import LoggedInRoute from './LoggedInRoute';
+import IdeaForm from './IdeaForm';
 
 export default class App extends React.Component {
 
@@ -108,6 +110,13 @@ export default class App extends React.Component {
 							path="/challenges/:id"
 							render={(props) => (
 								<ChallengePage {...props} />
+							)}
+						/>
+						<Route
+							exact
+							path="/submitidea/:challengeid"
+							render={(props) => (
+								<LoggedInRoute success={<IdeaForm {...props} />} fail={<Login/>} />
 							)}
 						/>
 					</Switch>

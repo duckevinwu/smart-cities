@@ -34,9 +34,7 @@ class ProfileCard extends React.Component {
     if (this.props.authenticated === 'true') {
       return (
   			<div>
-  				<div>{this.props.user.user_id}</div>
-  				<div>{this.props.user.email}</div>
-  				<div>{this.props.user.password}</div>
+  				<div>{this.props.userId}</div>
 					<button onClick={this.handleLogout}>Log out</button>
   			</div>
   		);

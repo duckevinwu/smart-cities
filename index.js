@@ -94,9 +94,9 @@ app.get('/logout', function(req, res) {
 // check if user is authenticated
 app.get('/auth/isAuthenticated', function(req, res) {
   if (req.isAuthenticated()) {
-    return res.status(200).send({ authenticated: 'true', user: req.user})
+    return res.status(200).send({ authenticated: 'true', userId: req.user.user_id})
   }
-  return res.status(401).send({ authenticated: 'false', user: req.user })
+  return res.status(401).send({ authenticated: 'false'})
 });
 
 // check if user is an admin
@@ -104,6 +104,20 @@ app.get('/auth/isAdmin', function(req, res) {
   if (req.isAuthenticated()) {
     // if admin flag is true
     if (req.user.admin === 1) {
+      return res.send({authenticated: 'true'});
+    }
+  }
+  return res.send({authenticated: 'false'});
+});
+
+// check if user is correct one in query
+app.get('/auth/isCorrectUser/:id', function(req, res) {
+
+  var urlId = parseInt(req.params.id);
+
+  if (req.isAuthenticated()) {
+    // if url id is equal to the logged in user's id
+    if (req.user.user_id === urlId) {
       return res.send({authenticated: 'true'});
     }
   }
@@ -126,6 +140,9 @@ app.get('/api/allchallenges', routes.getAllChallenges);
 
 // ----------------- GET CHALLENGE DETAILS ---------------
 app.get('/api/challengedetails/:id', routes.getChallengeDetails);
+
+// ------------------ CREATE IDEA -------------------------
+app.post('/api/createidea', routes.createIdea);
 
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {
