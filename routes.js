@@ -374,7 +374,7 @@ function getMyChallenges(req, res) {
   } else {
     // get challenges owned by the current user
     var query = `
-      SELECT name, tagline
+      SELECT challenge_id, name, tagline
       FROM Challenge
       WHERE owner = ?
     `;
@@ -457,6 +457,108 @@ function createIdea(req, res) {
   }
 }
 
+// -------------- CREATE PROPOSAL -----------------------
+function createProposal(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var userId = req.user.user_id;
+  var challengeId = parseInt(req.body.challengeId);
+  var content = req.body.content;
+  var currTime = parseInt(Date.now().toString());
+
+  if (!userId) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  } else {
+    // save challenge into database
+    var insertQuery = `
+      INSERT INTO Proposal (creator, challenge, submit_time, content)
+      VALUES (?, ?, ?, ?);
+    `;
+    connection.query(insertQuery, [userId, challengeId, currTime, content], function(err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.send({status: 'fail'});
+      } else {
+        return res.send({status: 'success'});
+      }
+    });
+  }
+}
+
+// --------------- CHECK CHALLENGE OWNER CORRECT -----------
+function isChallengeOwner(req, res) {
+
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var challengeId = req.params.challenge_id;
+  var userId = req.user.user_id;
+
+  if (!userId) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  } else {
+    // get challenge owner from db
+    var query = `
+      SELECT owner
+      FROM Challenge
+      WHERE challenge_id = ?
+    `;
+    connection.query(query, [challengeId], function(err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.send({status: 'fail'});
+      } else {
+        if (userId === rows[0].owner) {
+          return res.send({status: 'success'});
+        } else {
+          return res.send({status: 'fail', message: 'not owner of challenge'});
+        }
+      }
+    });
+  }
+}
+
+// ------------------- GET IDEAS -----------------------------
+function getIdeas(req, res) {
+  var challengeId = parseInt(req.params.challengeid);
+
+  var query = `
+    SELECT i.challenge, i.submit_time, u.email
+    FROM Idea i JOIN User u ON i.creator = u.user_id
+    WHERE i.challenge = ?
+  `;
+  connection.query(query, [challengeId], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', ideas: rows});
+    }
+  });
+}
+
+// ------------------- GET PROPOSALS -----------------------------
+function getProposals(req, res) {
+  var challengeId = parseInt(req.params.challengeid);
+
+  var query = `
+    SELECT p.challenge, p.submit_time, u.email
+    FROM Proposal p JOIN User u ON p.creator = u.user_id
+    WHERE p.challenge = ?
+  `;
+  connection.query(query, [challengeId], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', proposals: rows});
+    }
+  });
+}
+
 // The exported functions, which can be accessed in index.js.
 module.exports = {
   getAllPeople: getAllPeople,
@@ -470,5 +572,9 @@ module.exports = {
   getMyChallenges: getMyChallenges,
   getAllChallenges: getAllChallenges,
   getChallengeDetails: getChallengeDetails,
-  createIdea: createIdea
+  createIdea: createIdea,
+  createProposal: createProposal,
+  isChallengeOwner: isChallengeOwner,
+  getIdeas: getIdeas,
+  getProposals: getProposals
 }

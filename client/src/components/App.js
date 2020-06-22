@@ -20,6 +20,8 @@ import ChallengeCenter from './ChallengeCenter';
 import ChallengePage from './ChallengePage';
 import LoggedInRoute from './LoggedInRoute';
 import IdeaForm from './IdeaForm';
+import ProposalForm from './ProposalForm';
+import ViewSubmissions from './ViewSubmissions';
 
 export default class App extends React.Component {
 
@@ -117,6 +119,20 @@ export default class App extends React.Component {
 							path="/submitidea/:challengeid"
 							render={(props) => (
 								<LoggedInRoute success={<IdeaForm {...props} />} fail={<Login/>} />
+							)}
+						/>
+						<Route
+							exact
+							path="/submitproposal/:challengeid"
+							render={(props) => (
+								<LoggedInRoute success={<ProposalForm {...props} />} fail={<Login/>} />
+							)}
+						/>
+						<Route
+							exact
+							path="/viewsubmissions/:challengeid"
+							render={(props) => (
+								<ViewSubmissions {...props} />
 							)}
 						/>
 					</Switch>

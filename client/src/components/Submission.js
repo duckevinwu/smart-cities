@@ -44,7 +44,7 @@ export default class Submission extends React.Component {
         <div>
           <a href={"/submitidea/" + this.props.challengeId}>Idea</a>
           <br/>
-          <a>Proposal</a>
+          <a href={"/submitproposal/" + this.props.challengeId}>Proposal</a>
         </div>
       );
     } else {

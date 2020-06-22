@@ -144,6 +144,18 @@ app.get('/api/challengedetails/:id', routes.getChallengeDetails);
 // ------------------ CREATE IDEA -------------------------
 app.post('/api/createidea', routes.createIdea);
 
+// ------------------ CREATE PROPOSAL ---------------------
+app.post('/api/createproposal', routes.createProposal);
+
+// ------------------ CHECK CHALLENGE OWNER ---------------
+app.get('/api/challengeowner/:challenge_id', routes.isChallengeOwner);
+
+// ------------------ GET IDEAS --------------------------
+app.get('/api/ideas/:challengeid', routes.getIdeas);
+
+// ------------------ GET PROPOSALS --------------------------
+app.get('/api/proposals/:challengeid', routes.getProposals);
+
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
