@@ -1,16 +1,20 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import '../style/LandingPage.css';
 import { appendScript } from '../js/AppendScript.js';
+import Navbar from './Navbar';
 // import '../js/typing.js';
 //import PageNavbar from './PageNavbar';
 
-export default class LandingPage extends React.Component {
+class LandingPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
 
     }
+
+    this.enterSite = this.enterSite.bind(this);
   }
 
 
@@ -24,9 +28,14 @@ export default class LandingPage extends React.Component {
     appendScript("https://cdn.jsdelivr.net/gh/duckevinwu/external-js/TypingAnimation.min.js");
   }
 
+  enterSite() {
+    this.props.history.push('/challengecenter');
+  }
+
   render() {
     return (
       <div className="page">
+      <Navbar/>
       <div>
          <div className="content">
             <div id="large-header" className="large-header">
@@ -37,7 +46,7 @@ export default class LandingPage extends React.Component {
                 </div>
                 <div id="text"></div>
                 <div className="buttonWrap">
-                  <button type="button" className="enter"> Enter </button>
+                  <button type="button" className="enter" onClick={this.enterSite}> Enter </button>
                 </div>
             </div>
           </div>
@@ -46,3 +55,5 @@ export default class LandingPage extends React.Component {
     );
   }
 }
+
+export default withRouter(LandingPage);

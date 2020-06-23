@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,300i,500,500i,700");
+
+.navLabel {
+  position: absolute;
+}
+
+.handler {
+  width: 1.5cm;
+  line-height: 1.5cm;
+  text-align: center;
+  font-size: 30px;
+  display: inline-block;
+  position: absolute;
+}
+
+.fa-list {
+  color: white;
+  cursor: pointer;
+}
+
+.nav-title {
+/*   position: absolute; */
+  color: white;
+  top: 0%;
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.nav-home {
+  position: absolute;
+  color: white;
+  top: 20%;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.nav-challenge-center {
+  position: absolute;
+  color: white;
+  top: 35%;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.nav-profile {
+  position: absolute;
+  color: white;
+  top: 50%;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.nav-logout {
+  position: absolute;
+  color: white;
+  top: 65%;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.navWrapper {
+  display: none;
+}
+
+.nav-logo {
+  position: absolute;
+  top: 0%;
+  max-height: 100px;
+  left: 25%;
+}
+
+.navLoggedIn {
+  transform: translateX(-110%);
+  transition: transform 300ms ease-out;
+  background: black;
+  position: absolute;
+  min-width: 250px;
+  height: 75vh;
+  overflow-y: auto;
+  padding: 8px 10px;
+  border-radius: 15px;
+  z-index: 10;
+}
+
+ul {
+  padding: 8px 0;
+  margin: 0;
+}
+
+.overlay {
+  opacity: 0;
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  will-change: opacity;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+input:checked+.handler {
+  display: none;
+}
+
+input:checked+.handler+.overlay {
+/*   opacity: 0.3; */
+  pointer-events: auto;
+  color: white;
+}
+
+input:checked+.handler+.overlay+nav {
+  transform: translateX(0);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.whiteLink {
+  color: white;
+  text-decoration: none;
+}
+
+/* -------------- IF LOGGED OUT ----------------- */
+.navLoggedOut {
+  transform: translateX(-110%);
+  transition: transform 300ms ease-out;
+  background: black;
+  position: absolute;
+  min-width: 250px;
+  height: 50vh;
+  overflow-y: auto;
+  padding: 8px 10px;
+  border-radius: 15px;
+  z-index: 10;
+}
+
+.nav-title-lo {
+/*   position: absolute; */
+  color: white;
+  top: 0%;
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.nav-home-lo {
+  position: absolute;
+  color: white;
+  top: 30%;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.nav-challenge-center-lo {
+  position: absolute;
+  color: white;
+  top: 50%;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.nav-login-lo {
+  position: absolute;
+  color: white;
+  top: 70%;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
