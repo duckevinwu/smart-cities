@@ -47,7 +47,7 @@ export default class Navbar extends React.Component {
 
             <div className="overlay"></div>
             <nav className="navLoggedOut">
-              <img src="https://i.imgur.com/XoWNpJK.png" className="nav-logo"/>
+              <img src="https://i.imgur.com/XoWNpJK.png" className="nav-logo" alt="cc-logo"/>
             <ul>
               <li className="nav-home-lo"><a className="whiteLink" href="/">Home</a></li>
               <li className="nav-challenge-center-lo"><a className="whiteLink" href="/challengecenter">Challenge Center</a></li>
@@ -64,12 +64,12 @@ export default class Navbar extends React.Component {
 
             <div className="overlay"></div>
             <nav className="navLoggedIn">
-              <img src="https://i.imgur.com/XoWNpJK.png" className="nav-logo"/>
+              <img src="https://i.imgur.com/XoWNpJK.png" className="nav-logo" alt="cc-logo"/>
             <ul>
               <li className="nav-home"><a className="whiteLink" href="/">Home</a></li>
               <li className="nav-challenge-center"><a className="whiteLink" href="/challengecenter">Challenge Center</a></li>
               <li className="nav-profile"><a className="whiteLink" href="/profile">Profile</a></li>
-              <li className="nav-logout"><a className="whiteLink" href="">Logout</a></li>
+              <li className="nav-logout"><a className="whiteLink" href="/">Logout</a></li>
             </ul>
             </nav>
           </label>

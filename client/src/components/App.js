@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import Test from './Test';
 import AuthenticatedRoute from './AuthenticatedRoute';
-import Register from './Register';
 import Profile from './Profile';
 import Login from './Login';
 import ForgotPassword from './ForgotPassword';
@@ -56,14 +55,7 @@ export default class App extends React.Component {
 							exact
 							path="/login"
 							render={() => (
-								<AuthenticatedRoute success="/profile" fail={<Login/>}/>
-							)}
-						/>
-						<Route
-							exact
-							path="/register"
-							render={() => (
-								<AuthenticatedRoute success="/profile" fail={<Register/>} />
+								<AuthenticatedRoute success="/profile" fail={<LoginRegister/>}/>
 							)}
 						/>
 						<Route

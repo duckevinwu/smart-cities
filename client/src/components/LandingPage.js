@@ -40,7 +40,7 @@ class LandingPage extends React.Component {
          <div className="content">
             <div id="large-header" className="large-header">
                <canvas id="demo-canvas"></canvas>
-                <img className="logo" src="https://i.imgur.com/VEZS91f.png"></img>
+                <img className="logo" src="https://i.imgur.com/VEZS91f.png" alt="philly skyline"></img>
                 <div className="main-title">
                   <font className="collective-font">Collective</font><font className="cause-font">Cause</font>
                 </div>
