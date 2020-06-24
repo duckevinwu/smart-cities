@@ -18,7 +18,7 @@
    left: 50%;
    -webkit-transform: translate3d(-50%, -50%, 0);
    transform: translate3d(-50%, -50%, 0);
-  z-index: 10;
+  z-index: 0;
 }
 
 /* This controls the background color */

@@ -18,50 +18,44 @@
   cursor: pointer;
 }
 
-.nav-title {
-/*   position: absolute; */
-  color: white;
-  top: 0%;
-  text-align: center;
-  font-size: 30px;
-  font-family: 'Poppins', sans-serif;
-  letter-spacing: 2px;
-}
-
 .nav-home {
+  top: 20%;
   position: absolute;
   color: white;
-  top: 20%;
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2px;
+  font-weight: 300;
 }
 
 .nav-challenge-center {
   position: absolute;
   color: white;
   top: 35%;
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2px;
+  font-weight: 300;
 }
 
 .nav-profile {
   position: absolute;
   color: white;
   top: 50%;
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2px;
+  font-weight: 300;
 }
 
 .nav-logout {
   position: absolute;
   color: white;
   top: 65%;
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2px;
+  font-weight: 300;
 }
 
 .navWrapper {
@@ -140,39 +134,32 @@ input:checked+.handler+.overlay+nav {
   z-index: 10;
 }
 
-.nav-title-lo {
-/*   position: absolute; */
-  color: white;
-  top: 0%;
-  text-align: center;
-  font-size: 30px;
-  font-family: 'Poppins', sans-serif;
-  letter-spacing: 2px;
-}
-
 .nav-home-lo {
   position: absolute;
   color: white;
   top: 30%;
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2px;
+  font-weight: 300;
 }
 
 .nav-challenge-center-lo {
   position: absolute;
   color: white;
   top: 50%;
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2px;
+  font-weight: 300;
 }
 
 .nav-login-lo {
   position: absolute;
   color: white;
   top: 70%;
-  font-size: 20px;
+  font-size: 14px;
   font-family: 'Poppins', sans-serif;
   letter-spacing: 2px;
+  font-weight: 300;
 }

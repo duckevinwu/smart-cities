@@ -14,7 +14,10 @@ export default class Navbar extends React.Component {
 	componentDidMount() {
     fetch("/auth/isAuthenticated",
 		{
-			method: "GET"
+			method: "GET",
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
 		}).then(res => {
 			return res.json();
 		}, err => {

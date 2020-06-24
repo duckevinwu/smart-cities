@@ -68,7 +68,7 @@ app.post('/register', function(req, res, next) {
 */
 
 // Login
-app.post('/login', function(req, res, next) {
+app.post('/api/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
     if (err) {
       return next(err);
@@ -94,7 +94,7 @@ app.get('/logout', function(req, res) {
 // check if user is authenticated
 app.get('/auth/isAuthenticated', function(req, res) {
   if (req.isAuthenticated()) {
-    return res.status(200).send({ authenticated: 'true', userId: req.user.user_id})
+    return res.status(200).send({ authenticated: 'true', userId: req.user.user_id});
   }
   return res.status(401).send({ authenticated: 'false'})
 });

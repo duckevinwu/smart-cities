@@ -22,6 +22,7 @@ import LoggedInRoute from './LoggedInRoute';
 import IdeaForm from './IdeaForm';
 import ProposalForm from './ProposalForm';
 import ViewSubmissions from './ViewSubmissions';
+import LoginRegister from './LoginRegister';
 
 export default class App extends React.Component {
 

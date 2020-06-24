@@ -36,7 +36,7 @@ class Login extends React.Component {
     e.preventDefault();
     console.log(this.state);
 
-    fetch("/login", {
+    fetch("/api/login", {
       method: "post",
       headers: {
         'Accept': 'application/json',
