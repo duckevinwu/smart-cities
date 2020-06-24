@@ -1,4 +1,7 @@
 import React from 'react';
+import ChallengeCard from './ChallengeCard';
+import '../style/ChallengeCenter.css';
+import Navbar from './Navbar';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -24,11 +27,11 @@ export default class ChallengeCenter extends React.Component {
       if (data.status === 'success') {
         var challengeList = data.challenges;
         let challengeDivs = challengeList.map((challenge, i) =>
-        <div key={i}>
-          <div>{challenge.name}</div>
-          <div>{challenge.tagline}</div>
-          <div><a href={"/challenges/" + challenge.challenge_id}>Details</a></div>
-        </div>
+          <ChallengeCard
+            key={i}
+            id={challenge.challenge_id}
+            name={challenge.name}
+            tagline={challenge.tagline} />
 			  );
 
   			this.setState({
@@ -40,8 +43,12 @@ export default class ChallengeCenter extends React.Component {
 
   render() {
     return (
-      <div>
-      {this.state.challenges}
+      <div class="challenge-page">
+        <Navbar/>
+        <h1 id="title">challenge center</h1>
+        <div class="grid">
+          {this.state.challenges}
+        </div>
       </div>
     );
   }
