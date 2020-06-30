@@ -43,10 +43,10 @@ export default class ChallengeCenter extends React.Component {
 
   render() {
     return (
-      <div class="challenge-page">
+      <div className="challenge-page">
         <Navbar/>
         <h1 id="title">challenge center</h1>
-        <div class="grid">
+        <div className="grid">
           {this.state.challenges}
         </div>
       </div>

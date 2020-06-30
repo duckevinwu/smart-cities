@@ -41,14 +41,19 @@ export default class Submission extends React.Component {
   render() {
     if (this.state.isLoggedIn) {
       return (
-        <div>
-          <a href={"/submitidea/" + this.props.challengeId}>Idea</a>
+        <div className="submitbuttonwrapper">
+          <a href={"/submitidea/" + this.props.challengeId}><button className="submitbutton">Submit Idea</button></a>
           <br/>
-          <a href={"/submitproposal/" + this.props.challengeId}>Proposal</a>
+          <br/>
+          <a href={"/submitproposal/" + this.props.challengeId}><button className="submitbutton">Submit Proposal</button></a>
         </div>
       );
     } else {
-      return (<div></div>);
+      return (
+        <div class="login-text">
+          Log in to submit
+        </div>
+      );
     }
   }
 }
