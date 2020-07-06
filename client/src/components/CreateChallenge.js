@@ -1,5 +1,7 @@
 import React from 'react';
-//import '../style/Dashboard.css';
+import '../style/Form.css';
+import { appendScript } from '../js/AppendScript';
+import Navbar from './Navbar';
 //import PageNavbar from './PageNavbar';
 
 export default class CreateChallenge extends React.Component {
@@ -17,7 +19,9 @@ export default class CreateChallenge extends React.Component {
       endDateString: "",
       reward: "",
       category: "",
-      brief: ""
+      brief: "",
+      description: "",
+      assets: ""
     }
 
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -26,6 +30,8 @@ export default class CreateChallenge extends React.Component {
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.handleRewardChange = this.handleRewardChange.bind(this);
     this.handleBriefChange = this.handleBriefChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleAssetsChange = this.handleAssetsChange.bind(this);
     this.submitChallenge = this.submitChallenge.bind(this);
 
   }
@@ -52,8 +58,11 @@ export default class CreateChallenge extends React.Component {
   }
 
   handleEndDateChange(e) {
+    var end = new Date(e.target.value);
+    var endStr = end.getTime().toString();
     this.setState({
-      endDate: e.target.value
+      endDate: e.target.value,
+      endDateString: endStr
     })
   }
 
@@ -66,6 +75,18 @@ export default class CreateChallenge extends React.Component {
   handleBriefChange(e) {
     this.setState({
       brief: e.target.value
+    })
+  }
+
+  handleDescriptionChange(e) {
+    this.setState({
+      description: e.target.value
+    })
+  }
+
+  handleAssetsChange(e) {
+    this.setState({
+      assets: e.target.value
     })
   }
 
@@ -82,8 +103,7 @@ export default class CreateChallenge extends React.Component {
       },
       //make sure to serialize your JSON body
       body: JSON.stringify({
-        name: this.state.name,
-        tagline: this.state.tagline
+        challengeInfo: this.state
       })
     })
     .then(res => {
@@ -104,61 +124,104 @@ export default class CreateChallenge extends React.Component {
 
   // React function that is called when the page load.
   componentDidMount() {
-
+    appendScript('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+    appendScript('https://cdn.jsdelivr.net/gh/duckevinwu/external-js/FormAnimation.min.js');
   }
 
   render() {
     return (
-      <form onSubmit={this.submitChallenge}>
-        <div>
-          <h1>Create Challenge</h1>
-          <p>Please fill in this form to create a challenge</p>
+      <div>
+        <Navbar />
+        <div className="centered">
+          <img src="https://i.imgur.com/xnPtYXg.png" className="form-logo"></img>
+          <form className="submit-form" onSubmit={this.submitChallenge} >
+            <p className="form-heading">Challenge Card Information</p>
 
-          <label><b>Name</b></label>
-          <br/>
-          <input type="text" placeholder="Challenge name" value={this.state.name} onChange={this.handleNameChange} required />
+            <div className="input-block">
+               <label htmlFor="q1" className="sb-label sb-name">Challenge Name</label>
+               <input type="text" id="q1" className="text-question sb-form-q" placeholder=""
+                value={this.state.name} onChange={this.handleNameChange}
+               />
+            </div>
 
-          <br/>
-          <br/>
+            <div className="input-block time-period">
+               <div className="tp-content">
+                  <label htmlFor="q2" className="sb-label sb-timeframe">Time Period of Challenge:</label>
+                  <input type="date" id="startdate" className="sb-date left"
+                    value={this.state.startDate} onChange={this.handleStartDateChange}
+                  />
+                  <span className="to">to</span>
+                  <input type="date" id="enddate" className="sb-date right"
+                    value={this.state.endDate} onChange={this.handleEndDateChange}
+                  />
+               </div>
+            </div>
 
-          <label><b>Tagline</b></label>
-          <br/>
-          <textarea value={this.state.tagline} onChange={this.handleTaglineChange}></textarea>
+            <div className="input-block">
+               <label htmlFor="q3" className="sb-label sb-name">Prize amount</label>
+               <input type="text" id="q3" className="text-question sb-form-q" placeholder="(optional)"
+                value={this.state.reward} onChange={this.handleRewardChange}
+               />
+            </div>
 
-          <br/>
+            <div className="input-block">
+               <label htmlFor="q4" className="sb-label sb-name">What company or organization are you posting for?</label>
+               <input type="text" id="q4" className="text-question sb-form-q" />
+            </div>
 
-          <label><b>Start date</b></label>
-          <br/>
-          <input type="month" value={this.state.startDate} onChange={this.handleStartDateChange}/>
+            <div className="input-block large-block">
+               <label htmlFor="q5" className="sb-label sb-idea">Tagline for your challenge (2-4 sentences)</label>
+               <textarea id="q5" className="text-question sb-form-q textarea-q" value={this.state.tagline} onChange={this.handleTaglineChange} ></textarea>
+            </div>
 
-          <br/>
+            <p className="form-heading">Challenge Details</p>
 
-          <label><b>End date</b></label>
-          <br/>
-          <input type="month" value={this.state.endDate} onChange={this.handleEndDateChange}/>
+            <div className="input-block large-block">
+               <label htmlFor="q6" className="sb-label sb-idea">
+                  Brief
+                  <div className="tooltip"><i className="fa fa-question-circle"></i>
+                     <span className="tooltiptext">
+                     Provide a general overview of the challenge in non-technical terms, as well as the motivation of the challenge.
+                     </span>
+                  </div>
+               </label>
+               <textarea id="q6" className="text-question sb-form-q textarea-q" value={this.state.brief} onChange={this.handleBriefChange} ></textarea>
+            </div>
 
-          <br/>
+            <div className="input-block large-block">
+               <label htmlFor="q7" className="sb-label sb-idea">
+                  Description
+                  <div className="tooltip"><i className="fa fa-question-circle"></i>
+                     <span className="tooltiptext">
+                     A longer description with full details and technical terms.
+                     </span>
+                  </div>
+               </label>
+               <textarea id="q7" className="text-question sb-form-q textarea-q" value={this.state.description} onChange={this.handleDescriptionChange} ></textarea>
+            </div>
 
-          <label><b>Reward</b></label>
-          <br/>
-          <input type="text" placeholder="Reward" value={this.state.reward} onChange={this.handleRewardChange} />
+            <div className="input-block large-block">
+               <label htmlFor="q8" className="sb-label sb-idea">
+                  Existing Assets
+                  <div className="tooltip"><i className="fa fa-question-circle"></i>
+                     <span className="tooltiptext">
+                     List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge. These could be assets that are public, under your company/organizations's control, or agreed upon by the city to use for this challenge.
+                     </span>
+                  </div>
+               </label>
+               <textarea id="q8" className="text-question sb-form-q textarea-q" value={this.state.assets} onChange={this.handleAssetsChange} ></textarea>
+            </div>
 
-          <br/>
+            <div className="input-block">
+               <button className="submit-button sb-form-q">Submit</button>
+            </div>
+          </form>
 
-          <label><b>Category</b></label>
-          <br/>
-
-          <br/>
-
-          <label><b>Brief</b></label>
-          <br/>
-          <textarea value={this.state.brief} onChange={this.handleBriefChange}></textarea>
-
-          <br/>
-
-          <button type="submit">Create Challenge</button>
+          <div>
+            <p className="form-info">Press <span className="keyboard-button tab-button-icon">TAB</span> to move to next question</p>
+          </div>
+          </div>
         </div>
-      </form>
     );
   }
 }

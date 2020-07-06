@@ -90,7 +90,7 @@ export default class App extends React.Component {
 							exact
 							path="/createchallenge"
 							render={() => (
-								<AdminRoute success={<CreateChallenge/>} fail={<Login/>} />
+								<AdminRoute success={<CreateChallenge/>} fail={<LoginRegister/>} />
 							)}
 						/>
 						<Route

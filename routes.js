@@ -340,9 +340,18 @@ function updatePassword(req, res) {
 
 // ------------------------ CREATE CHALLENGE ------------------------
 function createChallenge(req, res) {
-  var name = req.body.name;
-  var tagline = req.body.tagline;
+
+  var challengeInfo = req.body.challengeInfo;
   var userId = req.user.user_id;
+
+  var name = challengeInfo.name;
+  var tagline = challengeInfo.tagline;
+  var start = challengeInfo.startDateString;
+  var end = challengeInfo.endDateString;
+  var reward = challengeInfo.reward;
+  var brief = challengeInfo.brief;
+  var description = challengeInfo.description;
+  var assets = challengeInfo.assets;
 
   // if user id doesn't exist, don't create challenge
   if (!userId) {
@@ -350,10 +359,10 @@ function createChallenge(req, res) {
   } else {
     // save challenge into database
     var insertQuery = `
-      INSERT INTO Challenge (name, tagline, owner)
-      VALUES (?, ?, ?);
+      INSERT INTO Challenge (name, owner, start, end, reward, tagline, brief, description, assets)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
     `;
-    connection.query(insertQuery, [name, tagline, userId], function(err, rows, fields) {
+    connection.query(insertQuery, [name, userId, start, end, reward, tagline, brief, description, assets], function(err, rows, fields) {
       if (err) {
         console.log(err);
         return res.send({status: 'fail'});

@@ -50,7 +50,7 @@ export default class Submission extends React.Component {
       );
     } else {
       return (
-        <div class="login-text">
+        <div className="login-text">
           Log in to submit
         </div>
       );

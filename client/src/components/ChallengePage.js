@@ -18,6 +18,8 @@ export default class ChallengePage extends React.Component {
       challenge: {}
     }
 
+    this.convertDate = this.convertDate.bind(this);
+
   }
 
 
@@ -51,6 +53,25 @@ export default class ChallengePage extends React.Component {
 		});
   }
 
+  convertDate(d) {
+    var date = new Date(parseInt(d));
+
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day = date.getDate();
+
+    if (day < 10) {
+      day = '0' + day;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
+
+    var formattedDate = month + '/' + day + '/' + year;
+
+    return formattedDate;
+  }
+
   render() {
     if (this.state.isLoaded) {
       return (
@@ -61,11 +82,11 @@ export default class ChallengePage extends React.Component {
           <div className="card-content">
              <img src="https://i.ibb.co/GJb79fh/Frame-3.png" className="cd-logo"/>
              <div className="cd-details">
-                <div className="cd-timeframe"><i className="fa fa-clock-o"></i> 01/01/2020 - 12/31/2020
+                <div className="cd-timeframe"><i className="fa fa-clock-o"></i> {this.convertDate(this.state.challenge.start)} - {this.convertDate(this.state.challenge.end)}
                 </div>
                 <div className="cd-participants"><i className="fa fa-user"></i> 10 participants
                 </div>
-                <div className="cd-reward"><i className="fa fa-trophy"></i> $5000
+                <div className="cd-reward"><i className="fa fa-trophy"></i> {this.state.challenge.reward}
                 </div>
              </div>
              <h1 className="cd-title">{this.state.challenge.name}</h1>
@@ -90,27 +111,19 @@ export default class ChallengePage extends React.Component {
                    <div id="challenge-info">
                       <section className="cd-brief">
                          <h3 className="brief-title"> Brief </h3>
-                         Provide a general overview of the challenge in non-technical terms, as well as the motivation of the challenge.
-                         Provide a general overview of the challenge in non-technical terms, as well as the motivation of the challenge.
-                         Provide a general overview of the challenge in non-technical terms, as well as the motivation of the challenge.
+                         {this.state.challenge.brief}
                       </section>
                       <section className="cd-description">
                          <h3 className="description-title"> Description</h3>
-                         Provide a longer description with full details and technical terms. By reading the brief and the description, a reader should completely understand the challenge.
-                         Provide a longer description with full details and technical terms. By reading the brief and the description, a reader should completely understand the challenge.
-                         Provide a longer description with full details and technical terms. By reading the brief and the description, a reader should completely understand the challenge.
+                         {this.state.challenge.description}
                       </section>
                       <section className="cd-assets">
                          <h3 className="assets-title">Existing Assets</h3>
-                         List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge
-                         List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge
-                         List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge
+                         {this.state.challenge.assets}
                       </section>
                       <section className="cd-prize">
                          <h3 className="prize-title">Prize</h3>
-                         List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge
-                         List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge
-                         List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge
+                         {this.state.challenge.prize}
                       </section>
                    </div>
                 </div>

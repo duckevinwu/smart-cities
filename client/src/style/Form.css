@@ -333,6 +333,7 @@ textarea::-webkit-scrollbar-corner {
 .tooltip {
   position: relative;
   display: inline-block;
+  margin-left: 5px;
 }
 
 /* Tooltip text */
