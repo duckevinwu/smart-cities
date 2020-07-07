@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,300i,500,500i,700");
+
+.mc-page {
+  overflow: hidden;
+}
+
+#admin-title {
+  font-size: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 75px;
+  text-transform: lowercase;
+  text-align: center;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  padding-bottom: 25px;
+  letter-spacing: 3px;
+}
+
+.admin-grid {
+  margin-left: 15%;
+  margin-right: 15%;
+  display: grid;
+/*   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+  grid-auto-rows: 1fr;
+  grid-gap: 1rem;
+  margin-bottom: 100px;
+}
+
+.admin-grid > .admin-card {
+  background: linear-gradient(to right,
+      rgba(6, 214, 160, 0.5) 0%,
+      #2a313b  20%,
+      #2a313b 100%
+  );
+  background-clip: padding-box;
+  padding: 3% 6% 3% 8%;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: rgba(6, 214, 160, 0.5);
+  border-width: 0px;
+  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.admin-upper {
+  justify-content: normal;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+	font-weight: 300;
+  background-color: #131417;
+}
+
+.admin-card-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+  color: #06D6A0;
+  margin-bottom: 5px;
+}
+
+.admin-description {
+  font-size: 15px;
+  color: #ebe8d8;
+  line-height: 1.5;
+}
+
+.admin-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(6, 214, 160), rgba(6, 214, 160));
+/*   border-color: rgba(6, 214, 160); */
+}
+
+.admin-bottom {
+  position: relative;
+}
+
+.admin-logo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  /*
+  left: 0;
+  margin: auto;
+  */
+  max-height: 50px;
+  max-width: 50%;
+  border-radius: 10px;
+  border: 2px solid #06D6A0;
+  box-shadow:
+    inset 0 0 0 2px black;
+  padding: 2px;
+}
+
+.admin-participants {
+  font-size: 14px;
+  color: #ebe8d8;
+  margin-bottom: 5px;
+}
+
+.admin-timeframe {
+  font-size: 14px;
+  color: #ebe8d8;
+  margin-bottom: 5px;
+  padding-top: 15px;
+}
+
+.admin-reward {
+  font-size: 14px;
+  color: #ebe8d8;
+}
+
+.admin-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(6, 214, 160), rgba(6, 214, 160));
+/*   border-color: rgba(6, 214, 160); */
+}
+
+/* This controls the button */
+.admin-buttonWrap {
+   position: absolute;
+   top: 70%;
+   left: 85%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+   transform: translate3d(-50%, -50%, 0);
+   text-align: center;
+}
+
+.review, .review:link, .review:visited {
+	 padding: 15px 20px;
+   background-color: #2a313b;
+	 border: 1px solid white;
+	 color: white;
+	 font-weight: 700;
+	 text-transform: uppercase;
+	 font-size: 13px;
+	 letter-spacing: 3px;
+	 transition: all 0.2s ease-in-out;
+}
+ .review:hover, .review:link:hover, .review:visited:hover {
+	 background: black;
+	 border: 1px solid black;
+	 color: white;
+	 border-radius: 30px;
+   cursor: pointer;
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import SubmissionCard from './SubmissionCard';
+import Navbar from './Navbar';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -24,11 +26,10 @@ export default class MyChallenges extends React.Component {
       if (data.status === 'success') {
         var challengeList = data.challenges;
         let challengeDivs = challengeList.map((challenge, i) =>
-        <div key={i}>
-          <div>{challenge.name}</div>
-          <div>{challenge.tagline}</div>
-          <a href={"/viewsubmissions/" + challenge.challenge_id}>View Submissions</a>
-        </div>
+          <SubmissionCard
+            key={i}
+            challenge={challenge}
+          />
 			  );
 
   			this.setState({
@@ -40,8 +41,12 @@ export default class MyChallenges extends React.Component {
 
   render() {
     return (
-      <div>
-      {this.state.challenges}
+      <div className="mc-page">
+        <Navbar />
+        <h1 id="admin-title"> dashboard </h1>
+        <div className="admin-grid">
+          {this.state.challenges}
+        </div>
       </div>
     );
   }

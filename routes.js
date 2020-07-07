@@ -383,7 +383,7 @@ function getMyChallenges(req, res) {
   } else {
     // get challenges owned by the current user
     var query = `
-      SELECT challenge_id, name, tagline
+      SELECT challenge_id, name, tagline, start, end, reward
       FROM Challenge
       WHERE owner = ?
     `;
