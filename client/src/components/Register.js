@@ -83,8 +83,12 @@ class Register extends React.Component {
   render() {
     if (this.state.isSent) {
       return (
-        <div>
-          <p>Please check your email to activate your account.</p>
+        <div className="sign-up-htm">
+          <p class="email-sent">
+            Thank you for registering!
+            <br/> <br/>
+            Please check your email to activate your account.
+          </p>
         </div>
       );
     } else {

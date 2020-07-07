@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import '../style/ActivateAccount.css';
+import Navbar from './Navbar';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -56,15 +58,43 @@ class ActivateAccount extends React.Component {
 
     if (this.state.isLoaded && this.state.isValid) {
       return (
-        <div>
-          <p>Your account was successfully activated!</p>
-          <p>Click <a href="/login">here</a> to login.</p>
+        <div className="aa-wrapper">
+          <Navbar/>
+          <div className="aa-page">
+            <h1 className="confirmation"> Your account has been activated
+              <br/>
+              Click <a className="login-link" href="/login">here</a> to login
+            </h1>
+
+            <div className="night">
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+              <div className="shooting_star"></div>
+            </div>
+          </div>
         </div>
       );
     } else if (this.state.isLoaded && !this.state.isValid) {
       return (
         <div>
-          <p>Invalid link - please try to <a href="/register">register</a> again.</p>
+          <p>Invalid link - please try to <a href="/login">register</a> again.</p>
         </div>
       );
     } else {

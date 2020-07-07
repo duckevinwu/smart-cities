@@ -1,8 +1,10 @@
 import React from 'react';
 import Submission from './Submission'
 import { appendScript } from '../js/AppendScript.js';
+import { convertDate } from '../js/ConvertDate.js';
 import '../style/ChallengePage.css';
 import Navbar from './Navbar';
+import Preloader from './Preloader';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -17,8 +19,6 @@ export default class ChallengePage extends React.Component {
       challengeId: "",
       challenge: {}
     }
-
-    this.convertDate = this.convertDate.bind(this);
 
   }
 
@@ -53,36 +53,17 @@ export default class ChallengePage extends React.Component {
 		});
   }
 
-  convertDate(d) {
-    var date = new Date(parseInt(d));
-
-    var year = date.getFullYear();
-    var month = date.getMonth()+1;
-    var day = date.getDate();
-
-    if (day < 10) {
-      day = '0' + day;
-    }
-    if (month < 10) {
-      month = '0' + month;
-    }
-
-    var formattedDate = month + '/' + day + '/' + year;
-
-    return formattedDate;
-  }
-
   render() {
     if (this.state.isLoaded) {
       return (
         <div>
         <Navbar/>
-        <div className="container py-5">
+        <div className="container py-5 cd-page">
           <div className="shadow mb-5 details-card">
           <div className="card-content">
              <img src="https://i.ibb.co/GJb79fh/Frame-3.png" className="cd-logo"/>
              <div className="cd-details">
-                <div className="cd-timeframe"><i className="fa fa-clock-o"></i> {this.convertDate(this.state.challenge.start)} - {this.convertDate(this.state.challenge.end)}
+                <div className="cd-timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
                 </div>
                 <div className="cd-participants"><i className="fa fa-user"></i> 10 participants
                 </div>
@@ -136,7 +117,11 @@ export default class ChallengePage extends React.Component {
       </div>
       );
     } else {
-      return (<div></div>);
+      return (
+        <div>
+          <Preloader/>
+        </div>
+      );
     }
   }
 }

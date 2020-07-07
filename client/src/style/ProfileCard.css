@@ -1,3 +1,7 @@
+.profile-card {
+  width: 70% !important;
+}
+
 .profile-picture img {
     border-radius: 100%;
     max-width: 200px;

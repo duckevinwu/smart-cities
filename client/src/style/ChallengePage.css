@@ -18,6 +18,10 @@
 .flex-sm-fill{-ms-flex:1 1 auto!important;flex:1 1 auto!important}
 .text-center{text-align:center!important}
 
+.cd-page {
+	width: 70%;
+}
+
 .nav-link {
 	display: block;
 	padding: .5rem 1rem

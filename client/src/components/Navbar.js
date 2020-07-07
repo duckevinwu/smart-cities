@@ -1,7 +1,8 @@
 import React from 'react';
 import '../style/Navbar.css';
+import { withRouter } from 'react-router-dom';
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -9,6 +10,8 @@ export default class Navbar extends React.Component {
 			isLoggedIn: false,
       isLoaded: false
 		}
+
+		this.handleLogout = this.handleLogout.bind(this);
 	}
 
 	componentDidMount() {
@@ -34,6 +37,23 @@ export default class Navbar extends React.Component {
       this.setState({
         isLoaded: true
       })
+		});
+	}
+
+	handleLogout() {
+		fetch("/logout",
+		{
+			method: "GET"
+		}).then(res => {
+			if (res.status === 200) {
+				this.props.history.push('/login');
+				return;
+			}
+			return res.json();
+		}, err => {
+			console.log(err);
+		}).then(data => {
+
 		});
 	}
 
@@ -69,7 +89,7 @@ export default class Navbar extends React.Component {
               <li className="nav-home"><a className="whiteLink" href="/">Home</a></li>
               <li className="nav-challenge-center"><a className="whiteLink" href="/challengecenter">Challenge Center</a></li>
               <li className="nav-profile"><a className="whiteLink" href="/profile">Profile</a></li>
-              <li className="nav-logout"><a className="whiteLink" href="/">Logout</a></li>
+              <li className="nav-logout"><a className="whiteLink" onClick={this.handleLogout}>Logout</a></li>
             </ul>
             </nav>
           </label>
@@ -80,3 +100,5 @@ export default class Navbar extends React.Component {
     }
 	}
 }
+
+export default withRouter(Navbar);

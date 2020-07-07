@@ -11,30 +11,11 @@ class ProfileCard extends React.Component {
     this.state = {
 
     }
-
-		this.handleLogout = this.handleLogout.bind(this);
 	}
 
 	componentDidMount() {
 		appendScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js');
     appendScript('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js');
-	}
-
-	handleLogout() {
-		fetch("/logout",
-		{
-			method: "GET"
-		}).then(res => {
-			if (res.status === 200) {
-				this.props.history.push('/login');
-				return;
-			}
-			return res.json();
-		}, err => {
-			console.log(err);
-		}).then(data => {
-
-		});
 	}
 
 	render() {
@@ -43,7 +24,7 @@ class ProfileCard extends React.Component {
       return (
 				<div className="profile-page">
         <Navbar/>
-        <div className="container py-5">
+        <div className="container py-5 profile-card">
           <div className="shadow mb-5 details-card">
           <div className="card-content">
 					<div className="container-body">

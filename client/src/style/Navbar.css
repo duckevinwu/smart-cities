@@ -120,6 +120,10 @@ input:checked+.handler+.overlay+nav {
   text-decoration: none;
 }
 
+.whiteLink:hover {
+  cursor: pointer;
+}
+
 /* -------------- IF LOGGED OUT ----------------- */
 .navLoggedOut {
   transform: translateX(-110%);

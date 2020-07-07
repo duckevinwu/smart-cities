@@ -1,6 +1,7 @@
 import React from 'react';
 import SubmissionCard from './SubmissionCard';
 import Navbar from './Navbar';
+import Preloader from './Preloader';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -9,6 +10,7 @@ export default class MyChallenges extends React.Component {
     super(props);
 
     this.state = {
+      isLoaded: false,
       challenges: []
     }
   }
@@ -33,6 +35,7 @@ export default class MyChallenges extends React.Component {
 			  );
 
   			this.setState({
+          isLoaded: true,
   				challenges: challengeDivs
   			});
       }
@@ -40,14 +43,23 @@ export default class MyChallenges extends React.Component {
   }
 
   render() {
-    return (
-      <div className="mc-page">
-        <Navbar />
-        <h1 id="admin-title"> dashboard </h1>
-        <div className="admin-grid">
-          {this.state.challenges}
+    if (this.state.isLoaded) {
+      return (
+        <div className="mc-page">
+          <Navbar />
+          <h1 id="admin-title"> dashboard </h1>
+          <div className="admin-grid">
+            {this.state.challenges}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <Preloader/>
+        </div>
+      );
+    }
+
   }
 }

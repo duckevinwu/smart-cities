@@ -11,12 +11,14 @@ class Login extends React.Component {
     // This component maintains the list of people.
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      redirectUrl: ""
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.submitLogin = this.submitLogin.bind(this);
+    this.parseQueryString = this.parseQueryString.bind(this);
 
   }
 
@@ -51,7 +53,12 @@ class Login extends React.Component {
     .then(res => {
 
       if (res.status === 200) {
-        this.props.history.push('/profile');
+        var redirect = this.state.redirectUrl;
+        if (redirect) {
+          this.props.history.push(redirect)
+        } else {
+          this.props.history.push('/profile');
+        }
       }
 
 			return res.json();
@@ -63,8 +70,19 @@ class Login extends React.Component {
     });
   }
 
+  parseQueryString(q) {
+    var path = q.split('=')[1];
+    return path;
+  }
+
   // React function that is called when the page load.
   componentDidMount() {
+    var redirectPath = this.parseQueryString(this.props.location.search);
+    if (redirectPath) {
+      this.setState({
+        redirectUrl: redirectPath
+      })
+    }
   }
 
   render() {

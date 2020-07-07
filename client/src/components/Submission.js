@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
-export default class Submission extends React.Component {
+class Submission extends React.Component {
   constructor(props) {
     super(props);
 
@@ -51,9 +52,11 @@ export default class Submission extends React.Component {
     } else {
       return (
         <div className="login-text">
-          Log in to submit
+          <a href={"/login?redirect=" + this.props.location.pathname}>Login</a> to submit
         </div>
       );
     }
   }
 }
+
+export default withRouter(Submission);
