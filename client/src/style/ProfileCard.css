@@ -1,0 +1,80 @@
+.profile-picture img {
+    border-radius: 100%;
+    max-width: 200px;
+    max-height: 200px;
+/*   border: solid 2px white; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+/*   width: 50%; */
+}
+
+.profile-name {
+    font-weight: bold;
+  font-size: 20px;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+  color: white;
+}
+
+.profile-name-text {
+  margin-bottom: 0;
+}
+
+.profile-location {
+  margin: auto;
+  text-align: center;
+  color: gray;
+  margin-top: -15px;
+}
+
+.profile-bio p {
+  margin-left: 0px;
+  padding-top: 10px;
+  text-align: center;
+  padding-bottom: 20px;
+  color: white;
+}
+
+.container-body {
+  margin-top: 20px;
+}
+
+.container-body .profile-stats {
+  word-wrap: break-word;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  color: white;
+  width: 60%;
+  margin: auto;
+}
+
+.profile-stats p {
+  color: grey;
+/*     font-weight: bold; */
+    font-size: 12px;
+    margin-bottom: -15px;
+    text-transform: uppercase;
+  text-align: center;
+}
+
+.profile-ideas {
+  float: left;
+  width: 33.33%;
+  text-align: center;
+}
+
+
+.profile-proposals {
+  float: left;
+  width: 33.33%;
+  text-align: center;
+}
+
+.profile-imps {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
