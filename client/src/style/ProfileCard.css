@@ -2,11 +2,16 @@
   width: 70% !important;
 }
 
+.profile-background {
+  background: #1e1f27;
+  border-radius: 20px;
+}
+
 .profile-picture img {
     border-radius: 100%;
     max-width: 200px;
     max-height: 200px;
-/*   border: solid 2px white; */
+    border: solid 3px #E0C707;
   display: block;
   margin-left: auto;
   margin-right: auto;

@@ -26,7 +26,7 @@ class ChallengeCard extends React.Component {
 
 	render() {
 		return (
-      <div className="card" onClick={this.clickCard} >
+      <div className="card zoom" onClick={this.clickCard} >
           <div className="upper">
               <div className="card-title">{this.state.challenge.name}</div>
               <div className="description">{this.state.challenge.tagline}</div>

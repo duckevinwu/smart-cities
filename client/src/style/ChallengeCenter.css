@@ -115,3 +115,13 @@ body {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(6, 214, 160), rgba(6, 214, 160));
 /*   border-color: rgba(6, 214, 160); */
 }
+
+.zoom {
+  transition: transform .6s;
+}
+
+.zoom:hover {
+  -ms-transform: scale(0.96);
+  -webkit-transform: scale(0.96);
+  transform: scale(0.96);
+}

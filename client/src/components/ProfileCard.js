@@ -25,7 +25,7 @@ class ProfileCard extends React.Component {
 				<div className="profile-page">
         <Navbar/>
         <div className="container py-5 profile-card">
-          <div className="shadow mb-5 details-card">
+          <div className="shadow mb-5 profile-background">
           <div className="card-content">
 					<div className="container-body">
 						<div className="profile-picture">
