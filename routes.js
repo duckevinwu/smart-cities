@@ -401,8 +401,22 @@ function getMyChallenges(req, res) {
 // -------------------- GET ALL CHALLENGES -------------------
 function getAllChallenges(req, res) {
   var query = `
-    SELECT challenge_id, name, tagline
-    FROM Challenge
+  WITH SubTemp AS (
+    SELECT challenge, COUNT(*) AS count
+    FROM Idea
+    GROUP BY challenge
+    UNION ALL
+    SELECT challenge, COUNT(*) AS count
+    FROM Proposal
+    GROUP BY challenge
+  ),
+  SumTemp AS (
+    SELECT challenge, SUM(count) AS sum
+    FROM SubTemp
+    GROUP BY challenge
+  )
+  SELECT c.challenge_id, c.name, c.tagline, c.start, c.end, c.reward, IFNULL(st.sum, 0) AS sum
+  FROM Challenge c LEFT JOIN SumTemp st ON c.challenge_id = st.challenge
   `;
   connection.query(query, function(err, rows, fields) {
     if (err) {
@@ -419,11 +433,14 @@ function getChallengeDetails(req, res) {
   var id = req.params.id;
 
   var query = `
-    SELECT *
-    FROM Challenge
-    WHERE challenge_id = ?
+  WITH SumTemp AS (
+    SELECT (SELECT COUNT(*) FROM Idea WHERE challenge = ?) + (SELECT COUNT(*) FROM Proposal WHERE challenge = ?) AS sum
+  )
+  SELECT c.*, st.sum
+  FROM Challenge c, SumTemp st
+  WHERE challenge_id = ?
   `;
-  connection.query(query, [id], function(err, rows, fields) {
+  connection.query(query, [id, id, id], function(err, rows, fields) {
     if (err) {
       console.log(err);
       return res.send({status: 'fail'});

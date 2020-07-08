@@ -44,15 +44,12 @@ class Submission extends React.Component {
       return (
         <div className="submitbuttonwrapper">
           <a href={"/submitidea/" + this.props.challengeId}><button className="submitbutton">Submit Idea</button></a>
-          <br/>
-          <br/>
-          <a href={"/submitproposal/" + this.props.challengeId}><button className="submitbutton">Submit Proposal</button></a>
         </div>
       );
     } else {
       return (
         <div className="login-text">
-          <a href={"/login?redirect=" + this.props.location.pathname}>Login</a> to submit
+          <a href={"/login?redirect=" + this.props.location.pathname} className="login-link">Login</a> to submit
         </div>
       );
     }

@@ -311,6 +311,7 @@ h3 {
 	 border: 1px solid black;
 	 color: white;
 	 border-radius: 30px;
+	 cursor: pointer;
 }
 
 .login-text {

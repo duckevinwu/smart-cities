@@ -1,12 +1,13 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+import { convertDate } from '../js/ConvertDate.js';
 
 class ChallengeCard extends React.Component {
 	constructor(props) {
 		super(props);
 
     this.state = {
-      challengeId: ""
+      challenge: {}
     }
 
     this.clickCard = this.clickCard.bind(this);
@@ -14,12 +15,12 @@ class ChallengeCard extends React.Component {
 
   componentDidMount() {
     this.setState({
-      challengeId: this.props.id
+      challenge: this.props.challengeInfo
     })
   }
 
   clickCard() {
-    var url = '/challenges/' + this.state.challengeId;
+    var url = '/challenges/' + this.state.challenge.challenge_id;
     this.props.history.push(url);
   }
 
@@ -27,16 +28,16 @@ class ChallengeCard extends React.Component {
 		return (
       <div className="card" onClick={this.clickCard} >
           <div className="upper">
-              <div className="card-title">{this.props.name}</div>
-              <div className="description">{this.props.tagline}</div>
+              <div className="card-title">{this.state.challenge.name}</div>
+              <div className="description">{this.state.challenge.tagline}</div>
           </div>
           <div className="lower">
               <hr className="divider" />
               <div className="bottom">
                   <img src="https://i.ibb.co/GJb79fh/Frame-3.png" className="challenge-logo"/>
-                  <div className="timeframe"><i className="fa fa-clock-o"></i> 01/01/2020 - 12/31/2020</div>
-                  <div className="participants"><i className="fa fa-user"></i> 10 participants</div>
-                  <div className="reward"><i className="fa fa-trophy"></i> $5000</div>
+                  <div className="timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}</div>
+                  <div className="participants"><i className="fa fa-user"></i> {this.state.challenge.sum} participants</div>
+                  <div className="reward"><i className="fa fa-trophy"></i> {this.state.challenge.reward}</div>
               </div>
           </div>
       </div>

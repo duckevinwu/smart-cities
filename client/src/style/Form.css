@@ -2,7 +2,7 @@
 
 /* omit */
 body {
-  background: #1e1f27;
+  background: #131417;
 }
 
 
@@ -50,7 +50,7 @@ input:-webkit-autofill:active {
    border-radius: 3px;
 	 color: white;
 	 transition: all 0.3s cubic-bezier(1, 0.1, 0, 0.9);
-  background-color: #1e1f27 !important;
+  background-color: #131417 !important;
   padding-left: 10px;
   font-size: 20px;
   font-family: 'Poppins', sans-serif;
@@ -215,7 +215,7 @@ input:-webkit-autofill:active {
   margin-top: 1px;
   padding-top: 9px;
   padding-bottom: 9px;
-  background-color: #1e1f27;
+  background-color: #131417;
   text-align: left;
   height: 20px;
 }

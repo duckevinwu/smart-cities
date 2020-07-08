@@ -31,9 +31,8 @@ export default class ChallengeCenter extends React.Component {
         let challengeDivs = challengeList.map((challenge, i) =>
           <ChallengeCard
             key={i}
-            id={challenge.challenge_id}
-            name={challenge.name}
-            tagline={challenge.tagline} />
+            challengeInfo={challenge}
+          />
 			  );
 
   			this.setState({

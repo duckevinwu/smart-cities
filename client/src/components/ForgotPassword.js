@@ -103,7 +103,7 @@ export default class ForgotPassword extends React.Component {
                          <input id="user" type="text" className="input" value={this.state.email} onChange={this.handleEmailChange}/>
                       </div>
                       <div className="forgotpw-section">
-                         <button type="button" className="forgotpw-button"> Reset Password</button>
+                         <button type="submit" className="forgotpw-button"> Reset Password</button>
                       </div>
                       <div className="hr"></div>
                    </div>

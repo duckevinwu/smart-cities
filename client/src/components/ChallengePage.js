@@ -65,7 +65,7 @@ export default class ChallengePage extends React.Component {
              <div className="cd-details">
                 <div className="cd-timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
                 </div>
-                <div className="cd-participants"><i className="fa fa-user"></i> 10 participants
+                <div className="cd-participants"><i className="fa fa-user"></i> {this.state.challenge.sum} participants
                 </div>
                 <div className="cd-reward"><i className="fa fa-trophy"></i> {this.state.challenge.reward}
                 </div>

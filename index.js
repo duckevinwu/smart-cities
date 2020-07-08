@@ -124,6 +124,19 @@ app.get('/auth/isCorrectUser/:id', function(req, res) {
   return res.send({authenticated: 'false'});
 });
 
+// navbar authentication
+app.get('/auth/navbarAuthentication', function(req, res) {
+  if (req.isAuthenticated()) {
+    // if admin flag is true
+    if (req.user.admin === 1) {
+      return res.send({authenticated: true, admin: true});
+    } else {
+      return res.send({authenticated: true, admin: false});
+    }
+  }
+  return res.send({authenticated: false});
+});
+
 //---------------------FORGOT PASSWORD--------------------
 app.post('/forgotpassword', routes.saveToken);
 app.get('/reset/:email/:token', routes.checkToken);

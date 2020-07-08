@@ -23,7 +23,7 @@
 
 /* This controls the background color */
 .page {
-  background-color: #1e1f27;
+  background-color: #131417;
   height: 100vh;
 /*    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg"); */
 }
@@ -126,4 +126,5 @@
 	 border: 1px solid black;
 	 color: black;
 	 border-radius: 30px;
+   cursor: pointer;
 }
