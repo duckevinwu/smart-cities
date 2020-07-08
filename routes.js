@@ -585,6 +585,72 @@ function getProposals(req, res) {
   });
 }
 
+// ------------------ GET USER IDEAS ----------------------
+function getUserIdeas(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'})
+  }
+
+  var userId = req.user.user_id;
+
+  var query = `
+    SELECT i.submit_time, c.name
+    FROM Idea i JOIN Challenge c ON i.challenge = c.challenge_id
+    WHERE i.creator = ?
+  `;
+  connection.query(query, [userId], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', ideas: rows});
+    }
+  });
+}
+
+function getNumIdeas(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var userId = req.user.user_id;
+
+  var query = `
+    SELECT COUNT(*) AS count
+    FROM Idea
+    WHERE creator = ?
+  `;
+  connection.query(query, [userId], function(err, rows, fields) {
+    if (err) {
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', numIdeas: rows[0].count});
+    }
+  })
+}
+
+function getNumProposals(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var userId = req.user.user_id;
+
+  var query = `
+    SELECT COUNT(*) AS count
+    FROM Proposal
+    WHERE creator = ?
+  `;
+  connection.query(query, [userId], function(err, rows, fields) {
+    if (err) {
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', numProposals: rows[0].count});
+    }
+  })
+}
+
+
 // The exported functions, which can be accessed in index.js.
 module.exports = {
   getAllPeople: getAllPeople,
@@ -602,5 +668,8 @@ module.exports = {
   createProposal: createProposal,
   isChallengeOwner: isChallengeOwner,
   getIdeas: getIdeas,
-  getProposals: getProposals
+  getProposals: getProposals,
+  getUserIdeas: getUserIdeas,
+  getNumIdeas: getNumIdeas,
+  getNumProposals: getNumProposals
 }

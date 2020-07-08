@@ -268,6 +268,7 @@ textarea::-webkit-scrollbar-corner {
 	 border: 1px solid #E0C707;
 	 color: black;
 	 border-radius: 30px;
+   cursor: pointer;
 }
 
 /* create challenge styling */

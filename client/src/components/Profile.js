@@ -47,7 +47,6 @@ export default class Profile extends React.Component {
     } else {
       return (
         <div>
-          <Preloader />
         </div>
       );
     }

@@ -213,7 +213,7 @@ export default class CreateChallenge extends React.Component {
             </div>
 
             <div className="input-block">
-               <button className="submit-button sb-form-q">Submit</button>
+               <button type="button" className="submit-button sb-form-q">Submit</button>
             </div>
           </form>
 
