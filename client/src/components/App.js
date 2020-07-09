@@ -22,6 +22,7 @@ import IdeaForm from './IdeaForm';
 import ProposalForm from './ProposalForm';
 import ViewSubmissions from './ViewSubmissions';
 import LoginRegister from './LoginRegister';
+import AboutPage from './AboutPage';
 
 export default class App extends React.Component {
 
@@ -35,6 +36,13 @@ export default class App extends React.Component {
 							path="/"
 							render={() => (
 								<LandingPage />
+							)}
+						/>
+						<Route
+							exact
+							path="/about"
+							render={() => (
+								<AboutPage />
 							)}
 						/>
 						<Route

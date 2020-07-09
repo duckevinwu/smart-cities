@@ -112,7 +112,11 @@ class ProfileCard extends React.Component {
 	    } else {
 	      return (
 	        <div>
-	          <p><a href="/login">Log in</a> to view.</p>
+						<h1 class="thank-you-text"> Oops! You have to be logged in to view your profile. </h1>
+
+						<div class="login-now">
+							<a type="button" href="/login" class="back-profile"> Login now</a>
+						</div>
 	        </div>
 	      )
 	    }
