@@ -1,9 +1,10 @@
 export const convertDate = (d) => {
   var date = new Date(parseInt(d));
+  date.setDate(date.getDate() + 1);
 
   var year = date.getFullYear();
   var month = date.getMonth()+1;
-  var day = date.getDate()+1;
+  var day = date.getDate();
 
   if (day < 10) {
     day = '0' + day;

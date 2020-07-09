@@ -99,7 +99,7 @@ class Navbar extends React.Component {
 	              <li className="nav-home-admin"><a className="whiteLink" href="/"><i className="fa fa-home"></i> Home</a></li>
 	              <li className="nav-challenge-center-admin"><a className="whiteLink" href="/challengecenter"><i className="fa fa-bullseye"></i> Challenge Center</a></li>
 	              <li className="nav-profile-admin"><a className="whiteLink" href="/profile"><i className="fa fa-user"></i> Profile</a></li>
-								<li className="nav-dashboard-admin"><a className="goldLink" href="/mychallenges"><i className="fa fa-list-ul"></i> Dashboard</a></li>
+								<li className="nav-dashboard-admin"><a className="goldLink" href="/dashboard"><i className="fa fa-list-ul"></i> Dashboard</a></li>
 								<li className="nav-create-challenge-admin"><a className="goldLink" href="/createchallenge"><i className="fa fa-plus-square-o"></i> Create Challenge</a></li>
 	              <li className="nav-logout-admin"><a className="whiteLink" onClick={this.handleLogout}><i className="fa fa-sign-out"></i> Logout</a></li>
 	            </ul>

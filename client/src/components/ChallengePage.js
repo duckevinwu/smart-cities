@@ -92,19 +92,27 @@ export default class ChallengePage extends React.Component {
                    <div id="challenge-info">
                       <section className="cd-brief">
                          <h3 className="brief-title"> Brief </h3>
-                         {this.state.challenge.brief}
+                         <pre className="section-content">
+                          {this.state.challenge.brief}
+                         </pre>
                       </section>
                       <section className="cd-description">
                          <h3 className="description-title"> Description</h3>
-                         {this.state.challenge.description}
+                         <pre className="section-content">
+                          {this.state.challenge.description}
+                         </pre>
                       </section>
                       <section className="cd-assets">
                          <h3 className="assets-title">Existing Assets</h3>
-                         {this.state.challenge.assets}
+                         <pre className="section-content">
+                          {this.state.challenge.assets}
+                         </pre>
                       </section>
                       <section className="cd-prize">
                          <h3 className="prize-title">Prize</h3>
-                         {this.state.challenge.prize}
+                         <pre className="section-content">
+                          {this.state.challenge.prize}
+                         </pre>
                       </section>
                    </div>
                 </div>

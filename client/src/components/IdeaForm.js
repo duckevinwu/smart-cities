@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import '../style/Form.css';
 import { appendScript } from '../js/AppendScript.js';
 import Navbar from './Navbar';
+import PostSubmission from './PostSubmission';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -19,7 +20,8 @@ class IdeaForm extends React.Component {
       affiliation: "",
       phoneNumber: "",
       email: "",
-      idea: ""
+      idea: "",
+      submitted: false
     }
 
     this.handleFullNameChange = this.handleFullNameChange.bind(this);
@@ -94,6 +96,9 @@ class IdeaForm extends React.Component {
       console.log(data);
       if (data.status === 'success') {
         // handle success
+        this.setState({
+          submitted: true
+        });
       } else {
         // handle errors
       }
@@ -116,81 +121,90 @@ class IdeaForm extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Navbar/>
-        <div className="centered">
-          <img src="https://i.imgur.com/xnPtYXg.png" className="form-logo" alt="cc-logo"></img>
-          <form className="submit-form" onSubmit={this.submitIdea}>
+    if (this.state.submitted) {
+      return (
+        <div className="post-submission-page">
+          <Navbar/>
+          <PostSubmission/>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Navbar/>
+          <div className="centered">
+            <img src="https://i.imgur.com/xnPtYXg.png" className="form-logo" alt="cc-logo"></img>
+            <form className="submit-form">
 
-            <div className="input-block">
-               <label htmlFor="q1" className="sb-label sb-name">What's your full name?</label>
-               <input type="text" id="q1" className="text-question sb-form-q" placeholder="John Doe"
-                value={this.state.fullName} onChange={this.handleFullNameChange}
-               />
+              <div className="input-block">
+                 <label htmlFor="q1" className="sb-label sb-name">What's your full name?</label>
+                 <input type="text" id="q1" className="text-question sb-form-q" placeholder="John Doe"
+                  value={this.state.fullName} onChange={this.handleFullNameChange}
+                 />
+              </div>
+
+              <div className="input-block radio-q">
+                 <ul className="radio-list">
+                    <p className="q-text">Are you affiliated with or representing a company/organization?</p>
+                    <li className="rl-element">
+                       <input type="radio" id="yes" name="selector" className="radio-option" value='yes'
+                        checked={this.state.selectedOption === 'yes'} onChange={this.handleOptionChange}
+                       />
+                       <label htmlFor="yes" id="yes-label" className="radio-label">
+                       <span className="keyboard-button">Y</span>Yes
+                       </label>
+                       <div className="check"></div>
+                    </li>
+                    <li className="rl-element">
+                       <input type="radio" id="no" name="selector" className="radio-option" value='no'
+                        checked={this.state.selectedOption === 'no'} onChange={this.handleOptionChange}
+                       />
+                       <label htmlFor="no" id="no-label" className="radio-label">
+                       <span className="keyboard-button">N</span>No
+                       </label>
+                       <div className="check"></div>
+                    </li>
+                 </ul>
+              </div>
+
+              <div className="input-block">
+                 <label htmlFor="q3" className="sb-label sb-name">What company or organization do you work with?</label>
+                 <input type="text" id="q3" className="text-question sb-form-q" placeholder="If you answered 'no' above, skip this question"
+                  value={this.state.affiliation} onChange={this.handleAffiliationChange}
+                 />
+              </div>
+
+              <div className="input-block">
+                 <label htmlFor="q4" className="sb-label sb-name">Phone number (with area code)</label>
+                 <input type="tel" id="q4" className="text-question sb-form-q" placeholder="123-456-7890"
+                  value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange}
+                 />
+              </div>
+
+              <div className="input-block">
+                 <label htmlFor="q5" className="sb-label sb-name">Email Address</label>
+                 <input type="email" id="q5" className="text-question sb-form-q" placeholder="name@example.com"
+                  value={this.state.email} onChange={this.handleEmailChange}
+                 />
+              </div>
+
+              <div className="input-block large-block">
+                 <label htmlFor="q6" className="sb-label sb-idea">Please provide a summary of your idea (~500 words)</label>
+                 <textarea id="q6" className="text-question sb-form-q textarea-q" value={this.state.idea} onChange={this.handleIdeaChange}></textarea>
+              </div>
+
+              <div className="input-block">
+                 <button type="button" className="submit-button sb-form-q" onClick={this.submitIdea}>Submit</button>
+              </div>
+            </form>
+
+            <div>
+              <p className="form-info">Press <span className="keyboard-button tab-button-icon">TAB</span> to move to next question</p>
             </div>
-
-            <div className="input-block radio-q">
-               <ul className="radio-list">
-                  <p className="q-text">Are you affiliated with or representing a company/organization?</p>
-                  <li className="rl-element">
-                     <input type="radio" id="yes" name="selector" className="radio-option" value='yes'
-                      checked={this.state.selectedOption === 'yes'} onChange={this.handleOptionChange}
-                     />
-                     <label htmlFor="yes" id="yes-label" className="radio-label">
-                     <span className="keyboard-button">Y</span>Yes
-                     </label>
-                     <div className="check"></div>
-                  </li>
-                  <li className="rl-element">
-                     <input type="radio" id="no" name="selector" className="radio-option" value='no'
-                      checked={this.state.selectedOption === 'no'} onChange={this.handleOptionChange}
-                     />
-                     <label htmlFor="no" id="no-label" className="radio-label">
-                     <span className="keyboard-button">N</span>No
-                     </label>
-                     <div className="check"></div>
-                  </li>
-               </ul>
-            </div>
-
-            <div className="input-block">
-               <label htmlFor="q3" className="sb-label sb-name">What company or organization do you work with?</label>
-               <input type="text" id="q3" className="text-question sb-form-q" placeholder="If you answered 'no' above, skip this question"
-                value={this.state.affiliation} onChange={this.handleAffiliationChange}
-               />
-            </div>
-
-            <div className="input-block">
-               <label htmlFor="q4" className="sb-label sb-name">Phone number (with area code)</label>
-               <input type="tel" id="q4" className="text-question sb-form-q" placeholder="123-456-7890"
-                value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange}
-               />
-            </div>
-
-            <div className="input-block">
-               <label htmlFor="q5" className="sb-label sb-name">Email Address</label>
-               <input type="email" id="q5" className="text-question sb-form-q" placeholder="name@example.com"
-                value={this.state.email} onChange={this.handleEmailChange}
-               />
-            </div>
-
-            <div className="input-block large-block">
-               <label htmlFor="q6" className="sb-label sb-idea">Please provide a summary of your idea (~500 words)</label>
-               <textarea id="q6" className="text-question sb-form-q textarea-q" value={this.state.idea} onChange={this.handleIdeaChange}></textarea>
-            </div>
-
-            <div className="input-block">
-               <button type="button" className="submit-button sb-form-q">Submit</button>
-            </div>
-          </form>
-
-          <div>
-            <p className="form-info">Press <span className="keyboard-button tab-button-icon">TAB</span> to move to next question</p>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
 
   }
 }

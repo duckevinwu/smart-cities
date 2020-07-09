@@ -39,13 +39,6 @@ export default class App extends React.Component {
 						/>
 						<Route
 							exact
-							path="/dashboard"
-							render={() => (
-								<Test />
-							)}
-						/>
-						<Route
-							exact
 							path="/challengecenter"
 							render={() => (
 								<ChallengeCenter />
@@ -95,7 +88,7 @@ export default class App extends React.Component {
 						/>
 						<Route
 							exact
-							path="/mychallenges"
+							path="/dashboard"
 							render={() => (
 								<AdminRoute success={<Dashboard/>} fail={<Login/>} />
 							)}
