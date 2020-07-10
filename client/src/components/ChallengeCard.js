@@ -7,7 +7,9 @@ class ChallengeCard extends React.Component {
 		super(props);
 
     this.state = {
-      challenge: {}
+      challenge: {},
+			colorStyle: "",
+			imgUrl: ""
     }
 
     this.clickCard = this.clickCard.bind(this);
@@ -16,7 +18,40 @@ class ChallengeCard extends React.Component {
   componentDidMount() {
     this.setState({
       challenge: this.props.challengeInfo
-    })
+    }, () => {
+
+			// for demo purposes
+			if (this.state.challenge.challenge_id === 16) {
+				this.setState({
+					colorStyle: "blue",
+					imgUrl: "https://i.imgur.com/ifddqXx.jpg"
+				});
+			} else if (this.state.challenge.challenge_id === 17) {
+				this.setState({
+					colorStyle: "yellow",
+					imgUrl: "https://i.imgur.com/Zp0JMqp.png"
+				});
+			} else if (this.state.challenge.challenge_id === 18) {
+				this.setState({
+					colorStyle: "purple",
+					imgUrl: "https://i.ibb.co/GJb79fh/Frame-3.png"
+				});
+			} else if (this.state.challenge.challenge_id === 19) {
+				this.setState({
+					colorStyle: "green",
+					imgUrl: "https://i.imgur.com/vtvDuE0.png"
+				});
+			} else {
+				this.setState({
+					colorStyle: "green",
+					imgUrl: "https://i.ibb.co/GJb79fh/Frame-3.png"
+				});
+			}
+
+			// end demo
+		}
+		)
+
   }
 
   clickCard() {
@@ -26,15 +61,15 @@ class ChallengeCard extends React.Component {
 
 	render() {
 		return (
-      <div className="card zoom" onClick={this.clickCard} >
+      <div className={"card zoom " + this.state.colorStyle + "-card"} onClick={this.clickCard} >
           <div className="upper">
-              <div className="card-title">{this.state.challenge.name}</div>
+              <div className={"card-title " + this.state.colorStyle + "-title"}>{this.state.challenge.name}</div>
               <div className="description">{this.state.challenge.tagline}</div>
           </div>
           <div className="lower">
-              <hr className="divider" />
+              <hr className={"divider " + this.state.colorStyle + "-hr"} />
               <div className="bottom">
-                  <img src="https://i.ibb.co/GJb79fh/Frame-3.png" className="challenge-logo"/>
+                  <img src={this.state.imgUrl} className={"challenge-logo " + this.state.colorStyle + "-img"}/>
                   <div className="timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}</div>
                   <div className="participants"><i className="fa fa-user"></i> {this.state.challenge.sum} participants</div>
                   <div className="reward"><i className="fa fa-trophy"></i> {this.state.challenge.reward}</div>

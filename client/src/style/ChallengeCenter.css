@@ -56,6 +56,94 @@ body {
   cursor: pointer;
 }
 
+/* code for colors */
+
+.blue-card {
+  background: linear-gradient(to right,
+      rgba(27, 163, 245, 0.5) 0%,
+      #2a313b  20%,
+      #2a313b 100%
+  ) !important;
+  border-color: rgba(27, 163, 245, 0.5) !important;
+}
+
+.green-card {
+  background: linear-gradient(to right,
+      rgba(6, 214, 160, 0.5) 0%,
+      #2a313b  20%,
+      #2a313b 100%
+  ) !important;
+  border-color: rgba(6, 214, 160, 0.5) !important;
+}
+
+.yellow-card {
+  background: linear-gradient(to right,
+      rgba(224, 199, 7, 0.5) 0%,
+      #2a313b  20%,
+      #2a313b 100%
+  ) !important;
+  border-color: rgba(224, 199, 7, 0.5) !important;
+}
+
+.purple-card {
+  background: linear-gradient(to right,
+      rgba(126, 87, 194, 0.5) 0%,
+      #2a313b  20%,
+      #2a313b 100%
+  ) !important;
+  border-color: rgba(126, 87, 194, 0.5) !important;
+}
+
+.blue-title {
+  color: #1BA3F5 !important;
+}
+
+.yellow-title {
+  color: #E0C707 !important;
+}
+
+.purple-title {
+  color: #7E57C2 !important;
+}
+
+.green-title {
+  color: #06D6A0 !important;
+}
+
+.blue-hr {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #1BA3F5, #1BA3F5) !important;
+}
+
+.yellow-hr {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #E0C707, #E0C707) !important;
+}
+
+.purple-hr {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #7E57C2, #7E57C2) !important;
+}
+
+.green-hr {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(6, 214, 160), rgba(6, 214, 160)) !important;
+}
+
+.blue-img {
+  border: 2px solid #1BA3F5 !important;
+}
+
+.yellow-img {
+  border: 2px solid #E0C707 !important;
+}
+
+.purple-img {
+  border: 2px solid #7E57C2 !important;
+}
+
+.green-img {
+  border: 2px solid #06D6A0 !important;
+}
+
+/* end colors */
+
 .bottom {
   position: relative;
 }

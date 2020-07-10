@@ -84,7 +84,7 @@ class LandingPage extends React.Component {
           </div>
 
           <div className="lp-card zoom">
-            <div className="lp-upper">
+          <div className="lp-upper">
               <div className="lp-card-title">Choose<font className="whiteText"> your favorite</font></div>
               <br/>
             <div className="lp-description">

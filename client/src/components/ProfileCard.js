@@ -59,16 +59,16 @@ class ProfileCard extends React.Component {
 	          <div className="card-content">
 						<div className="container-body">
 							<div className="profile-picture">
-								<img src="https://i.imgur.com/euIw5lu.png" alt="profile-pic"/>
+								<img src="https://i.imgur.com/2cdVEfE.jpg" alt="profile-pic"/>
 							</div>
 							<div className="profile-name">
-								<p className="profile-name-text">Yinhong Liu</p>
+								<p className="profile-name-text">Richard Ling</p>
 							</div>
 							<div className="profile-location">
-								<p>Nanjing, China</p>
+								<p>Philadelphia, PA</p>
 							</div>
 							<div className="profile-bio">
-								<p>I am Yinhong Liu and I am Michael Jordan and LeBron James reincarnated. </p>
+								<p>University of Pennsylvania '20 | This my profile tagline for Collective Cause.</p>
 							</div>
 							<div className="profile-stats">
 								<div className="profile-ideas">

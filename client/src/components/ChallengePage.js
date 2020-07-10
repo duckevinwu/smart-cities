@@ -32,7 +32,9 @@ export default class ChallengePage extends React.Component {
     var id = this.props.match.params.id;
 
     this.setState({
-      challengeId: id
+      challengeId: id,
+      colorStyle: "",
+      imgUrl: ""
     })
 
     fetch("/api/challengedetails/" + id,
@@ -48,6 +50,36 @@ export default class ChallengePage extends React.Component {
       this.setState({
         isLoaded: true,
         challenge: data.challenge[0]
+      }, () => {
+        // for demo purposes
+  			if (this.state.challenge.challenge_id === 16) {
+  				this.setState({
+  					colorStyle: "blue",
+  					imgUrl: "https://i.imgur.com/ifddqXx.jpg"
+  				});
+  			} else if (this.state.challenge.challenge_id === 17) {
+  				this.setState({
+  					colorStyle: "yellow",
+  					imgUrl: "https://i.imgur.com/Zp0JMqp.png"
+  				});
+  			} else if (this.state.challenge.challenge_id === 18) {
+  				this.setState({
+  					colorStyle: "purple",
+  					imgUrl: "https://i.ibb.co/GJb79fh/Frame-3.png"
+  				});
+  			} else if (this.state.challenge.challenge_id === 19) {
+  				this.setState({
+  					colorStyle: "green",
+  					imgUrl: "https://i.imgur.com/vtvDuE0.png"
+  				});
+  			} else {
+  				this.setState({
+  					colorStyle: "green",
+  					imgUrl: "https://i.ibb.co/GJb79fh/Frame-3.png"
+  				});
+  			}
+
+  			// end demo
       })
 
 		});
@@ -61,7 +93,7 @@ export default class ChallengePage extends React.Component {
         <div className="container py-5 cd-page">
           <div className="shadow mb-5 details-card">
           <div className="card-content">
-             <img src="https://i.ibb.co/GJb79fh/Frame-3.png" className="cd-logo"/>
+             <img src={this.state.imgUrl} className={"cd-logo " + this.state.colorStyle + "-img"}/>
              <div className="cd-details">
                 <div className="cd-timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
                 </div>
