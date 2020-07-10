@@ -102,7 +102,7 @@ class ProfileCard extends React.Component {
 										<UserIdeas/>
 	                </div>
 	                <div id="submissions" role="tabpanel" aria-labelledby="profile-tab" className="tab-pane fade px-4 py-5">
-										Proposals
+										
 	                </div>
 	             </div>
 	          </div>

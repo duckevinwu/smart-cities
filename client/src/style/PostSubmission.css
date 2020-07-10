@@ -4,6 +4,7 @@
 
 .ps-wrapper {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .thank-you-text {
@@ -22,7 +23,6 @@
 }
 
 .back-profile, .back-profile:link, .back-profile:visited {
-  margin-left: 43%;
 	 padding: 15px 20px;
    background-color: #1e1f27;
 	 border: 1px solid #E0C707;
