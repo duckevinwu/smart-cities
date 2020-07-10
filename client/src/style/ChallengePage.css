@@ -112,11 +112,13 @@ h3 {
 .lined .nav-link {
   border: none;
   border-bottom: 3px solid transparent;
+	transition: 0.3s;
 }
 
 .lined .nav-link:hover {
   border: none;
   border-bottom: 3px solid transparent;
+	color: white;
 }
 
 .lined .nav-link.active {
@@ -201,11 +203,12 @@ h3 {
 
 .cd-brief {
   background: linear-gradient(to right,
-      rgba(6, 214, 160, 0.5) 0%,
-      #2a313b 20%,
+      rgba(6, 214, 160, 1) 0%,
+      rgba(6, 214, 160, 1) 2%,
+			#2a313b 2%,
       #2a313b 100%
   );
-  padding: 1% 1% 3% 5%;
+  padding: 1% 1% 3% 4%;
   margin-left: 0px;
   color: #ebe8d8;
   font-family: "Poppins", sans-serif;
@@ -222,11 +225,12 @@ h3 {
 
 .cd-description {
   background: linear-gradient(to right,
-      rgb(144, 213, 241, 0.5) 0%,
-      #2a313b  20%,
+      rgb(144, 213, 241, 1) 0%,
+			rgb(144, 213, 241, 1) 2%,
+      #2a313b  2%,
       #2a313b 100%
   );
-  padding: 1% 1% 3% 5%;
+  padding: 1% 1% 3% 4%;
   margin-left: 0px;
   color: #ebe8d8;
   font-family: "Poppins", sans-serif;
@@ -243,11 +247,12 @@ h3 {
 
 .cd-assets {
   background: linear-gradient(to right,
-      rgb(203, 162, 240, 0.5) 0%,
-      #2a313b 20%,
+      rgb(203, 162, 240, 1) 0%,
+			rgb(203, 162, 240, 1) 2%,
+      #2a313b 2%,
       #2a313b 100%
   );
-  padding: 1% 1% 3% 5%;
+  padding: 1% 1% 3% 4%;
   margin-left: 0px;
   color: #ebe8d8;
   font-family: "Poppins", sans-serif;
@@ -264,11 +269,12 @@ h3 {
 
 .cd-prize {
   background: linear-gradient(to right,
-      rgb(240, 226, 162, 0.5) 0%,
-      #2a313b 20%,
+      rgb(240, 226, 162, 1) 0%,
+			rgb(240, 226, 162, 1) 2%,
+      #2a313b 2%,
       #2a313b 100%
   );
-  padding: 1% 1% 3% 5%;
+  padding: 1% 1% 3% 4%;
   margin-left: 0px;
   color: #ebe8d8;
   border-bottom-left-radius: 20px;
