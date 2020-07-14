@@ -7,11 +7,16 @@
   color: white;
   margin: auto;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 th, td {
   text-align: left;
   padding: 15px;
+}
+
+.modal-td {
+  padding: 0 !important;
 }
 
 .list-status, .list-date {

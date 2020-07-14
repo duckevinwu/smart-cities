@@ -178,6 +178,9 @@ app.get('/api/numideas', routes.getNumIdeas);
 // ------------------ GET NUMBER OF PROPOSALS -----------------
 app.get('/api/numproposals', routes.getNumProposals);
 
+// ------------------ GET IDEA DETAILS -------------------------
+app.get('/api/ideadetails/:ideaid', routes.getIdeaDetails);
+
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

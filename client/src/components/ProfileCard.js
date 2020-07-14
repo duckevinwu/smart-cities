@@ -102,7 +102,7 @@ class ProfileCard extends React.Component {
 										<UserIdeas/>
 	                </div>
 	                <div id="submissions" role="tabpanel" aria-labelledby="profile-tab" className="tab-pane fade px-4 py-5">
-										
+
 	                </div>
 	             </div>
 	          </div>
@@ -111,11 +111,11 @@ class ProfileCard extends React.Component {
 	  		);
 	    } else {
 	      return (
-	        <div>
-						<h1 class="thank-you-text"> Oops! You have to be logged in to view your profile. </h1>
+	        <div className="ps-wrapper">
+						<h1 className="thank-you-text"> Oops! You have to be logged in to view your profile. </h1>
 
-						<div class="login-now">
-							<a type="button" href="/login" class="back-profile"> Login now</a>
+						<div className="login-now">
+							<a type="button" href="/login" className="back-profile"> Login now</a>
 						</div>
 	        </div>
 	      )

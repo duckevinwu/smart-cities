@@ -608,7 +608,7 @@ function getUserIdeas(req, res) {
   var userId = req.user.user_id;
 
   var query = `
-    SELECT i.submit_time, c.name
+    SELECT i.submit_time, c.name, i.idea_id
     FROM Idea i JOIN Challenge c ON i.challenge = c.challenge_id
     WHERE i.creator = ?
   `;
@@ -622,6 +622,8 @@ function getUserIdeas(req, res) {
   });
 }
 
+
+// ----------- get number of ideas ------------------
 function getNumIdeas(req, res) {
   if (!req.user) {
     return res.send({status: 'fail', message: 'not logged in'});
@@ -643,6 +645,7 @@ function getNumIdeas(req, res) {
   })
 }
 
+// --------------------- get number of proposals ---------------------
 function getNumProposals(req, res) {
   if (!req.user) {
     return res.send({status: 'fail', message: 'not logged in'});
@@ -660,6 +663,24 @@ function getNumProposals(req, res) {
       return res.send({status: 'fail'});
     } else {
       return res.send({status: 'success', numProposals: rows[0].count});
+    }
+  })
+}
+
+// ---------------------get idea details -------------------------------
+function getIdeaDetails(req, res) {
+  var ideaId = req.params.ideaid;
+
+  var query = `
+    SELECT *
+    FROM Idea
+    WHERE idea_id = ?
+  `
+  connection.query(query, [ideaId], function(err, rows, fields) {
+    if (err) {
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', ideaDetails: rows[0]});
     }
   })
 }
@@ -685,5 +706,6 @@ module.exports = {
   getProposals: getProposals,
   getUserIdeas: getUserIdeas,
   getNumIdeas: getNumIdeas,
-  getNumProposals: getNumProposals
+  getNumProposals: getNumProposals,
+  getIdeaDetails: getIdeaDetails
 }

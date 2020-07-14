@@ -4,13 +4,17 @@
   position: absolute;
 }
 
+nav {
+  position: fixed !important;
+}
+
 .handler {
   width: 1.5cm;
   line-height: 1.5cm;
   text-align: center;
   font-size: 30px;
   display: inline-block;
-  position: absolute;
+  position: fixed;
 }
 
 .fa-list {

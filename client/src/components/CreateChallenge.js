@@ -131,7 +131,8 @@ export default class CreateChallenge extends React.Component {
   // React function that is called when the page load.
   componentDidMount() {
     appendScript('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
-    appendScript('https://cdn.jsdelivr.net/gh/duckevinwu/external-js/FormAnimation.min.js');
+    appendScript('https://cdn.jsdelivr.net/gh/duckevinwu/external-js@0.2/FormAnimation.min.js');
+    appendScript('//cdn.jsdelivr.net/jquery.dirtyforms/2.0.0/jquery.dirtyforms.min.js');
   }
 
   render() {

@@ -23,7 +23,7 @@ class LandingPage extends React.Component {
     //appendScript("./Typing.js");
     appendScript("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js");
     appendScript("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js");
-    appendScript("https://cdn.jsdelivr.net/gh/duckevinwu/external-js/NodesAnimation.min.js");
+    appendScript("https://cdn.jsdelivr.net/gh/duckevinwu/external-js@0.1/NodesAnimation.min.js");
     appendScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js");
     appendScript("https://cdn.jsdelivr.net/gh/duckevinwu/external-js/TypingAnimation.min.js");
     appendScript("https://cdn.jsdelivr.net/gh/duckevinwu/external-js/UpButton.min.js");
