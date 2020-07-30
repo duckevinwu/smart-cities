@@ -23,6 +23,8 @@ import ProposalForm from './ProposalForm';
 import ViewSubmissions from './ViewSubmissions';
 import LoginRegister from './LoginRegister';
 import AboutPage from './AboutPage';
+import LandingPageNew from './LandingPageNew';
+import Fellows from './Fellows';
 
 export default class App extends React.Component {
 
@@ -35,7 +37,7 @@ export default class App extends React.Component {
 							exact
 							path="/"
 							render={() => (
-								<LandingPage />
+								<LandingPageNew />
 							)}
 						/>
 						<Route
@@ -127,6 +129,13 @@ export default class App extends React.Component {
 							path="/viewsubmissions/:challengeid"
 							render={(props) => (
 								<ViewSubmissions {...props} />
+							)}
+						/>
+						<Route
+							exact
+							path="/fellows"
+							render={(props) => (
+								<Fellows />
 							)}
 						/>
 					</Switch>

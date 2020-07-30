@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
+
+.fellow-page {
+  background-color: #1e1f27;
+/*   height: 100vh; */
+  margin: 0px;
+/*   overflow: hidden; */
+}
+
+.cc-underline {
+  border-bottom: 1px solid #E0C707;
+  padding-bottom: 5px;
+}
+
+.fellow-title {
+  color: white;
+  font-size: 1.5vw;
+  padding-top: 60px;
+  padding-bottom: 10px;
+  margin: 0 auto;
+/*   color: #CDCDCD; */
+  letter-spacing: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.fellow-text {
+  color: white;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 50px;
+/*   margin: auto; */
+  text-align: left;
+  color: white;
+  font-family: "Cutive Mono";
+  font-weight: 100;
+  letter-spacing: 2px;
+  font-size: 20px;
+  line-height: 30px;
+  padding-bottom: 50px;
+}
+
+.container-fellow {
+    max-width: 900px;
+    margin: auto;
+    overflow: auto;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.card-fellow {
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 2rem;
+    background: black;
+    color: #fff;
+    margin-bottom: 2rem;
+    border-radius: 30px;
+}
+
+.card-fellow h3{
+    font-family: 'Cutive Mono', sans-serif;
+    margin-bottom: 5 rem;
+  line-height: 35px;
+  color: white;
+}
+
+.card-fellow > img {
+    height: auto;
+  width: 125%;
+}
+
+.card-fellow > div {
+    padding-left: 7rem;
+    padding-top: 3rem;
+  padding-right: 1rem;
+}
+
+.card-fellow:nth-child(even)img{
+    order: 2;
+}
+
+@media(max-width: 700px){
+    .card-fellow {
+        display: block;
+    }
+}
+
+@media(max-width: 560px){
+    .card-fellow {
+        margin-top: 2.5rem;
+    }
+
+}
