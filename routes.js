@@ -542,7 +542,7 @@ function isChallengeOwner(req, res) {
   } else {
     // get challenge owner from db
     var query = `
-      SELECT owner
+      SELECT owner, name
       FROM Challenge
       WHERE challenge_id = ?
     `;
@@ -552,7 +552,7 @@ function isChallengeOwner(req, res) {
         return res.send({status: 'fail'});
       } else {
         if (userId === rows[0].owner) {
-          return res.send({status: 'success'});
+          return res.send({status: 'success', name: rows[0].name});
         } else {
           return res.send({status: 'fail', message: 'not owner of challenge'});
         }
@@ -566,11 +566,33 @@ function getIdeas(req, res) {
   var challengeId = parseInt(req.params.challengeid);
 
   var query = `
-    SELECT i.challenge, i.submit_time, u.email
+    SELECT i.idea_id, i.challenge, i.submit_time, u.email, i.status
     FROM Idea i JOIN User u ON i.creator = u.user_id
     WHERE i.challenge = ?
   `;
   connection.query(query, [challengeId], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', ideas: rows});
+    }
+  });
+}
+
+// ------------------- GET IDEAS BY ID-----------------------------
+function getSelectedIdeas(req, res) {
+  var ids = req.body.ids;
+
+  if (!ids) {
+    return res.send({status: 'fail', message: 'no ids'});
+  }
+
+  var query = `
+    SELECT i.idea_id, i.challenge, i.submit_time, u.email, i.status, i.content
+    FROM (SELECT * FROM Idea WHERE idea_id IN (?)) i JOIN User u ON i.creator = u.user_id
+  `;
+  connection.query(query, [ids], function(err, rows, fields) {
     if (err) {
       console.log(err);
       return res.send({status: 'fail'});
@@ -673,14 +695,34 @@ function getIdeaDetails(req, res) {
 
   var query = `
     SELECT *
-    FROM Idea
-    WHERE idea_id = ?
-  `
+    FROM (SELECT * FROM Idea WHERE idea_id = ?) i JOIN User u ON i.creator = u.user_id
+  `;
   connection.query(query, [ideaId], function(err, rows, fields) {
     if (err) {
       return res.send({status: 'fail'});
     } else {
       return res.send({status: 'success', ideaDetails: rows[0]});
+    }
+  })
+}
+
+// ------------------ update idea status ---------------------
+function updateIdeaStatus(req, res) {
+  var id = req.body.id;
+  var status = req.body.status;
+
+  var query = `
+    UPDATE Idea
+    SET status = ?
+    WHERE idea_id = ?
+  `;
+
+  connection.query(query, [status, id], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'})
+    } else {
+      return res.send({status: 'success'})
     }
   })
 }
@@ -707,5 +749,7 @@ module.exports = {
   getUserIdeas: getUserIdeas,
   getNumIdeas: getNumIdeas,
   getNumProposals: getNumProposals,
-  getIdeaDetails: getIdeaDetails
+  getIdeaDetails: getIdeaDetails,
+  updateIdeaStatus: updateIdeaStatus,
+  getSelectedIdeas: getSelectedIdeas
 }

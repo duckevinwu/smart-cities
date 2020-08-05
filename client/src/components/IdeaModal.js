@@ -56,6 +56,9 @@ export default class IdeaModal extends React.Component {
               <div className="modal-date">
                 <i className="fa fa-clock-o" aria-hidden="true"></i> {convertDateMs(this.state.idea.submit_time)}
               </div>
+              <div className="modal-date">
+                <i className="fa fa-user" aria-hidden="true"></i> {this.state.idea.email}
+              </div>
               <pre className="modal-summary">
                 {this.state.idea.content}
               </pre>

@@ -1,0 +1,149 @@
+.vs-title {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: white;
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+.vs-spinner-wrapper {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+@keyframes vs-spinner {
+  to {transform: rotate(360deg);}
+}
+
+.vs-spinner {
+  content: '';
+  box-sizing: border-box;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #E0C707;
+  border-top-color: white;
+  border-right-color: white;
+  border-left-color: white;
+  animation: spinner 1.0s linear infinite;
+}
+
+.check-col {
+  width: 50px;
+}
+
+.col-center {
+  text-align: center;
+}
+
+.vs-tab {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+.vs-th {
+  border-color: gray !important;
+}
+
+/* checkbox */
+.checkbox-wrapper {
+  z-index: 10;
+}
+.checkbox {
+  display: none;
+}
+
+.checkbox-span {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #E0C707;
+  border-radius: 6px;
+  display: inline-block;
+  position: relative;
+}
+
+.checkbox-span::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background-color: #E0C707;
+  opacity: 0;
+  transition: all .3s ease;
+}
+
+.checkbox:checked + .checkbox-label > .checkbox-span::after {
+  opacity: 1;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.vw-row {
+}
+
+.vw-row:hover {
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+.pending {
+  background-color: #2a313b;
+}
+
+.viewed {
+  background-color: transparent;
+}
+
+.selected {
+  background-color: rgba(224, 199, 7, 0.2)
+}
+
+.pdf-wrapper {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  z-index: 10;
+}
+
+.pdf-button, .pdf-button:link, .pdf-button:visited {
+	 padding: 15px 20px;
+   background-color: transparent;
+	 border: 1px solid #E0C707;
+	 color: white;
+	 font-weight: 500;
+	 text-transform: uppercase;
+	 font-size: 13px;
+	 letter-spacing: 3px;
+	 transition: all 0.2s ease-in-out;
+}
+ .pdf-button:hover, .pdf-button:link:hover, .pdf-button:visited:hover {
+	 background: #E0C707;
+	 border: 1px solid #E0C707;
+	 color: black;
+	 border-radius: 30px;
+	 cursor: pointer;
+}
+
+.pdf-body {
+  display: none;
+}
+
+.pdf-title {
+  text-align:center;
+}
+
+.pdf-block {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
