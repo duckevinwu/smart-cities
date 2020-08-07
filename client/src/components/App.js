@@ -25,6 +25,7 @@ import LoginRegister from './LoginRegister';
 import AboutPage from './AboutPage';
 import LandingPageNew from './LandingPageNew';
 import Fellows from './Fellows';
+import EditProfile from './EditProfile';
 
 export default class App extends React.Component {
 
@@ -136,6 +137,13 @@ export default class App extends React.Component {
 							path="/fellows"
 							render={(props) => (
 								<Fellows />
+							)}
+						/>
+						<Route
+							exact
+							path="/editprofile"
+							render={() => (
+								<LoggedInRoute success={<EditProfile />} fail={<LoginRegister/>} />
 							)}
 						/>
 					</Switch>

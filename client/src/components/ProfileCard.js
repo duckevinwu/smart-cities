@@ -13,7 +13,8 @@ class ProfileCard extends React.Component {
     this.state = {
 			numIdeas: 0,
 			numProposals: 0,
-			isLoaded: false
+			isLoaded: false,
+			user: {}
     }
 	}
 
@@ -23,10 +24,12 @@ class ProfileCard extends React.Component {
 
 		var ideaCountUrl = '/api/numideas';
 		var proposalCountUrl = '/api/numproposals';
+		var userInfoUrl = '/api/userinfo';
 
 		var promises = Promise.all([
 			fetch(ideaCountUrl),
-			fetch(proposalCountUrl)
+			fetch(proposalCountUrl),
+			fetch(userInfoUrl)
 		])
 
 		promises
@@ -36,10 +39,12 @@ class ProfileCard extends React.Component {
 			.then((data) => {
 				var ideasObj = data[0];
 				var proposalsObj = data[1];
+				var userObj = data[2];
 
 				this.setState({
 					numIdeas: ideasObj.numIdeas,
 					numProposals: proposalsObj.numProposals,
+					user: userObj.user,
 					isLoaded: true
 				})
 
@@ -58,17 +63,20 @@ class ProfileCard extends React.Component {
 	          <div className="shadow mb-5 profile-background">
 	          <div className="card-content">
 						<div className="container-body">
+							<div className="edit-icon">
+								<a href="/editprofile"><i className="fa fa-pencil pencil" title="Edit Profile"></i></a>
+							</div>
 							<div className="profile-picture">
-								<img src="https://i.imgur.com/2cdVEfE.jpg" alt="profile-pic"/>
+								<img src="https://i.imgur.com/sFUkpIV.png" alt="profile-pic"/>
 							</div>
 							<div className="profile-name">
-								<p className="profile-name-text">Richard Ling</p>
+								<p className="profile-name-text">{this.state.user.name}</p>
 							</div>
 							<div className="profile-location">
-								<p>Philadelphia, PA</p>
+								<p>{this.state.user.city}, {this.state.user.state}</p>
 							</div>
 							<div className="profile-bio">
-								<p>University of Pennsylvania '20 | This my profile tagline for Collective Cause.</p>
+								<pre>{this.state.user.bio}</pre>
 							</div>
 							<div className="profile-stats">
 								<div className="profile-ideas">

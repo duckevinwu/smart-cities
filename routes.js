@@ -727,6 +727,59 @@ function updateIdeaStatus(req, res) {
   })
 }
 
+// --------------- get user info ------------------------------
+function getUserInfo(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var userId = req.user.user_id;
+
+  var query = `
+    SELECT *
+    FROM User
+    WHERE user_id = ?
+  `
+
+  connection.query(query, [userId], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'})
+    } else {
+      if (rows.length > 0) {
+        return res.send({status: 'success', user: rows[0]})
+      } else {
+        return res.send({status: 'fail'})
+      }
+    }
+  })
+}
+
+// --------------- update user info -------------------------
+function updateProfile(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var userId = req.user.user_id;
+  var details = req.body.details;
+
+  var query = `
+    UPDATE User
+    SET name = ?, phone = ?, title = ?, state = ?, city = ?, bio = ?, logged = ?
+    WHERE user_id = ?
+  `
+
+  connection.query(query, [details.fullName, details.phoneNumber, details.title, details.state, details.city, details.bio, true, userId], function(err, rows, fields) {
+    if (err) {
+      console.log(err);
+      return res.send({status: 'fail'})
+    } else {
+      return res.send({status: 'success'})
+    }
+  })
+}
+
 
 // The exported functions, which can be accessed in index.js.
 module.exports = {
@@ -751,5 +804,7 @@ module.exports = {
   getNumProposals: getNumProposals,
   getIdeaDetails: getIdeaDetails,
   updateIdeaStatus: updateIdeaStatus,
-  getSelectedIdeas: getSelectedIdeas
+  getSelectedIdeas: getSelectedIdeas,
+  getUserInfo: getUserInfo,
+  updateProfile: updateProfile
 }

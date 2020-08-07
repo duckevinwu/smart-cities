@@ -93,3 +93,21 @@ th {
   filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
+
+.ui-none-wrapper {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.ui-none-text {
+  color: white;
+  text-align: center;
+}
+
+.ui-link {
+  color: gray;
+}
+
+.ui-link:hover {
+  color: #E0C707
+}

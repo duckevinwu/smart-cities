@@ -124,7 +124,7 @@ module.exports = function(passport) {
           }
 
           // correct password
-          return done(null, rows[0]);
+          return done(null, rows[0], {logged: rows[0].logged});
 
         })
 

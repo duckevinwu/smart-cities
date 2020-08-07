@@ -1,5 +1,6 @@
 .profile-card {
   width: 70% !important;
+  min-width: 450px;
 }
 
 .profile-background {
@@ -9,8 +10,8 @@
 
 .profile-picture img {
     border-radius: 100%;
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 150px;
+    max-height: 150px;
     border: solid 3px #039be5;
   display: block;
   margin-left: auto;
@@ -38,16 +39,18 @@
   margin-top: -15px;
 }
 
-.profile-bio p {
+.profile-bio pre {
   margin-left: 0px;
   padding-top: 10px;
   text-align: center;
   padding-bottom: 20px;
   color: white;
+  font-family: 'Poppins';
 }
 
 .container-body {
   margin-top: 20px;
+  position: relative;
 }
 
 .container-body .profile-stats {
@@ -86,4 +89,19 @@
     float: left;
     width: 33.33%;
     text-align: center;
+}
+
+.edit-icon {
+  position: absolute;
+  right: 20px;
+}
+
+.pencil {
+  color: white;
+  font-size: 20px;
+}
+
+.pencil:hover {
+  cursor: pointer;
+  color: #E0C707;
 }

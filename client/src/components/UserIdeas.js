@@ -7,7 +7,8 @@ export default class UserIdeas extends React.Component {
     super(props);
 
     this.state = {
-      ideas: []
+      ideas: [],
+      isLoaded: false
     }
 
   }
@@ -31,27 +32,44 @@ export default class UserIdeas extends React.Component {
 			  );
 
   			this.setState({
-  				ideas: ideaDivs
+  				ideas: ideaDivs,
+          isLoaded: true
   			});
       }
 		});
   }
 
   render() {
-    return(
-      <div className="table-wrapper">
-        <table className="submission-list">
-          <tbody>
-            <tr>
-              <th className="list-title">Challenge Title</th>
-              <th className="list-date">Date Submitted</th>
-              <th className="list-status">Status</th>
-            </tr>
-            {this.state.ideas}
-          </tbody>
-        </table>
-      </div>
-    );
+    if (this.state.isLoaded) {
+      if (this.state.ideas.length === 0) {
+        return (
+          <div className="ui-none-wrapper">
+            <p className="ui-none-text">Visit the <a href="/challengecenter" className="ui-link">Challenge Center</a> to get started!</p>
+          </div>
+        )
+      } else {
+        return(
+          <div className="table-wrapper">
+            <table className="submission-list">
+              <tbody>
+                <tr>
+                  <th className="list-title">Challenge Title</th>
+                  <th className="list-date">Date Submitted</th>
+                  <th className="list-status">Status</th>
+                </tr>
+                {this.state.ideas}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
+    } else {
+      return (
+        <div className="vs-spinner-wrapper">
+          <div className="vs-spinner"></div>
+        </div>
+      )
+    }
   }
 
 }

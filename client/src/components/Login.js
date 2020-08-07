@@ -53,12 +53,7 @@ class Login extends React.Component {
     .then(res => {
 
       if (res.status === 200) {
-        var redirect = this.state.redirectUrl;
-        if (redirect) {
-          this.props.history.push(redirect)
-        } else {
-          this.props.history.push('/profile');
-        }
+
       }
 
 			return res.json();
@@ -67,6 +62,18 @@ class Login extends React.Component {
 		})
     .then(data => {
       console.log(data);
+      if (data.status === 'success') {
+        if (!data.logged) {
+          this.props.history.push('/editprofile');
+        } else {
+          var redirect = this.state.redirectUrl;
+          if (redirect) {
+            this.props.history.push(redirect)
+          } else {
+            this.props.history.push('/profile');
+          }
+        }
+      }
     });
   }
 
