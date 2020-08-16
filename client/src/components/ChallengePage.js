@@ -1,4 +1,5 @@
 import React from 'react';
+import DOMPurify from 'dompurify';
 import Submission from './Submission'
 import { appendScript } from '../js/AppendScript.js';
 import { convertDate } from '../js/ConvertDate.js';
@@ -124,21 +125,21 @@ export default class ChallengePage extends React.Component {
                    <div id="challenge-info">
                       <section className="cd-brief">
                          <h3 className="brief-title"> Brief </h3>
-                         <pre className="section-content">
-                          {this.state.challenge.brief}
-                         </pre>
+                         <div className="section-content ql-editor"
+                              dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.brief, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                         </div>
                       </section>
                       <section className="cd-description">
                          <h3 className="description-title"> Description</h3>
-                         <pre className="section-content">
-                          {this.state.challenge.description}
-                         </pre>
+                         <div className="section-content ql-editor"
+                              dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.description, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                         </div>
                       </section>
                       <section className="cd-assets">
                          <h3 className="assets-title">Existing Assets</h3>
-                         <pre className="section-content">
-                          {this.state.challenge.assets}
-                         </pre>
+                         <div className="section-content ql-editor"
+                              dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.assets, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                         </div>
                       </section>
                       <section className="cd-prize">
                          <h3 className="prize-title">Prize</h3>

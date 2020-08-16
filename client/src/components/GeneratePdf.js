@@ -1,4 +1,5 @@
 import React from 'react';
+import DOMPurify from 'dompurify';
 import { appendScript } from '../js/AppendScript.js';
 import { convertDateMs } from '../js/ConvertDate.js';
 
@@ -50,7 +51,9 @@ export default class GeneratePdf extends React.Component {
             <br/>
             <div><b>Date: </b>{convertDateMs(idea.submit_time)}</div>
             <br/>
-            {idea.content}
+            <div className="section-content ql-editor"
+                 dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(idea.content)}}>
+            </div>
             <br/>
             <hr/>
           </div>

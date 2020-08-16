@@ -1,4 +1,5 @@
 import React from 'react';
+import DOMPurify from 'dompurify';
 import '../style/IdeaModal.css';
 import { convertDateMs } from '../js/ConvertDate.js';
 
@@ -59,9 +60,9 @@ export default class IdeaModal extends React.Component {
               <div className="modal-date">
                 <i className="fa fa-user" aria-hidden="true"></i> {this.state.idea.email}
               </div>
-              <pre className="modal-summary">
-                {this.state.idea.content}
-              </pre>
+              <div className="modal-summary ql-editor"
+                   dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.idea.content, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+              </div>
               <div className="idea-br">
                 Idea
               </div>

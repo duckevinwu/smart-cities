@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactQuill from 'react-quill';
 import { withRouter } from 'react-router-dom';
 import '../style/Form.css';
 import { appendScript } from '../js/AppendScript.js';
@@ -66,7 +67,7 @@ class IdeaForm extends React.Component {
 
   handleIdeaChange(e) {
     this.setState({
-      idea: e.target.value
+      idea: e
     })
   }
 
@@ -119,6 +120,20 @@ class IdeaForm extends React.Component {
       challengeId: challengeId
     });
 
+  }
+
+  toolbarOptions = [
+    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    ['bold', 'italic', 'underline', 'link'],        // toggled buttons
+    ['blockquote', 'code-block'],
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    ['video', 'image'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'align': [] }],
+  ];
+
+  modules = {
+    toolbar: this.toolbarOptions
   }
 
   render() {
@@ -189,19 +204,18 @@ class IdeaForm extends React.Component {
                  />
               </div>
 
-              <div className="input-block large-block">
-                 <label htmlFor="q6" className="sb-label sb-idea">Please provide a summary of your idea (~500 words)</label>
-                 <textarea id="q6" className="text-question sb-form-q textarea-q" value={this.state.idea} onChange={this.handleIdeaChange}></textarea>
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q6">
+                  <div className="quill-label">Please provide a summary of your idea (~500 words)
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.idea} onChange={this.handleIdeaChange} className="sb-form-q quill-q"/>
               </div>
 
               <div className="input-block">
                  <button type="button" className="submit-button sb-form-q" onClick={this.submitIdea}>Submit</button>
               </div>
             </form>
-
-            <div>
-              <p className="form-info">Press <span className="keyboard-button tab-button-icon">TAB</span> to move to next question</p>
-            </div>
           </div>
         </div>
       );

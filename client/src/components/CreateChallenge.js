@@ -3,6 +3,7 @@ import '../style/Form.css';
 import { appendScript } from '../js/AppendScript';
 import Navbar from './Navbar';
 import PostCreation from './PostCreation';
+import ReactQuill from 'react-quill';
 //import PageNavbar from './PageNavbar';
 
 export default class CreateChallenge extends React.Component {
@@ -77,19 +78,19 @@ export default class CreateChallenge extends React.Component {
 
   handleBriefChange(e) {
     this.setState({
-      brief: e.target.value
+      brief: e
     })
   }
 
   handleDescriptionChange(e) {
     this.setState({
-      description: e.target.value
+      description: e
     })
   }
 
   handleAssetsChange(e) {
     this.setState({
-      assets: e.target.value
+      assets: e
     })
   }
 
@@ -131,11 +132,27 @@ export default class CreateChallenge extends React.Component {
   // React function that is called when the page load.
   componentDidMount() {
     appendScript('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
-    appendScript('https://cdn.jsdelivr.net/gh/duckevinwu/external-js@0.2/FormAnimation.min.js');
     appendScript('//cdn.jsdelivr.net/jquery.dirtyforms/2.0.0/jquery.dirtyforms.min.js');
+    appendScript('https://cdn.jsdelivr.net/gh/duckevinwu/external-js@0.2/FormAnimation.min.js');
+
+  }
+
+  toolbarOptions = [
+    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    ['bold', 'italic', 'underline', 'link'],        // toggled buttons
+    ['blockquote', 'code-block'],
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    ['video', 'image'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'align': [] }],
+  ];
+
+  modules = {
+    toolbar: this.toolbarOptions
   }
 
   render() {
+
     if (this.state.submitted) {
       return (
         <div className="post-submission-page">
@@ -191,50 +208,50 @@ export default class CreateChallenge extends React.Component {
 
               <p className="form-heading">Challenge Details</p>
 
-              <div className="input-block large-block">
-                 <label htmlFor="q6" className="sb-label sb-idea">
-                    Brief
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q6">
+                  <div className="quill-label">Brief
                     <div className="tooltip"><i className="fa fa-question-circle"></i>
                        <span className="tooltiptext">
                        Provide a general overview of the challenge in non-technical terms, as well as the motivation of the challenge.
                        </span>
                     </div>
-                 </label>
-                 <textarea id="q6" className="text-question sb-form-q textarea-q" value={this.state.brief} onChange={this.handleBriefChange} ></textarea>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.brief} onChange={this.handleBriefChange} className="sb-form-q quill-q"/>
               </div>
 
-              <div className="input-block large-block">
-                 <label htmlFor="q7" className="sb-label sb-idea">
-                    Description
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q7">
+                  <div className="quill-label">Description
                     <div className="tooltip"><i className="fa fa-question-circle"></i>
                        <span className="tooltiptext">
                        A longer description with full details and technical terms.
                        </span>
                     </div>
-                 </label>
-                 <textarea id="q7" className="text-question sb-form-q textarea-q" value={this.state.description} onChange={this.handleDescriptionChange} ></textarea>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.description} onChange={this.handleDescriptionChange} className="sb-form-q quill-q"/>
               </div>
 
-              <div className="input-block large-block">
-                 <label htmlFor="q8" className="sb-label sb-idea">
-                    Existing Assets
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q8">
+                  <div className="quill-label">Existing Assets
                     <div className="tooltip"><i className="fa fa-question-circle"></i>
                        <span className="tooltiptext">
                        List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge. These could be assets that are public, under your company/organizations's control, or agreed upon by the city to use for this challenge.
                        </span>
                     </div>
-                 </label>
-                 <textarea id="q8" className="text-question sb-form-q textarea-q" value={this.state.assets} onChange={this.handleAssetsChange} ></textarea>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.assets} onChange={this.handleAssetsChange} className="sb-form-q quill-q"/>
               </div>
 
               <div className="input-block">
                  <button type="button" className="submit-button sb-form-q" onClick={this.submitChallenge} >Submit</button>
               </div>
             </form>
-
-            <div>
-              <p className="form-info">Press <span className="keyboard-button tab-button-icon">TAB</span> to move to next question</p>
-            </div>
+            
             </div>
           </div>
       );

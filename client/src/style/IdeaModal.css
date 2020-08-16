@@ -236,6 +236,8 @@
 	white-space: -pre-wrap;      /* Opera 4-6 */
 	white-space: -o-pre-wrap;    /* Opera 7 */
 	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  font-size: 16px !important;
+	padding:0 !important;
 }
 
 .idea-br {
