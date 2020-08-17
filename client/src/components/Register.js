@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import FlashMessage from './FlashMessage';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -13,7 +14,9 @@ class Register extends React.Component {
       email: "",
       password: "",
       repeat: "",
-      isSent: false
+      isSent: false,
+      error: "",
+      loading: false
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -43,7 +46,25 @@ class Register extends React.Component {
 
   submitRegister(e) {
     e.preventDefault();
-    console.log(this.state)
+
+
+    if (this.state.password.length <= 6) {
+      this.setState({
+        error: 'Password should be at least 6 characters long'
+      })
+      return;
+    }
+
+    if (this.state.password !== this.state.repeat) {
+      this.setState({
+        error: 'Passwords do not match'
+      })
+      return;
+    }
+
+    this.setState({
+      loading: true
+    })
 
     fetch("/register", {
       method: "post",
@@ -63,14 +84,21 @@ class Register extends React.Component {
 			console.log(err);
 		})
     .then(data => {
-      console.log(data);
       if (data.status === 'success') {
         this.setState({
           isSent: true
         })
       } else {
         // handle errors
+        this.setState({
+          error: data.message
+        })
       }
+
+      this.setState({
+        loading: false
+      })
+
     });
 
   }
@@ -92,6 +120,19 @@ class Register extends React.Component {
         </div>
       );
     } else {
+
+      var errorDiv = this.state.error ? <FlashMessage message={this.state.error}/> : <div></div>
+
+      var signupBtn = <button type="submit" className="signup">Sign Up</button>;
+
+      if (this.state.loading) {
+        signupBtn = (
+          <div className="spinner-wrapper">
+            <div className="spinner-login"></div>
+          </div>
+        )
+      }
+
       return (
         <form className="sign-up-htm" onSubmit={this.submitRegister}>
           <div className="group">
@@ -107,8 +148,9 @@ class Register extends React.Component {
              <input type="password" className="input" data-type="password" value={this.state.repeat} onChange={this.handleRepeatChange} required/>
           </div>
           <div className="signup-button">
-             <button type="submit" className="signup">Sign Up</button>
+             {signupBtn}
           </div>
+          {errorDiv}
        </form>
       );
     }

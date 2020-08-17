@@ -96,7 +96,7 @@ app.get('/auth/isAuthenticated', function(req, res) {
   if (req.isAuthenticated()) {
     return res.status(200).send({ authenticated: 'true', userId: req.user.user_id});
   }
-  return res.status(401).send({ authenticated: 'false'})
+  return res.send({ authenticated: 'false'})
 });
 
 // check if user is an admin

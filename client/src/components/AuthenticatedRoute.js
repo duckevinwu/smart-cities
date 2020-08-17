@@ -25,7 +25,6 @@ class AuthenticatedRoute extends React.Component {
 		}, err => {
 			console.log(err);
 		}).then(data => {
-      console.log(data)
       var isAuthenticated = data.authenticated
       if (isAuthenticated === 'true') {
         // go here if user is already authenticated (logged in)

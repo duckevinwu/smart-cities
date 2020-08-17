@@ -27,7 +27,6 @@ class Navbar extends React.Component {
 		}, err => {
 			console.log(err);
 		}).then(data => {
-      console.log(data)
       var isAuthenticated = data.authenticated;
 			var isAdmin = data.admin;
 

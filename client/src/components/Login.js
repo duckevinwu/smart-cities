@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
+import FlashMessage from './FlashMessage';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -12,7 +13,10 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
-      redirectUrl: ""
+      redirectUrl: "",
+      error: "",
+      showError: false,
+      loading: false
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -36,7 +40,11 @@ class Login extends React.Component {
 
   submitLogin(e) {
     e.preventDefault();
-    console.log(this.state);
+
+
+    this.setState({
+      loading: true
+    })
 
     fetch("/api/login", {
       method: "post",
@@ -51,17 +59,11 @@ class Login extends React.Component {
       })
     })
     .then(res => {
-
-      if (res.status === 200) {
-
-      }
-
 			return res.json();
 		}, err => {
 			console.log(err);
 		})
     .then(data => {
-      console.log(data);
       if (data.status === 'success') {
         if (!data.logged) {
           this.props.history.push('/editprofile');
@@ -73,7 +75,17 @@ class Login extends React.Component {
             this.props.history.push('/profile');
           }
         }
+      } else {
+        this.setState({
+          error: data.message,
+          showError: true
+        })
       }
+
+      this.setState({
+        loading: false
+      })
+
     });
   }
 
@@ -93,6 +105,19 @@ class Login extends React.Component {
   }
 
   render() {
+
+    var errorDiv = (this.state.error && this.state.showError) ? <FlashMessage message={this.state.error}/> : <div></div>
+
+    var loginBtn = <button type="submit" className="login">Login</button>;
+
+    if (this.state.loading) {
+      loginBtn = (
+        <div className="spinner-wrapper">
+          <div className="spinner-login"></div>
+        </div>
+      )
+    }
+
     return (
     	<form className="sign-in-htm" onSubmit={this.submitLogin}>
     		<div className="group">
@@ -104,12 +129,13 @@ class Login extends React.Component {
     			<input type="password" className="input" data-type="password" value={this.state.password} onChange={this.handlePasswordChange} required/>
     		</div>
             <div className="login-button">
-                <button type="submit" className="login">Login</button>
+                {loginBtn}
             </div>
     		<div className="hr"></div>
     		<div className="foot-lnk">
     			<a href="/forgotpassword">Forgot Password?</a>
     		</div>
+        {errorDiv}
     	</form>
     );
   }

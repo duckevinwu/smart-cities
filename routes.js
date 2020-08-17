@@ -84,7 +84,7 @@ function saveRegisterToken(req, res) {
     }
     if (rows.length) {
       // user already exists
-      return res.send({status: 'fail', message: 'user already exists'});
+      return res.send({status: 'fail', message: 'Email already in use'});
     } else {
       var currTime = Date.now().toString();
       var token = randToken.generate(16);

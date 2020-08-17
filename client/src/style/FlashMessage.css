@@ -1,0 +1,39 @@
+/* The alert message box */
+.alert {
+  margin-top: 15px;
+  padding: 10px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  margin-bottom: 15px;
+  opacity: 1;
+  transition: opacity 0.3s; /* 600ms to fade out */
+  border-radius: 5px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: #000;
+  opacity: 0.5;
+  font-weight: bold;
+  float: right;
+  font-size: 25px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: #000;
+  opacity: 1;
+}
+
+.alert-open {
+  opacity: 1;
+}
+
+.alert-close {
+  opacity: 0;
+}

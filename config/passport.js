@@ -114,13 +114,13 @@ module.exports = function(passport) {
 
         // email doesn't exist
         if (!rows.length) {
-          return done(null, false, {message: 'no user found with that email'});
+          return done(null, false, {message: 'Incorrect email/password combination'});
         }
 
         bcrypt.compare(password, rows[0].password, function(err, result) {
           // incorrect password
           if (!result) {
-            return done(null, false, {message: 'incorrect password'});
+            return done(null, false, {message: 'Incorrect email/password combination'});
           }
 
           // correct password
