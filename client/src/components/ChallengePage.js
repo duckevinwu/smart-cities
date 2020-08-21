@@ -111,11 +111,15 @@ export default class ChallengePage extends React.Component {
              </div>
              <br/>
              <ul id="myTab2" role="tablist" className="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center">
-                <li className="nav-item flex-sm-fill">
+                <li className="nav-item tab-head">
                    <a id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true"
                       className="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0 active">Detail</a>
                 </li>
-                <li className="nav-item flex-sm-fill">
+                <li className="nav-item tab-head">
+                   <a id="prize-tab" data-toggle="tab" href="#prize" role="tab" aria-controls="prize" aria-selected="false"
+                      className="nav-link text-uppercase font-weight-bold rounded-0">Prize</a>
+                </li>
+                <li className="nav-item tab-head">
                    <a id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2"
                       aria-selected="false" className="nav-link text-uppercase font-weight-bold rounded-0">Submission</a>
                 </li>
@@ -141,16 +145,18 @@ export default class ChallengePage extends React.Component {
                               dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.assets, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
                          </div>
                       </section>
-                      <section className="cd-prize">
-                         <h3 className="prize-title">Prize</h3>
-                         <pre className="section-content">
-                          {this.state.challenge.prize}
-                         </pre>
-                      </section>
                    </div>
                 </div>
-                <div id="profile2" role="tabpanel" aria-labelledby="profile-tab" className="tab-pane fade px-4 py-5">
-                   <Submission challengeId={this.state.challengeId} />
+                <div id="prize" role="tabpanel" aria-labelledby="prize-tab" className="tab-pane fade px-4">
+                  <section className="cd-prize">
+                     <h3 className="prize-title">Prize Details</h3>
+                     <div className="section-content ql-editor"
+                          dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.prize, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                     </div>
+                  </section>
+                </div>
+                <div id="profile2" role="tabpanel" aria-labelledby="profile-tab" className="tab-pane fade px-4">
+                   <Submission challengeId={this.state.challengeId} details={this.state.challenge.submission} />
                 </div>
              </div>
           </div>

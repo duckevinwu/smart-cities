@@ -1,4 +1,5 @@
 import React from 'react';
+import DOMPurify from 'dompurify';
 import { withRouter } from 'react-router-dom';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
@@ -11,7 +12,8 @@ class Submission extends React.Component {
     // This component maintains the list of people.
     this.state = {
       isLoggedIn: false,
-      userId: ""
+      userId: "",
+      details: ""
     }
 
   }
@@ -33,7 +35,8 @@ class Submission extends React.Component {
       if (isAuthenticated === 'true') {
         this.setState({
           isLoggedIn: true,
-          userId: id
+          userId: id,
+          details: this.props.details
         });
       }
 		});
@@ -42,9 +45,17 @@ class Submission extends React.Component {
   render() {
     if (this.state.isLoggedIn) {
       return (
-        <div className="submitbuttonwrapper">
-          <a href={"/submitidea/" + this.props.challengeId}><button className="submitbutton">Submit Idea</button></a>
-        </div>
+        <>
+          <div className="submitbuttonwrapper">
+            <a href={"/submitidea/" + this.props.challengeId}><button className="submitbutton">Submit Idea</button></a>
+          </div>
+          <section className="cd-submission">
+             <h3 className="submission-title">Submission Details</h3>
+             <div className="section-content ql-editor"
+                  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.details, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+             </div>
+          </section>
+        </>
       );
     } else {
       return (
