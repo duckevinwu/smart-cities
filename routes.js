@@ -352,6 +352,14 @@ function createChallenge(req, res) {
   var brief = challengeInfo.brief;
   var description = challengeInfo.description;
   var assets = challengeInfo.assets;
+  var imgUrl = challengeInfo.imageUrl;
+  var logoUrl = challengeInfo.logoUrl;
+  var color = challengeInfo.color;
+  var resources = challengeInfo.resources;
+  var eligibility = challengeInfo.eligibility;
+  var contact = challengeInfo.contact;
+  var prize = challengeInfo.prize;
+  var submission = challengeInfo.submission;
 
   // if user id doesn't exist, don't create challenge
   if (!userId) {
@@ -359,10 +367,10 @@ function createChallenge(req, res) {
   } else {
     // save challenge into database
     var insertQuery = `
-      INSERT INTO Challenge (name, owner, start, end, reward, tagline, brief, description, assets)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+      INSERT INTO Challenge (name, owner, start, end, reward, tagline, brief, description, assets, prize, submission, imgurl, logourl, color, resources, eligibility, contact)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     `;
-    connection.query(insertQuery, [name, userId, start, end, reward, tagline, brief, description, assets], function(err, rows, fields) {
+    connection.query(insertQuery, [name, userId, start, end, reward, tagline, brief, description, assets, prize, submission, imgUrl, logoUrl, color, resources, eligibility, contact], function(err, rows, fields) {
       if (err) {
         console.log(err);
         return res.send({status: 'fail'});
@@ -429,7 +437,7 @@ function getAllChallenges(req, res) {
     FROM SubTemp
     GROUP BY challenge
   )
-  SELECT c.challenge_id, c.name, c.tagline, c.start, c.end, c.reward, IFNULL(st.sum, 0) AS sum
+  SELECT c.challenge_id, c.name, c.tagline, c.start, c.end, c.reward, c.imgurl, c.logourl, c.color, IFNULL(st.sum, 0) AS sum
   FROM Challenge c LEFT JOIN SumTemp st ON c.challenge_id = st.challenge
   `;
   connection.query(query, function(err, rows, fields) {

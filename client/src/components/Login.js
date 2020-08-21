@@ -78,13 +78,10 @@ class Login extends React.Component {
       } else {
         this.setState({
           error: data.message,
-          showError: true
+          showError: true,
+          loading: false
         })
       }
-
-      this.setState({
-        loading: false
-      })
 
     });
   }

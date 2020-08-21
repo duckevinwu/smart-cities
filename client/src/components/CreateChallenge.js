@@ -15,6 +15,9 @@ export default class CreateChallenge extends React.Component {
     this.state = {
       name: "",
       tagline: "",
+      imageUrl: "",
+      logoUrl: "",
+      color: "",
       startDate: "",
       startDateString: "",
       endDate: "",
@@ -24,17 +27,30 @@ export default class CreateChallenge extends React.Component {
       brief: "",
       description: "",
       assets: "",
+      resources: "",
+      eligibility: "",
+      contact: "",
+      prize: "",
+      submission: "",
       submitted: false
     }
 
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleTaglineChange = this.handleTaglineChange.bind(this);
+    this.handleImageURLChange = this.handleImageURLChange.bind(this);
+    this.handleLogoURLChange = this.handleLogoURLChange.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
     this.handleStartDateChange = this.handleStartDateChange.bind(this);
     this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.handleRewardChange = this.handleRewardChange.bind(this);
     this.handleBriefChange = this.handleBriefChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleAssetsChange = this.handleAssetsChange.bind(this);
+    this.handleResourcesChange = this.handleResourcesChange.bind(this);
+    this.handleEligibilityChange = this.handleEligibilityChange.bind(this);
+    this.handleContactChange = this.handleContactChange.bind(this);
+    this.handlePrizeChange = this.handlePrizeChange.bind(this);
+    this.handleSubmissionChange = this.handleSubmissionChange.bind(this);
     this.submitChallenge = this.submitChallenge.bind(this);
 
   }
@@ -48,6 +64,24 @@ export default class CreateChallenge extends React.Component {
   handleTaglineChange(e) {
     this.setState({
       tagline: e.target.value
+    })
+  }
+
+  handleImageURLChange(e) {
+    this.setState({
+      imageUrl: e.target.value
+    })
+  }
+
+  handleLogoURLChange(e) {
+    this.setState({
+      logoUrl: e.target.value
+    })
+  }
+
+  handleColorChange(e) {
+    this.setState({
+      color: e.target.value
     })
   }
 
@@ -94,38 +128,72 @@ export default class CreateChallenge extends React.Component {
     })
   }
 
+  handleResourcesChange(e) {
+    this.setState({
+      resources: e
+    })
+  }
+
+  handleEligibilityChange(e) {
+    this.setState({
+      eligibility: e
+    })
+  }
+
+  handleContactChange(e) {
+    this.setState({
+      contact: e
+    })
+  }
+
+  handlePrizeChange(e) {
+    this.setState({
+      prize: e
+    })
+  }
+
+  handleSubmissionChange(e) {
+    this.setState({
+      submission: e
+    })
+  }
+
 
   submitChallenge(e) {
     e.preventDefault();
     console.log(this.state)
 
-    fetch("/api/createchallenge", {
-      method: "post",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      //make sure to serialize your JSON body
-      body: JSON.stringify({
-        challengeInfo: this.state
+    const validate = window.confirm('Are you sure?');
+
+    if (validate) {
+      fetch("/api/createchallenge", {
+        method: "post",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        //make sure to serialize your JSON body
+        body: JSON.stringify({
+          challengeInfo: this.state
+        })
       })
-    })
-    .then(res => {
-			return res.json();
-		}, err => {
-			console.log(err);
-		})
-    .then(data => {
-      console.log(data);
-      if (data.status === 'success') {
-        // handle success
-        this.setState({
-          submitted: true
-        });
-      } else {
-        // handle errors
-      }
-    });
+      .then(res => {
+  			return res.json();
+  		}, err => {
+  			console.log(err);
+  		})
+      .then(data => {
+        console.log(data);
+        if (data.status === 'success') {
+          // handle success
+          this.setState({
+            submitted: true
+          });
+        } else {
+          // handle errors
+        }
+      });
+    }
 
   }
 
@@ -166,13 +234,13 @@ export default class CreateChallenge extends React.Component {
           <Navbar />
           <div className="centered">
             <img src="https://i.imgur.com/xnPtYXg.png" className="form-logo"></img>
-            <form className="submit-form">
+            <form className="submit-form" id="create-form" onSubmit={this.submitChallenge}>
               <p className="form-heading">Challenge Card Information</p>
 
               <div className="input-block">
                  <label htmlFor="q1" className="sb-label sb-name">Challenge Name</label>
                  <input type="text" id="q1" className="text-question sb-form-q" placeholder=""
-                  value={this.state.name} onChange={this.handleNameChange}
+                  value={this.state.name} onChange={this.handleNameChange} required
                  />
               </div>
 
@@ -180,11 +248,11 @@ export default class CreateChallenge extends React.Component {
                  <div className="tp-content">
                     <label htmlFor="q2" className="sb-label sb-timeframe">Time Period of Challenge:</label>
                     <input type="date" id="startdate" className="sb-date left"
-                      value={this.state.startDate} onChange={this.handleStartDateChange}
+                      value={this.state.startDate} onChange={this.handleStartDateChange} required
                     />
                     <span className="to">to</span>
                     <input type="date" id="enddate" className="sb-date right"
-                      value={this.state.endDate} onChange={this.handleEndDateChange}
+                      value={this.state.endDate} onChange={this.handleEndDateChange} required
                     />
                  </div>
               </div>
@@ -196,14 +264,38 @@ export default class CreateChallenge extends React.Component {
                  />
               </div>
 
-              <div className="input-block">
-                 <label htmlFor="q4" className="sb-label sb-name">What company or organization are you posting for?</label>
-                 <input type="text" id="q4" className="text-question sb-form-q" />
-              </div>
-
               <div className="input-block large-block">
                  <label htmlFor="q5" className="sb-label sb-idea">Tagline for your challenge (2-4 sentences)</label>
-                 <textarea id="q5" className="text-question sb-form-q textarea-q" value={this.state.tagline} onChange={this.handleTaglineChange} ></textarea>
+                 <textarea id="q5" className="text-question sb-form-q textarea-q"
+                  value={this.state.tagline} onChange={this.handleTaglineChange} required>
+                 </textarea>
+              </div>
+
+              <div className="input-block">
+                 <label htmlFor="q14" className="sb-label sb-name">Card Image Link</label>
+                 <input type="text" id="q14" className="text-question sb-form-q"
+                  value={this.state.imageUrl} onChange={this.handleImageURLChange}
+                 />
+              </div>
+
+              <div className="input-block">
+                 <label htmlFor="q15" className="sb-label sb-name">Company Logo Link</label>
+                 <input type="text" id="q15" className="text-question sb-form-q"
+                  value={this.state.logoUrl} onChange={this.handleLogoURLChange}
+                 />
+              </div>
+
+              <div className="input-block">
+                 <label htmlFor="q16" className="sb-label sb-name">Color of Card</label>
+                 <select form="create-form" value={this.state.color} onChange={this.handleColorChange}
+                  className="text-question sb-form-q"
+                 >
+                    <option value=""></option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="purple">Purple</option>
+                  </select>
               </div>
 
               <p className="form-heading">Challenge Details</p>
@@ -223,7 +315,7 @@ export default class CreateChallenge extends React.Component {
 
               <div className="input-block large-block quill-block">
                 <label htmlFor="q7">
-                  <div className="quill-label">Description
+                  <div className="quill-label">Deep Dive
                     <div className="tooltip"><i className="fa fa-question-circle"></i>
                        <span className="tooltiptext">
                        A longer description with full details and technical terms.
@@ -247,11 +339,76 @@ export default class CreateChallenge extends React.Component {
                 <ReactQuill modules={this.modules} theme="snow" value={this.state.assets} onChange={this.handleAssetsChange} className="sb-form-q quill-q"/>
               </div>
 
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q9">
+                  <div className="quill-label">Resources for you!
+                    <div className="tooltip"><i className="fa fa-question-circle"></i>
+                       <span className="tooltiptext">
+                       List any resources that might be useful for the solver to have for coming up with their solution.
+                       </span>
+                    </div>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.resources} onChange={this.handleResourcesChange} className="sb-form-q quill-q"/>
+              </div>
+
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q10">
+                  <div className="quill-label">Eligibility
+                    <div className="tooltip"><i className="fa fa-question-circle"></i>
+                       <span className="tooltiptext">
+                       Provide details on any restrictions you might have on solutions or solvers.
+                       </span>
+                    </div>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.eligibility} onChange={this.handleEligibilityChange} className="sb-form-q quill-q"/>
+              </div>
+
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q11">
+                  <div className="quill-label">You're not alone!
+                    <div className="tooltip"><i className="fa fa-question-circle"></i>
+                       <span className="tooltiptext">
+                       Tell the applicants about how they can contact you with any questions they may have.
+                       </span>
+                    </div>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.contact} onChange={this.handleContactChange} className="sb-form-q quill-q"/>
+              </div>
+
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q12">
+                  <div className="quill-label">Prize Details
+                    <div className="tooltip"><i className="fa fa-question-circle"></i>
+                       <span className="tooltiptext">
+                       Provide details about the prize that will be reward to the winner(s) of the challenge.
+                       </span>
+                    </div>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.prize} onChange={this.handlePrizeChange} className="sb-form-q quill-q"/>
+              </div>
+
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q13">
+                  <div className="quill-label">Submission Details
+                    <div className="tooltip"><i className="fa fa-question-circle"></i>
+                       <span className="tooltiptext">
+                       List any specific instructions or preferences you have for submitting a solution to the challenge.
+                       </span>
+                    </div>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.submission} onChange={this.handleSubmissionChange} className="sb-form-q quill-q"/>
+              </div>
+
               <div className="input-block">
-                 <button type="button" className="submit-button sb-form-q" onClick={this.submitChallenge} >Submit</button>
+                 <button type="submit" className="submit-button sb-form-q">Submit</button>
               </div>
             </form>
-            
+
             </div>
           </div>
       );

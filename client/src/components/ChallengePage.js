@@ -130,7 +130,7 @@ export default class ChallengePage extends React.Component {
                          </div>
                       </section>
                       <section className="cd-description">
-                         <h3 className="description-title"> Description</h3>
+                         <h3 className="description-title">Deep Dive</h3>
                          <div className="section-content ql-editor"
                               dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.description, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
                          </div>
