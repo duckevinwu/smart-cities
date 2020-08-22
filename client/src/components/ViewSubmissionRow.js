@@ -84,7 +84,7 @@ export default class ViewSubmissionRow extends React.Component {
     let modalContent;
 
     if (showModal) {
-      modalContent = <IdeaModal ideaId={this.props.id} name={this.props.cName}/>;
+      modalContent = <IdeaModal ideaId={this.props.id} name={this.props.cName} color={this.props.color}/>;
     } else {
       modalContent = null;
     }

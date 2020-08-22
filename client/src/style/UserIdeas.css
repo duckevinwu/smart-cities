@@ -43,6 +43,42 @@ th {
   );
 }
 
+.blue-row:hover {
+  cursor: pointer;
+  background: linear-gradient(to right,
+      rgba(27, 163, 245, 0.5) 0%,
+      #2a313b  20%,
+      #1e1f27 100%
+  ) !important;
+}
+
+.green-row:hover {
+  cursor: pointer;
+  background: linear-gradient(to right,
+      rgba(6, 214, 160, 0.5) 0%,
+      #2a313b  20%,
+      #1e1f27 100%
+  ) !important;
+}
+
+.yellow-row:hover {
+  cursor: pointer;
+  background: linear-gradient(to right,
+      rgba(224, 199, 7, 0.5) 0%,
+      #2a313b  20%,
+      #1e1f27 100%
+  ) !important;
+}
+
+.purple-row:hover {
+  cursor: pointer;
+  background: linear-gradient(to right,
+      rgba(233, 102, 255, 0.5) 0%,
+      #2a313b  20%,
+      #1e1f27 100%
+  ) !important;
+}
+
 /**
  * Tooltip Styles
  */

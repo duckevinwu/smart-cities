@@ -53,6 +53,7 @@ export default class ViewIdeas extends React.Component {
             submit_time={idea.submit_time}
             status={idea.status}
             cName={this.props.cName}
+            color={this.props.color}
             handleChange={handleOptionChange}
           />
 			  );

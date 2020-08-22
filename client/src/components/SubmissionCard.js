@@ -8,9 +8,7 @@ class SubmissionCard extends React.Component {
 		super(props);
 
     this.state = {
-      challenge: {},
-			colorStyle: "",
-			imgUrl: ""
+      challenge: {}
     }
 
     this.clickReview = this.clickReview.bind(this);
@@ -19,37 +17,7 @@ class SubmissionCard extends React.Component {
   componentDidMount() {
     this.setState({
       challenge: this.props.challenge
-    }, () => {
-			// for demo purposes
-			if (this.state.challenge.challenge_id === 16) {
-				this.setState({
-					colorStyle: "blue",
-					imgUrl: "https://i.imgur.com/ifddqXx.jpg"
-				});
-			} else if (this.state.challenge.challenge_id === 17) {
-				this.setState({
-					colorStyle: "yellow",
-					imgUrl: "https://i.imgur.com/Zp0JMqp.png"
-				});
-			} else if (this.state.challenge.challenge_id === 18) {
-				this.setState({
-					colorStyle: "purple",
-					imgUrl: "https://i.ibb.co/GJb79fh/Frame-3.png"
-				});
-			} else if (this.state.challenge.challenge_id === 19) {
-				this.setState({
-					colorStyle: "green",
-					imgUrl: "https://i.imgur.com/vtvDuE0.png"
-				});
-			} else {
-				this.setState({
-					colorStyle: "green",
-					imgUrl: "https://i.ibb.co/GJb79fh/Frame-3.png"
-				});
-			}
-
-			// end demo
-		})
+    })
   }
 
   clickReview() {
@@ -59,15 +27,15 @@ class SubmissionCard extends React.Component {
 
 	render() {
 		return (
-      <div className={"admin-card " + this.state.colorStyle + "-card"}>
+      <div className={"admin-card " + this.state.challenge.color + "-card"}>
          <div className="admin-upper">
-            <div className={"admin-card-title " + this.state.colorStyle + "-title"}>{this.state.challenge.name}</div>
+            <div className={"admin-card-title " + this.state.challenge.color + "-title"}>{this.state.challenge.name}</div>
             <div className="admin-description">
                {this.state.challenge.tagline}
             </div>
          </div>
          <div className="lower">
-            <hr className={"admin-divider " + this.state.colorStyle + "-hr"} />
+            <hr className={"admin-divider " + this.state.challenge.color + "-hr"} />
 
             <div className="admin-bottom">
                <div className="admin-buttonWrap">

@@ -109,7 +109,7 @@
 }
 
 .pdf-wrapper {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 10px;
   z-index: 10;
@@ -146,4 +146,8 @@
   width: 80%;
   margin: auto;
   margin-top: 20px;
+}
+
+.black-text span {
+  color: black !important;
 }

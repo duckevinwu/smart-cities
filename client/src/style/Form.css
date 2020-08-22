@@ -225,6 +225,30 @@ input:-webkit-autofill:active {
   height: 60vh !important;
 }
 
+.expand-block {
+  height: auto;
+  margin-bottom: 10vh;
+}
+
+.expand-block > .quill > .ql-container {
+  height: 40vh;
+}
+
+.details-text {
+  font-weight: 300;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.details-list {
+  padding: revert;
+}
+
+.question-title:hover {
+  cursor:pointer;
+  color: gold;
+}
+
 .ql-editor::-webkit-scrollbar {
     width: 14px;
     height: 18px;
@@ -276,6 +300,7 @@ input:-webkit-autofill:active {
 .form-heading {
   color: #E0C707;
   margin-bottom: 50px;
+  text-transform: uppercase;
 }
 
 .time-period {

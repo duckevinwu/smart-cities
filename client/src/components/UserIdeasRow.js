@@ -35,14 +35,14 @@ export default class UserIdeasRow extends React.Component {
     let modalContent;
 
     if (showModal) {
-      modalContent = <IdeaModal ideaId={this.props.idea.idea_id} name={this.props.idea.name}/>;
+      modalContent = <IdeaModal ideaId={this.props.idea.idea_id} name={this.props.idea.name} color={this.state.idea.color}/>;
     } else {
       modalContent = null;
     }
 
     return (
       <>
-        <tr className="submission-object" onClick={this.handleClick} data-toggle="modal" data-target={"#ideaModal-" + this.state.idea.idea_id}>
+        <tr className={"submission-object " +  this.state.idea.color + '-row'} onClick={this.handleClick} data-toggle="modal" data-target={"#ideaModal-" + this.state.idea.idea_id}>
           <td>{this.state.idea.name}</td>
           <td className="list-date">{convertDateMs(this.state.idea.submit_time)}</td>
           <td className="list-status">

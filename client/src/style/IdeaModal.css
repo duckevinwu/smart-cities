@@ -88,12 +88,53 @@
   background: linear-gradient(
     170deg,
     #06D6A0,
-    #1e1f27 25%,
+    #1e1f27 165px,
     #1e1f27 100%
   );
   min-height: 500px;
   border-radius: 6px;
 }
+
+.blue-modal {
+  background: linear-gradient(
+    170deg,
+    rgba(27, 163, 245, 1),
+    #1e1f27 165px,
+    #1e1f27 100%
+  ) !important;
+}
+
+.green-modal {
+  background: linear-gradient(
+    170deg,
+    rgba(6, 214, 160),
+    #1e1f27 165px,
+    #1e1f27 100%
+  ) !important;
+}
+
+.yellow-modal {
+  background: linear-gradient(
+    170deg,
+    rgba(224, 199, 7),
+    #1e1f27 165px,
+    #1e1f27 100%
+  ) !important;
+}
+
+.purple-modal {
+  background: linear-gradient(
+    170deg,
+    rgba(233, 102, 255),
+    #1e1f27 165px,
+    #1e1f27 100%
+  ) !important;
+}
+
+
+
+
+
 .modal-footer {
   padding: 15px;
   text-align: right;
@@ -225,11 +266,6 @@
 }
 
 .modal-summary {
-  color: #ebe8d8;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
   font-family: 'Poppins';
   white-space: pre-wrap;       /* css-3 */
 	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
@@ -238,6 +274,11 @@
 	word-wrap: break-word;       /* Internet Explorer 5.5+ */
   font-size: 16px !important;
 	padding:0 !important;
+}
+
+.modal-idea-content {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .idea-br {

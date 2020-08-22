@@ -17,7 +17,8 @@ export default class ViewSubmissions extends React.Component {
       isLoaded: false,
       challengeId: "",
       userId: "",
-      name: ""
+      name: "",
+      color: ""
     }
 
   }
@@ -47,7 +48,8 @@ export default class ViewSubmissions extends React.Component {
       if (data.status === 'success') {
         this.setState({
           isCorrectUser: true,
-          name: data.name
+          name: data.name,
+          color: data.color
         })
       }
       this.setState({
@@ -80,10 +82,9 @@ export default class ViewSubmissions extends React.Component {
                 </ul>
                 <div id="myTab2Content" className="tab-content">
                   <div id="ideas" role="tabpanel" aria-labelledby="home2-tab" className="tab-pane fade px-4 py-5 vs-tab show active">
-                    <ViewIdeas challengeId={this.state.challengeId} cName={this.state.name}/>
+                    <ViewIdeas challengeId={this.state.challengeId} cName={this.state.name} color={this.state.color}/>
                   </div>
                   <div id="proposals" role="tabpanel" aria-labelledby="profile2-tab" className="tab-pane fade px-4 py-5 vs-tab">
-                    tab2
                   </div>
                 </div>
               </div>

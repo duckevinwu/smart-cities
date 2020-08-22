@@ -51,8 +51,25 @@ export default class GeneratePdf extends React.Component {
             <br/>
             <div><b>Date: </b>{convertDateMs(idea.submit_time)}</div>
             <br/>
-            <div className="section-content ql-editor"
+            ---
+            <br/>
+            <div><b>Submitting as a group: </b>{idea.is_group}</div>
+            <br/>
+            <div><b>Team: </b>{idea.team || 'N/A'}</div>
+            <p><b>Solution Overview</b></p>
+            <div className="section-content ql-editor black-text"
                  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(idea.content)}}>
+            </div>
+            <br/>
+            <p><b>About You</b></p>
+            <div className="section-content ql-editor black-text"
+                 dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(idea.about_you)}}>
+            </div>
+            <br/>
+            <div><b>Willing to interview: </b>{idea.interview}</div>
+            <p><b>Additional Information</b></p>
+            <div className="section-content ql-editor black-text"
+                 dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(idea.other_info)}}>
             </div>
             <br/>
             <hr/>

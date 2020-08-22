@@ -405,7 +405,7 @@ function getMyChallenges(req, res) {
       FROM SubTemp
       GROUP BY challenge
     )
-    SELECT c.challenge_id, c.name, c.tagline, c.start, c.end, c.reward, IFNULL(st.sum, 0) AS sum
+    SELECT c.challenge_id, c.name, c.tagline, c.start, c.end, c.reward, c.color, IFNULL(st.sum, 0) AS sum
     FROM Challenge c LEFT JOIN SumTemp st ON c.challenge_id = st.challenge
     WHERE c.owner = ?
     `;
@@ -480,9 +480,11 @@ function createIdea(req, res) {
     return res.send({status: 'fail', message: 'not logged in'});
   }
 
+  var idea = req.body.idea;
+
   var userId = req.user.user_id;
   var challengeId = parseInt(req.body.challengeId);
-  var content = req.body.content;
+  var content = idea.idea;
   var currTime = parseInt(Date.now().toString());
 
   // if user id doesn't exist, don't create challenge
@@ -491,10 +493,10 @@ function createIdea(req, res) {
   } else {
     // save challenge into database
     var insertQuery = `
-      INSERT INTO Idea (creator, challenge, submit_time, content)
-      VALUES (?, ?, ?, ?);
+      INSERT INTO Idea (creator, challenge, submit_time, content, is_group, team, about_you, interview, other_info)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
     `;
-    connection.query(insertQuery, [userId, challengeId, currTime, content], function(err, rows, fields) {
+    connection.query(insertQuery, [userId, challengeId, currTime, content, idea.isGroup, idea.team, idea.aboutYou, idea.interview, idea.otherInfo], function(err, rows, fields) {
       if (err) {
         console.log(err);
         return res.send({status: 'fail'});
@@ -550,7 +552,7 @@ function isChallengeOwner(req, res) {
   } else {
     // get challenge owner from db
     var query = `
-      SELECT owner, name
+      SELECT owner, name, color
       FROM Challenge
       WHERE challenge_id = ?
     `;
@@ -597,7 +599,7 @@ function getSelectedIdeas(req, res) {
   }
 
   var query = `
-    SELECT i.idea_id, i.challenge, i.submit_time, u.email, i.status, i.content
+    SELECT i.idea_id, i.challenge, i.submit_time, u.email, i.status, i.content, i.is_group, i.team, i.about_you, i.interview, i.other_info
     FROM (SELECT * FROM Idea WHERE idea_id IN (?)) i JOIN User u ON i.creator = u.user_id
   `;
   connection.query(query, [ids], function(err, rows, fields) {
@@ -638,7 +640,7 @@ function getUserIdeas(req, res) {
   var userId = req.user.user_id;
 
   var query = `
-    SELECT i.submit_time, c.name, i.idea_id
+    SELECT i.submit_time, c.name, i.idea_id, c.color
     FROM Idea i JOIN Challenge c ON i.challenge = c.challenge_id
     WHERE i.creator = ?
   `;

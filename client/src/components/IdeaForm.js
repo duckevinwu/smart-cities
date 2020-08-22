@@ -5,6 +5,7 @@ import '../style/Form.css';
 import { appendScript } from '../js/AppendScript.js';
 import Navbar from './Navbar';
 import PostSubmission from './PostSubmission';
+import FlashMessage from './FlashMessage';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -16,52 +17,47 @@ class IdeaForm extends React.Component {
     // This component maintains the list of people.
     this.state = {
       challengeId: "",
-      fullName: "",
-      selectedOption: "",
-      affiliation: "",
-      phoneNumber: "",
-      email: "",
       idea: "",
-      submitted: false
+      isGroup: "",
+      team: "",
+      aboutYou: "",
+      interview: "",
+      otherInfo: "",
+      submitted: false,
+      error: ""
     }
 
-    this.handleFullNameChange = this.handleFullNameChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
-    this.handleAffiliationChange = this.handleAffiliationChange.bind(this);
-    this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleTeamChange = this.handleTeamChange.bind(this);
     this.handleIdeaChange = this.handleIdeaChange.bind(this);
+    this.handleInterviewChange = this.handleInterviewChange.bind(this);
+    this.handleAboutYouChange = this.handleAboutYouChange.bind(this);
+    this.handleOtherInfoChange = this.handleOtherInfoChange.bind(this);
     this.submitIdea = this.submitIdea.bind(this);
 
   }
 
-  handleFullNameChange(e) {
-    this.setState({
-      fullName: e.target.value
-    })
-  }
-
   handleOptionChange(e) {
     this.setState({
-      selectedOption: e.target.value
+      isGroup: e.target.value
     })
   }
 
-  handleAffiliationChange(e) {
+  handleTeamChange(e) {
     this.setState({
-      affiliation: e.target.value
+      team: e.target.value
     })
   }
 
-  handlePhoneNumberChange(e) {
+  handleInterviewChange(e) {
     this.setState({
-      phoneNumber: e.target.value
+      interview: e.target.value
     })
   }
 
-  handleEmailChange(e) {
+  handleAboutYouChange(e) {
     this.setState({
-      email: e.target.value
+      aboutYou: e
     })
   }
 
@@ -71,39 +67,56 @@ class IdeaForm extends React.Component {
     })
   }
 
+  handleOtherInfoChange(e) {
+    this.setState({
+      otherInfo: e
+    })
+  }
+
 
   submitIdea(e) {
     e.preventDefault();
     console.log(this.state)
 
-    fetch("/api/createidea", {
-      method: "post",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      //make sure to serialize your JSON body
-      body: JSON.stringify({
-        challengeId: this.state.challengeId,
-        content: this.state.idea
+    if (!this.state.idea || !this.state.aboutYou) {
+      this.setState({
+        error: 'Please fill in all required fields'
       })
-    })
-    .then(res => {
-			return res.json();
-		}, err => {
-			console.log(err);
-		})
-    .then(data => {
-      console.log(data);
-      if (data.status === 'success') {
-        // handle success
-        this.setState({
-          submitted: true
-        });
-      } else {
-        // handle errors
-      }
-    });
+      return;
+    }
+
+    const validate = window.confirm('Are you sure?');
+
+    if (validate) {
+      fetch("/api/createidea", {
+        method: "post",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        //make sure to serialize your JSON body
+        body: JSON.stringify({
+          challengeId: this.state.challengeId,
+          idea: this.state
+        })
+      })
+      .then(res => {
+  			return res.json();
+  		}, err => {
+  			console.log(err);
+  		})
+      .then(data => {
+        console.log(data);
+        if (data.status === 'success') {
+          // handle success
+          this.setState({
+            submitted: true
+          });
+        } else {
+          // handle errors
+        }
+      });
+    }
 
   }
 
@@ -145,26 +158,21 @@ class IdeaForm extends React.Component {
         </div>
       );
     } else {
+
+      var errorDiv = this.state.error ? <FlashMessage message={this.state.error}/> : <div></div>
+
       return (
         <div>
           <Navbar/>
           <div className="centered">
             <img src="https://i.imgur.com/xnPtYXg.png" className="form-logo" alt="cc-logo"></img>
-            <form className="submit-form">
-
-              <div className="input-block">
-                 <label htmlFor="q1" className="sb-label sb-name">What's your full name?</label>
-                 <input type="text" id="q1" className="text-question sb-form-q" placeholder="John Doe"
-                  value={this.state.fullName} onChange={this.handleFullNameChange}
-                 />
-              </div>
-
+            <form className="submit-form" onSubmit={this.submitIdea}>
               <div className="input-block radio-q">
                  <ul className="radio-list">
-                    <p className="q-text">Are you affiliated with or representing a company/organization?</p>
+                    <p className="q-text">Are you submitting on behalf of a group?</p>
                     <li className="rl-element">
-                       <input type="radio" id="yes" name="selector" className="radio-option" value='yes'
-                        checked={this.state.selectedOption === 'yes'} onChange={this.handleOptionChange}
+                       <input type="radio" id="yes" name="group" className="radio-option" value='yes'
+                        checked={this.state.isGroup === 'yes'} onChange={this.handleOptionChange} required
                        />
                        <label htmlFor="yes" id="yes-label" className="radio-label">
                        <span className="keyboard-button">Y</span>Yes
@@ -172,8 +180,8 @@ class IdeaForm extends React.Component {
                        <div className="check"></div>
                     </li>
                     <li className="rl-element">
-                       <input type="radio" id="no" name="selector" className="radio-option" value='no'
-                        checked={this.state.selectedOption === 'no'} onChange={this.handleOptionChange}
+                       <input type="radio" id="no" name="group" className="radio-option" value='no'
+                        checked={this.state.isGroup === 'no'} onChange={this.handleOptionChange}
                        />
                        <label htmlFor="no" id="no-label" className="radio-label">
                        <span className="keyboard-button">N</span>No
@@ -184,36 +192,91 @@ class IdeaForm extends React.Component {
               </div>
 
               <div className="input-block">
-                 <label htmlFor="q3" className="sb-label sb-name">What company or organization do you work with?</label>
-                 <input type="text" id="q3" className="text-question sb-form-q" placeholder="If you answered 'no' above, skip this question"
-                  value={this.state.affiliation} onChange={this.handleAffiliationChange}
+                 <label htmlFor="q3" className="sb-label sb-name">Name(s), email(s) of your team member(s)</label>
+                 <input type="text" id="q3" className="text-question sb-form-q" placeholder="John Doe at johndoe@gmail.com, etc (optional)"
+                  value={this.state.team} onChange={this.handleTeamChange}
                  />
               </div>
 
-              <div className="input-block">
-                 <label htmlFor="q4" className="sb-label sb-name">Phone number (with area code)</label>
-                 <input type="tel" id="q4" className="text-question sb-form-q" placeholder="123-456-7890"
-                  value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange}
-                 />
-              </div>
-
-              <div className="input-block">
-                 <label htmlFor="q5" className="sb-label sb-name">Email Address</label>
-                 <input type="email" id="q5" className="text-question sb-form-q" placeholder="name@example.com"
-                  value={this.state.email} onChange={this.handleEmailChange}
-                 />
-              </div>
-
-              <div className="input-block large-block quill-block">
+              <div className="input-block expand-block quill-block">
                 <label htmlFor="q6">
-                  <div className="quill-label">Please provide a summary of your idea (~500 words)
+                  <div className="quill-label">
+                    <details>
+                      <summary className="question-title">Solution Overview (1500 words or less)</summary>
+                      <div className="details-text">
+                        <p>
+                          This is the most important part of your submission. Please describe your idea in comprehensive detail and explain how it addresses the needs of this challenge. Here are some additional points to think about:
+                        </p>
+                        <ul className="details-list">
+                          <li>What distinguishes my solution from others, and what has prevented its adoption before now?</li>
+                          <li>What stage is my idea at (e.g. concept, proof-of-concept, development, commercial, etc)?</li>
+                          <li>Has my idea been implemented before? If so, in what context? </li>
+                          <li>If applicable, how does my solution prioritize or benefit disadvantaged or marginalized sectors of our economy (e.g. individuals, businesses, etc.)?</li>
+                          <li>If applicable, how does my solution prioritize data privacy and security? (If your solution is tech-enabled, this might apply to you)</li>
+                        </ul>
+                      </div>
+                    </details>
                   </div>
                 </label>
                 <ReactQuill modules={this.modules} theme="snow" value={this.state.idea} onChange={this.handleIdeaChange} className="sb-form-q quill-q"/>
               </div>
 
+              <div className="input-block expand-block quill-block">
+                <label htmlFor="about">
+                  <div className="quill-label">
+                  <details>
+                    <summary className="question-title">About You (500 words or less)</summary>
+                    <div className="details-text">
+                      <p>
+                        Please describe you and your team (if you have one). Here are some additional thoughts to consider:
+                      </p>
+                      <ul className="details-list">
+                        <li>What relevant experiences and skill sets does my team possess to execute this idea?</li>
+                        <li>What are my motivations to pursue this idea?</li>
+                        <li>If my team wins this challenge, what are our future plans to advance our solution?</li>
+                      </ul>
+                    </div>
+                  </details>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.aboutYou} onChange={this.handleAboutYouChange} className="sb-form-q quill-q"/>
+              </div>
+
+              <div className="input-block radio-q">
+                 <ul className="radio-list">
+                    <p className="q-text">If you are selected as a finalist, would you (and your teammates, if you have any) be willing to participate in an interview?</p>
+                    <li className="rl-element">
+                       <input type="radio" id="yes1" name="interview" className="radio-option" value='yes'
+                        checked={this.state.interview === 'yes'} onChange={this.handleInterviewChange} required
+                       />
+                       <label htmlFor="yes1" id="yes-label1" className="radio-label">
+                       <span className="keyboard-button">Y</span>Yes
+                       </label>
+                       <div className="check"></div>
+                    </li>
+                    <li className="rl-element">
+                       <input type="radio" id="no1" name="interview" className="radio-option" value='no'
+                        checked={this.state.interview === 'no'} onChange={this.handleInterviewChange}
+                       />
+                       <label htmlFor="no1" id="no-label1" className="radio-label">
+                       <span className="keyboard-button">N</span>No
+                       </label>
+                       <div className="check"></div>
+                    </li>
+                 </ul>
+              </div>
+
+              <div className="input-block large-block quill-block">
+                <label htmlFor="about">
+                  <div className="quill-label">Is there anything else you want to tell us that’s not reflected in the above questions? (optional)
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.otherInfo} onChange={this.handleOtherInfoChange} className="sb-form-q quill-q"/>
+              </div>
+
               <div className="input-block">
-                 <button type="button" className="submit-button sb-form-q" onClick={this.submitIdea}>Submit</button>
+                 <button type="submit" className="submit-button sb-form-q">Submit</button>
+                 {errorDiv}
               </div>
             </form>
           </div>
