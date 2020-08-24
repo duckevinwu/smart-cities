@@ -21,9 +21,10 @@ export default class LandingPageNew extends React.Component {
         <nav className="landing-nav">
           <ul>
             <li><a href="#how-section" className="landing-link">How this works</a></li>
-            <li><a href="#our-mission" className="landing-link">Our mission</a></li>
+            <li><a href="/aboutus" className="landing-link">About us</a></li>
             <li><a href="/challengecenter" className="landing-link">Challenge Center</a></li>
             <li><a href="/about" className="landing-link">About Smart Cities</a></li>
+            <li><a href="/newsletter" className="landing-link">Just Cause</a></li>
             <li className="slide"></li>
           </ul>
         </nav>
@@ -35,80 +36,99 @@ export default class LandingPageNew extends React.Component {
             <span className="title-text">Collective <font className="goldText">Cause</font>
               <img className="logo-new" src="https://i.imgur.com/VEZS91f.png"></img>
             </span>
-            <span className="title-subtext"> We post smart city challenges for <font className="you">you to solve.</font></span>
+            <span className="title-subtext"> We post urban challenges for <font className="you">you to solve.</font></span>
           </div>
         </section>
 
-        <section id="how-section" className="landing-section">
+        <section id="how-section">
           <div className="subsection">
-          <div className="browse"> Browse the <br/><font className="cc-underline">Challenge Center</font></div>
+            <div className="browse"> Browse the <br/><font className="cc-underline"><b>Challenge Center</b></font></div>
 
           <div className="browse-text">
-          Our Challenge Center features diverse smart city challenges that can shape the future of Philadelphia. By solving challenges, you can <font className="goldText">earn</font> cash prizes, <font className="goldText">enable</font> your big idea in the City of Brotherly Love, and <font className="goldText">become</font> a Collective Cause Fellow.
+            <font className="goldText">Welcome</font> to Collective Cause! Here's how this works: We post diverse urban challenges that can shape the <font className="goldText">future</font> of cities. By solving our challenges, you can <font className="goldText">launch</font> your big idea in cities across the nation, <font className="goldText">learn</font> a ton of cool information about social issues, <font className="goldText">become</font> a Collective Cause Fellow, and earn large <font className="goldText">cash</font> prizes. Anyone can solve our challenges. All you need is your brain, a healthy sense of creativity, and a desire to do some good in this world.
         </div>
           <div className="button-position">
           <a className="button-landing" href="/challengecenter"> Enter Challenge Center</a>
-            <a className="button-landing" href="/fellows"> About Fellows</a>
+            <a className="button-landing" href="/fellows"> About our Fellowship</a>
           </div>
           </div>
 
           <div className="subsection">
-          <h1 className="browse"> Create an  <font className="cc-underline">account</font></h1>
+            <h1 className="browse"> Create an  <font className="cc-underline-blue"><b>account</b></font></h1>
 
           <div className="browse-text">
-          In order to submit a solution to one of our challenges, you need to <font className="goldText">create</font> an account.
+            Our site is <font className="blue-text">all</font> about our user community. By creating an account, you'll join our <font className="blue-text">diverse</font> community of innovators who are making a difference in the world, and you'll have the ability to <font className="blue-text">submit</font> solutions to our challenges. Creating an account is absolutely <font className="blue-text">free</font> and takes about 30 seconds, so what are you waiting for?
         </div>
           <div className="button-position">
-          <a className="button-landing" href="/login"> Create an account</a>
+          <a className="button-landing blue-variation" href="/login"> Create an account</a>
           </div>
           </div>
 
           <div className="subsection">
-          <h1 className="browse"> Submit your <font className="cc-underline">solution</font></h1>
+            <h1 className="browse"> Submit your <font className="cc-underline-green"><b>solution</b></font></h1>
 
           <div className="browse-text padding-bottom">
-            We give you <font className="goldText">all</font> the tools you need to submit your innovative solution. If you have questions, just reach out to us (team@collectivecause.org).
+            When you expand the details of one of our challenges, we give you <font className="green-text">all</font> the information you need to submit your innovative solution. If you think we can do a better job (or just feel like saying hi) just <font className="green-text">reach out</font> to us at team@collectivecause.org —we'll <font className="green-text">always</font> respond.
         </div>
+            <div className="button-position">
+            <a className="button-landing green-variation" href="mailto:team@collectivecause.org"> Contact us</a>
+          </div>
           </div>
         </section>
 
-        <section id="our-mission" className="landing-section our-mission">
 
-          <div className="mission"> Our <font className="cc-underline">Mission</font></div>
+        <div id="why-section" className="why-section">
+          <h1 className="why-title"> Why use this platform? </h1>
+          <div className="why-container">
+            <div className="why-box">
+              <div>
+                <i className="fa fa-lightbulb-o goldText"></i>
+                <h2> <b>Earn</b> </h2>
+                <p>
+                  We're here to turn your ideas into tangible value. That's why each of our challenges has a substantial cash reward.
+                </p>
+              </div>
+            </div>
+            <div className="why-box">
+              <div>
+                <i className="fa fa-users blue-text"></i>
+                <h2> <b>Impact</b> </h2>
+                <p>
+                  Ever dream of changing the world without any means of doing so? Now you can. By solving our challenges, you will impact the lives of everyday individuals and drive large-scale change in communities around the world.
+                </p>
+              </div>
+            </div>
 
-          <div className="mission-text">
-            We srive to <font className="goldText">accelerate</font> <font className="goldText">open</font> smart city innovation in the City of Philadelphia.
-          <br/>
-            Founded in 2019 by students at the University of Pennsylvania, our mission is guided by 4 principles:
+            <div className="why-box">
+              <div>
+                <i className="fa fa-laptop green-text"></i>
+                <h2><b>Learn</b></h2>
+                <p>
+                You won't leave our site without learning a thing or two about social issues and potential areas of innovation. Our challenges are chock-full of amazing information that will leave you wanting more.
+                </p>
+              </div>
+            </div>
+
+            <div className="why-box">
+              <div>
+                <i className="fa fa-rocket red-text"></i>
+                <h2> <b>Beyond</b> </h2>
+                <p>
+                  We know that your ideas might have bigger aspirations beyond winning our challenges. So, if you win one of our challenges, we'll be here to support your aspirations —whether that's marketing your idea more or even helping you turn your idea into your own company.
+                </p>
+              </div>
+            </div>
           </div>
+         </div>
 
-          <h1 className="mission-subheadings"> <font className="cc-underline">Equity</font></h1>
 
-          <div className="mission-subtext">
-            All solutions that come out of this platform ought to impact Philadelphians equitably. This means that no solution should <font className="goldText">disproportionately</font> benefit nor harm Philadelphians on the basis of their geographic location, race, ethnicity, socioeconomic status, age, and any other defining characteristic.
-          </div>
-
-          <h1 className="mission-subheadings"> <font className="cc-underline">Inclusion</font></h1>
-
-          <div className="mission-subtext">
-            Open innovation cannot proceed without inclusive access to <font className="goldText">all</font>. As long as you have an internet connection and can access this website, we want to give you an <font className="goldText">equal chance</font> at succeeding and solving challenges. Thus, if you find that we are not giving you all the tools to tackle our challenges, please let us <font className="goldText">know</font> via email.
-          </div>
-
-          <h1 className="mission-subheadings"> <font className="cc-underline">Data privacy</font></h1>
-
-          <div className="mission-subtext">
-            Smart city innovation will necessarily involve information technology. For any solution that invovles information technology and, in particular, the data of <font className="goldText">private</font> citizens, we urge all of our solutions to properly handle people's data. This means that data ought to be handled <font className="goldText">knowingly</font> and <font className="goldText">securely</font>. In this modern age, private data is a paramount issue in cybersecurity, so all technological innovations should keep this in mind.
-          </div>
-
-          <h1 className="mission-subheadings"> <font className="cc-underline">Quality of Life</font></h1>
-
-          <div className="mission-subtext padding-bottom">
-            The foremost question behind any smart city innovation should be as follows: Am I improving the <font className="goldText">quality</font> of life for city residents, or not? This is the entire purpose of smart city innovation, and it is <font className="goldText">the</font> guiding principle that we follow to not only source new challenges, but also choose winners.
+        <section className="who-section landing-page">
+          <h1 className="who-title"> <font className="blue-text">Who</font> can use this <font className="cc-underline-blue">platform?</font></h1>
+          <div className="who-body">
+            This is an open innovation platform, so we invite <font className="blue-text">anyone</font> to solve our challenges. Whether you're a student, professor, community organizer, corporate worker, entrepreneur, freelancer, etc., we welcome <font className="blue-text">you</font> with open arms. The more the merrier, so feel free to apply with a group, your company/organization, your uncle Joe, your college roommate, or <font className="blue-text">anyone</font> else. That said, <font className="blue-text">some</font> of our challenges might have some eligibility restrictions, so make sure you check those out on each challenge's detail page. Our challenges are designed to be <font className="blue-text">easily</font> digestable, <font className="blue-text">informative</font>, and <font className="blue-text">entertaining</font>. So get out there —we can't wait to see your ideas.
           </div>
         </section>
-        <a id="up-button"></a>
-        </div>
-
+       </div>
     );
   }
 

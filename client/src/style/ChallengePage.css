@@ -365,6 +365,8 @@ h3 {
 }
 
 .login-text {
+	padding-top: 50px;
+	padding-bottom: 50px;
   color: white;
   text-align: center;
 }

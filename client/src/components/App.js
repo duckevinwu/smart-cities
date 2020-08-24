@@ -26,6 +26,8 @@ import AboutPage from './AboutPage';
 import LandingPageNew from './LandingPageNew';
 import Fellows from './Fellows';
 import EditProfile from './EditProfile';
+import Newsletter from './Newsletter';
+import AboutUs from './AboutUs';
 
 export default class App extends React.Component {
 
@@ -144,6 +146,20 @@ export default class App extends React.Component {
 							path="/editprofile"
 							render={() => (
 								<LoggedInRoute success={<EditProfile />} fail={<LoginRegister/>} />
+							)}
+						/>
+						<Route
+							exact
+							path="/newsletter"
+							render={(props) => (
+								<Newsletter />
+							)}
+						/>
+						<Route
+							exact
+							path="/aboutus"
+							render={(props) => (
+								<AboutUs />
 							)}
 						/>
 					</Switch>

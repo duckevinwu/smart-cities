@@ -1,0 +1,355 @@
+.newsletter-section {
+/*     background-color: #1e1f27; */
+  background: linear-gradient(110deg, #1e1f27 70%, #E0C707 70%);
+    margin: 0;
+  }
+
+.nl-page {
+  height:100%;
+  min-height: 100vh;
+}
+
+.logoLetters {
+  position: absolute;
+  height: 10%;
+}
+
+.logo {
+  height: auto;
+  max-width: 27%;
+   position: absolute;
+   margin: 0;
+   padding: 0;
+   color: #F9F1E9;
+/*    text-align: center; */
+   top: -16%;
+   left: 37%;
+  bottom: 0;
+   -webkit-transform: translate3d(-50%, -50%, 0);
+   transform: translate3d(-50%, -50%, 0);
+  z-index: 1;
+}
+
+.newsletter-section .title {
+    max-width: 80%;
+    width: 100%;
+    padding-top: 200px;
+/*     align-self: center; */
+    transform: translateY(-50px);
+    margin: 0 auto;
+/*     overflow: hidden; */
+    padding-bottom: 10px;
+    position: relative;
+  }
+
+  .newsletter-section .title span {
+    display: inline-block;
+    font-size: 50px;
+    color: #efefef;
+    width: 60%;
+/*     text-transform: uppercase; */
+    transform: translateX(-100%);
+    animation: byBottom 1s ease both;
+    font-weight: 200;
+    letter-spacing: 0.25vw;
+  }
+  .newsletter-section .title span:last-child {
+    font-size: 1rem;
+    animation: byBottom 1s 0.25s ease both;
+  }
+  .newsletter-section .title span .you {
+    position: relative;
+    display: inline-block;
+    margin-left: 0rem;
+    text-decoration: none;
+    color: #E0C707;
+  }
+  .newsletter-section .title span .you::after {
+    content: "";
+    height: 2px;
+    background-color: #f7ca18;
+    position: absolute;
+    left: 0;
+    width: 0;
+    animation: linkAfter 1s 1s ease both;
+  }
+
+.title-text {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.title-2 {
+  font-family: 'Montserrat', sans-serif;
+/*   font-size: 5vh; */
+}
+
+.title-subtext {
+/*   margin-left: 6px; */
+  font-family: "Poppins";
+  text-transform: none;
+  line-height: 30px;
+}
+
+.newsletter-section .title span .you {
+    position: relative;
+    display: inline-block;
+    margin-left: 0rem;
+    text-decoration: none;
+    color: #E0C707;
+  }
+  section .title span .you::after {
+    content: "";
+    height: 2px;
+    background-color: #f7ca18;
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    width: 0;
+    animation: linkAfter 1s 1s ease both;
+  }
+
+ @-moz-keyframes pop {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @-webkit-keyframes pop {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @-o-keyframes pop {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes pop {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @-moz-keyframes byBottom {
+    0% {
+      transform: translateY(150%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @-webkit-keyframes byBottom {
+    0% {
+      transform: translateY(150%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @-o-keyframes byBottom {
+    0% {
+      transform: translateY(150%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes byBottom {
+    0% {
+      transform: translateY(150%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @-moz-keyframes linkAfter {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 30px;
+    }
+  }
+  @-webkit-keyframes linkAfter {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 30px;
+    }
+  }
+  @-o-keyframes linkAfter {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 30px;
+    }
+  }
+  @keyframes linkAfter {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 30px;
+    }
+  }
+
+/* Input field */
+ .email-wrap {
+	 position: relative;
+	 width: 48%;
+	 height: 50px;
+	 line-height: 45px;
+   margin-left: 10%;
+}
+.nl-label {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 width: 500px;
+	 color: white;
+   text-transform: uppercase;
+   font-family: 'Montserrat', sans-serif;
+   letter-spacing: 2px;
+	 transition: 0.2s all;
+	 cursor: text;
+   background-color: #1e1f27;
+   border-bottom: 2px solid white;
+}
+
+ .input-email {
+	 width: 500px;
+	 border: 0;
+	 outline: 0;
+	 padding: 0.5rem 0;
+	 border-bottom: 2px solid white;
+	 box-shadow: none;
+	 color: white;
+   font-family: 'Montserrat', sans-serif;
+   letter-spacing: 2px;
+}
+ .input-email:invalid {
+	 outline: 0;
+}
+ .input-email:focus, .input-email:valid {
+	 border-color: #E0C707;
+   background-color: #1e1f27;
+}
+ .input-email:focus ~ label, .input-email:valid ~ label {
+	 font-size: 16px;
+   font-family: 'Montserrat', sans-serif;
+	 top: -40px;
+	 color: white;
+}
+
+/* Submit button */
+.nl-submit{
+  width:100px;
+  padding: 15px 40px;
+  background: #E0C707;
+  border:0;
+  color: black;
+  text-transform: uppercase;
+  font-family: helvetica;
+  font-size: 12px;
+  letter-spacing: 3px;
+  position: relative;
+  transition:         all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.nl-submit::after,
+.nl-submit::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+    opacity: 0;
+  transition:         all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.nl-submit::after{
+    width: 30px;
+    height: 1px;
+    background: black;
+    transform: translateX(-3px);
+    margin-top: 0px;
+}
+
+.nl-submit::before{
+    content: "";
+    transform: rotate(-135deg) translateX(50%);
+    width: 11px;
+    height: 11px;
+    background: transparent;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+  margin-top: -1px;
+}
+
+.nl-submit:hover{
+  padding: 15px 60px 15px 20px;
+}
+
+.nl-submit:hover::after,
+.nl-submit:hover::before{
+  opacity: 1;
+  right: 15px;
+}
+
+.nl-left {
+  float: left;
+}
+
+.nl-right {
+  float:right;
+}
+
+/* about us */
+.au-title-2 {
+  font-size: 20px !important;
+  margin-bottom: 10px;
+}
+
+.au-logo {
+  height: auto;
+  max-width: 27%;
+   position: absolute;
+   margin: 0;
+   padding: 0;
+   color: #F9F1E9;
+/*    text-align: center; */
+   top: -16%;
+   left: 15%;
+  bottom: 0;
+   -webkit-transform: translate3d(-50%, -50%, 0);
+   transform: translate3d(-50%, -50%, 0);
+  z-index: 1;
+}
+
+.au-title-subtext {
+  font-family: "Poppins";
+  text-transform: none;
+  line-height: 30px;
+  font-size: 0.7rem;
+}
+
+.au-section {
+  height: 100%;
+  min-height: 100vh;
+}
