@@ -38,7 +38,7 @@ class ChallengeCard extends React.Component {
               <div className="bottom">
                   <img src={this.state.challenge.logourl || 'https://i.imgur.com/jMSGGPk.png'} className={"challenge-logo " + this.state.challenge.color + "-img"}/>
                   <div className="timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}</div>
-                  <div className="participants"><i className="fa fa-user"></i> {this.state.challenge.sum} participants</div>
+                  <div className="participants"><i className="fa fa-user"></i> {this.state.challenge.sum} solvers</div>
                   <div className="reward"><i className="fa fa-trophy"></i> {this.state.challenge.reward}</div>
               </div>
           </div>

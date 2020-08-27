@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import { appendScript } from '../js/AppendScript.js';
 import '../style/ProfileCard.css';
 import UserIdeas from './UserIdeas';
+import UserActivelySolving from './UserActivelySolving';
 import Preloader from './Preloader';
 
 class ProfileCard extends React.Component {
@@ -14,7 +15,9 @@ class ProfileCard extends React.Component {
 			numIdeas: 0,
 			numProposals: 0,
 			isLoaded: false,
-			user: {}
+			user: {},
+			asc: {},
+			ascCount: 0
     }
 	}
 
@@ -23,12 +26,12 @@ class ProfileCard extends React.Component {
     appendScript('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js');
 
 		var ideaCountUrl = '/api/numideas';
-		var proposalCountUrl = '/api/numproposals';
+		var activeSolvingUrl = '/api/getasc';
 		var userInfoUrl = '/api/userinfo';
 
 		var promises = Promise.all([
 			fetch(ideaCountUrl),
-			fetch(proposalCountUrl),
+			fetch(activeSolvingUrl),
 			fetch(userInfoUrl)
 		])
 
@@ -38,12 +41,13 @@ class ProfileCard extends React.Component {
 			)
 			.then((data) => {
 				var ideasObj = data[0];
-				var proposalsObj = data[1];
+				var ascObj = data[1];
 				var userObj = data[2];
 
 				this.setState({
 					numIdeas: ideasObj.numIdeas,
-					numProposals: proposalsObj.numProposals,
+					asc: ascObj.asc,
+					ascCount: ascObj.count,
 					user: userObj.user,
 					isLoaded: true
 				})
@@ -84,12 +88,8 @@ class ProfileCard extends React.Component {
 									 <h2>{this.state.numIdeas}</h2>
 								</div>
 								<div className="profile-proposals">
-									 <p>Proposals</p>
-									 <h2>{this.state.numProposals}</h2>
-								</div>
-								<div className="profile-imps">
-									 <p>Implementations</p>
-									 <h2>0</h2>
+									 <p>Actively Solving</p>
+									 <h2>{this.state.ascCount}</h2>
 								</div>
 							</div>
 							</div>
@@ -102,7 +102,7 @@ class ProfileCard extends React.Component {
 	                </li>
 	                <li className="nav-item flex-sm-fill">
 	                   <a id="profile2-tab" data-toggle="tab" href="#submissions" role="tab" aria-controls="profile2"
-	                      aria-selected="false" className="nav-link text-uppercase font-weight-bold rounded-0">Proposals</a>
+	                      aria-selected="false" className="nav-link text-uppercase font-weight-bold rounded-0">Actively Solving</a>
 	                </li>
 	             </ul>
 	             <div id="myTab2Content" className="tab-content">
@@ -110,7 +110,7 @@ class ProfileCard extends React.Component {
 										<UserIdeas/>
 	                </div>
 	                <div id="submissions" role="tabpanel" aria-labelledby="profile-tab" className="tab-pane fade px-4 py-5">
-
+										<UserActivelySolving asc={this.state.asc}/>
 	                </div>
 	             </div>
 	          </div>

@@ -43,7 +43,7 @@ class SubmissionCard extends React.Component {
                </div>
                <div className="admin-timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
                </div>
-               <div className="admin-participants"><i className="fa fa-user"></i> {this.state.challenge.sum} participants
+               <div className="admin-participants"><i className="fa fa-user"></i> {this.state.challenge.sum} solvers
                </div>
                <div className="admin-reward"><i className="fa fa-trophy"></i> {this.state.challenge.reward}
                </div>

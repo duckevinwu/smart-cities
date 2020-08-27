@@ -193,6 +193,15 @@ app.get('/api/userinfo', routes.getUserInfo);
 // -----------------UPDATE PROFILE -----------------------------
 app.post('/api/updateprofile', routes.updateProfile);
 
+// ----------------- BECOME SOLVLER -------------------------
+app.post('/api/becomesolver', routes.becomeSolver);
+
+// ------------------ IS SOLVER -----------------------------
+app.get('/api/issolver/:challengeid', routes.isSolver);
+
+// ----------------- GET ACTIVELY SOLVING CHALLENGES ----------
+app.get('/api/getasc', routes.getASC);
+
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

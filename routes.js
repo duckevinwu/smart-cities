@@ -391,18 +391,9 @@ function getMyChallenges(req, res) {
   } else {
     // get challenges owned by the current user
     var query = `
-    WITH SubTemp AS (
-      SELECT challenge, COUNT(*) AS count
-      FROM Idea
-      GROUP BY challenge
-      UNION ALL
-      SELECT challenge, COUNT(*) AS count
-      FROM Proposal
-      GROUP BY challenge
-    ),
-    SumTemp AS (
-      SELECT challenge, SUM(count) AS sum
-      FROM SubTemp
+    WITH SumTemp AS (
+      SELECT challenge, COUNT(*) AS sum
+      FROM Solving
       GROUP BY challenge
     )
     SELECT c.challenge_id, c.name, c.tagline, c.start, c.end, c.reward, c.color, IFNULL(st.sum, 0) AS sum
@@ -423,18 +414,9 @@ function getMyChallenges(req, res) {
 // -------------------- GET ALL CHALLENGES -------------------
 function getAllChallenges(req, res) {
   var query = `
-  WITH SubTemp AS (
-    SELECT challenge, COUNT(*) AS count
-    FROM Idea
-    GROUP BY challenge
-    UNION ALL
-    SELECT challenge, COUNT(*) AS count
-    FROM Proposal
-    GROUP BY challenge
-  ),
-  SumTemp AS (
-    SELECT challenge, SUM(count) AS sum
-    FROM SubTemp
+  WITH SumTemp AS (
+    SELECT challenge, COUNT(*) AS sum
+    FROM Solving
     GROUP BY challenge
   )
   SELECT c.challenge_id, c.name, c.tagline, c.start, c.end, c.reward, c.imgurl, c.logourl, c.color, IFNULL(st.sum, 0) AS sum
@@ -456,7 +438,9 @@ function getChallengeDetails(req, res) {
 
   var query = `
   WITH SumTemp AS (
-    SELECT (SELECT COUNT(*) FROM Idea WHERE challenge = ?) + (SELECT COUNT(*) FROM Proposal WHERE challenge = ?) AS sum
+    SELECT COUNT(*) AS sum
+    FROM Solving
+    WHERE challenge = ?
   )
   SELECT c.*, st.sum
   FROM Challenge c, SumTemp st
@@ -790,6 +774,80 @@ function updateProfile(req, res) {
   })
 }
 
+// ----------------- become solver ------------------------
+function becomeSolver(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var userId = req.user.user_id;
+  var challengeId = req.body.challengeId;
+
+  var query = `
+    INSERT INTO Solving (solver, challenge)
+    VALUES (?, ?);
+  `
+
+  connection.query(query, [userId, challengeId], function(err, rows, fields) {
+    if (err) {
+      return res.send({status: 'fail'})
+    } else {
+      return res.send({status: 'success'})
+    }
+  })
+}
+
+// ---------------- is user solver of challenge ------------
+function isSolver(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', loggedIn: false});
+  }
+
+  var userId = req.user.user_id;
+  var challengeId = req.params.challengeid;
+
+  var query = `
+    SELECT *
+    FROM Solving
+    WHERE solver = ? AND challenge = ?
+  `;
+
+  connection.query(query, [userId, challengeId], function(err, rows, fields) {
+    if (err) {
+      return res.send({status: 'fail'})
+    } else {
+      if (rows[0]) {
+        return res.send({status: 'success', isSolver: true, loggedIn: true})
+      } else {
+        return res.send({status: 'success', isSolver: false, loggedIn: true})
+      }
+    }
+  })
+
+}
+
+// ---------------- get number of actively solving challenges --------
+function getASC(req, res) {
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var userId = req.user.user_id;
+
+  var query = `
+    SELECT c.name, c.color, c.challenge_id, c.start, c.end
+    FROM (SELECT * FROM Solving WHERE solver = ?) s JOIN Challenge c ON s.challenge = c.challenge_id
+  `;
+  connection.query(query, [userId], function(err, rows, fields) {
+    if (err) {
+      return res.send({status: 'fail'});
+    } else {
+      return res.send({status: 'success', asc: rows, count: rows.length});
+    }
+  })
+}
+
+
 
 // The exported functions, which can be accessed in index.js.
 module.exports = {
@@ -816,5 +874,8 @@ module.exports = {
   updateIdeaStatus: updateIdeaStatus,
   getSelectedIdeas: getSelectedIdeas,
   getUserInfo: getUserInfo,
-  updateProfile: updateProfile
+  updateProfile: updateProfile,
+  becomeSolver: becomeSolver,
+  isSolver: isSolver,
+  getASC: getASC
 }

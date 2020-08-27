@@ -19,7 +19,7 @@
 .text-center{text-align:center!important}
 
 .tab-head {
-	width: 33% !important;
+	min-width: 33% !important;
 }
 
 .cd-page {
@@ -322,6 +322,55 @@ h3 {
 /*   letter-spacing: 2px; */
 }
 
+/* active solver section */
+
+.cd-become-solver {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	text-align: center;
+}
+
+.button-as, .button-as:link, .button-as:visited {
+  display:inline-block;
+	 padding: 15px 20px;
+   background-color: #1e1f27;
+	 border: 1px solid #E0C707;
+	 color: white;
+	 font-weight: 500;
+	 text-transform: uppercase;
+	 font-size: 13px;
+	 letter-spacing: 5px;
+	 transition: all 0.2s ease-in-out;
+  font-family: "Poppins";
+}
+ .button-as:hover, .button-as:link:hover, .button-as:visited:hover {
+	 background:#E0C707;
+	 border: 1px solid black;
+	 color: black;
+	 border-radius: 30px;
+   cursor:pointer;
+}
+
+.as-info {
+	margin-top: 20px;
+}
+
+.as-text-title {
+	color: white;
+}
+
+.as-text-title:hover {
+	color:#E0C707;
+	cursor:pointer;
+}
+
+.as-details {
+	text-align: left;
+	margin-left: 5%;
+	margin-right: 5%;
+	color: white;
+}
+
 .section-content {
 	font-family: "Poppins", sans-serif;
 	white-space: pre-wrap;       /* css-3 */
@@ -369,4 +418,68 @@ h3 {
 	padding-bottom: 50px;
   color: white;
   text-align: center;
+}
+
+/* popup */
+.popup-flex{
+  margin:30px;
+}
+.popup-container {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.3);
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(21, 17, 17, 0.61);
+    display: flex !important;
+    align-items: center;
+}
+.popup-content {
+    background-color: #2a313b ;
+    margin: auto;
+    padding: 20px;
+    width: 50%;
+		min-width: 400px;
+		text-align: center;
+		-moz-box-shadow: 0 0 10px #fff;
+		-webkit-box-shadow: 0 0 10px #fff;
+		box-shadow: 0px 0px 10px #fff;
+}
+.popup-title{
+    font-size: 23px;
+    padding: 10px;
+    line-height: 26px;
+		color:#E0C707;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+}
+
+.popup-text {
+		font-size: 16px;
+		color: white;
+}
+
+.popup-content span{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.popup-content span:hover,
+.popup-content span:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popup-show{
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
 }
