@@ -285,3 +285,7 @@ a{color:inherit;text-decoration:none}
   border-left-color: white;
   animation: spinner 1.0s linear infinite;
 }
+
+.password-help {
+	text-transform: none;
+}

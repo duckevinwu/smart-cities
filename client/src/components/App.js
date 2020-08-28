@@ -145,7 +145,14 @@ export default class App extends React.Component {
 							exact
 							path="/editprofile"
 							render={() => (
-								<LoggedInRoute success={<EditProfile />} fail={<LoginRegister/>} />
+								<LoggedInRoute success={<EditProfile firstLog={false} />} fail={<LoginRegister/>} />
+							)}
+						/>
+						<Route
+							exact
+							path="/welcome"
+							render={() => (
+								<LoggedInRoute success={<EditProfile firstLog={true} />} fail={<LoginRegister/>} />
 							)}
 						/>
 						<Route

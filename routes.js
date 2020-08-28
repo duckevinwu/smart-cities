@@ -624,7 +624,7 @@ function getUserIdeas(req, res) {
   var userId = req.user.user_id;
 
   var query = `
-    SELECT i.submit_time, c.name, i.idea_id, c.color
+    SELECT i.submit_time, c.name, i.idea_id, c.color, i.status
     FROM Idea i JOIN Challenge c ON i.challenge = c.challenge_id
     WHERE i.creator = ?
   `;

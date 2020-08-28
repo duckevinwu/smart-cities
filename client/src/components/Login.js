@@ -66,7 +66,7 @@ class Login extends React.Component {
     .then(data => {
       if (data.status === 'success') {
         if (!data.logged) {
-          this.props.history.push('/editprofile');
+          this.props.history.push('/welcome');
         } else {
           var redirect = this.state.redirectUrl;
           if (redirect) {

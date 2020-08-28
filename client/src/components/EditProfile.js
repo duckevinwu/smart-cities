@@ -22,7 +22,8 @@ class EditProfile extends React.Component {
       title: "",
       state: "",
       city: "",
-      bio: ""
+      bio: "",
+      firstLog: false
     }
 
     this.handleFullNameChange = this.handleFullNameChange.bind(this);
@@ -125,7 +126,8 @@ class EditProfile extends React.Component {
         title: (user.title ? user.title : ''),
         state: (user.state ? user.state : ''),
         city: (user.city ? user.city : ''),
-        bio: (user.bio ? user.bio : '')
+        bio: (user.bio ? user.bio : ''),
+        firstLog: this.props.firstLog
       })
 
       appendScript('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
@@ -142,11 +144,23 @@ class EditProfile extends React.Component {
         <Preloader/>
       );
     } else {
+
+      var navbar = <Navbar/>
+      var welcomeText = <div></div>
+
+      if (this.state.firstLog) {
+        navbar = <div></div>
+        welcomeText = (
+          <h2 className="goldText">First - a little about you!</h2>
+        )
+      }
+
       return (
         <div>
-          <Navbar/>
+          {navbar}
           <div className="centered">
             <img src="https://i.imgur.com/xnPtYXg.png" className="form-logo" alt="cc-logo"></img>
+            {welcomeText}
             <form className="submit-form" id="edit-form" onSubmit={this.submitChanges}>
 
               <div className="input-block">

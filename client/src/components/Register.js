@@ -140,7 +140,14 @@ class Register extends React.Component {
              <input type="email" className="input" value={this.state.email} onChange={this.handleEmailChange} required/>
           </div>
           <div className="group">
-             <label htmlFor="pass" className="label">Password</label>
+             <label htmlFor="pass" className="label">
+              Password
+              <div className="tooltip"><i className="fa fa-question-circle"></i>
+                 <span className="tooltiptext password-help">
+                  Password should be at least 6 characters long
+                 </span>
+              </div>
+             </label>
              <input type="password" className="input" data-type="password" value={this.state.password} onChange={this.handlePasswordChange} required/>
           </div>
           <div className="group">

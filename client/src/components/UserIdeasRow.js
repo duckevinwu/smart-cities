@@ -40,13 +40,19 @@ export default class UserIdeasRow extends React.Component {
       modalContent = null;
     }
 
+    var status = <span data-tooltip="Pending Review"><i className="fa fa-hourglass"></i></span>
+
+    if (this.state.idea.status === 'viewed') {
+      status = <span data-tooltip="Viewed"><i className="fa fa-eye"></i></span>
+    }
+
     return (
       <>
         <tr className={"submission-object " +  this.state.idea.color + '-row'} onClick={this.handleClick} data-toggle="modal" data-target={"#ideaModal-" + this.state.idea.idea_id}>
           <td>{this.state.idea.name}</td>
           <td className="list-date">{convertDateMs(this.state.idea.submit_time)}</td>
           <td className="list-status">
-            <span data-tooltip="Pending Review"><i className="fa fa-hourglass"></i></span>
+            {status}
           </td>
         </tr>
         <tr>
