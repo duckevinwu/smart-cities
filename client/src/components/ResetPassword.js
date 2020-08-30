@@ -1,5 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import Navbar from './Navbar';
+import Preloader from './Preloader';
+import FlashMessage from './FlashMessage';
+import '../style/ResetPassword.css';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -16,7 +20,8 @@ class ResetPassword extends React.Component {
       isLoaded: false,
       isValid: false,
       password: "",
-      repeat: ""
+      repeat: "",
+      loading: false
     }
 
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -39,7 +44,24 @@ class ResetPassword extends React.Component {
 
   submitReset(e) {
     e.preventDefault();
-    console.log(this.state);
+
+    if (this.state.password.length <= 6) {
+      this.setState({
+        error: 'Password should be at least 6 characters long'
+      })
+      return;
+    }
+
+    if (this.state.password !== this.state.repeat) {
+      this.setState({
+        error: 'Passwords do not match'
+      })
+      return;
+    }
+
+    this.setState({
+      loading: true
+    })
 
     fetch("/reset", {
       method: "post",
@@ -104,23 +126,55 @@ class ResetPassword extends React.Component {
   render() {
 
     if (this.state.isLoaded && this.state.isValid) {
-      return (
-        <form onSubmit={this.submitReset}>
-          <div>
-            <h1>Reset Password</h1>
 
-            <label htmlFor="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter New Password" value={this.state.password} onChange={this.handlePasswordChange} required />
+      var errorDiv = this.state.error ? <FlashMessage message={this.state.error}/> : <div></div>
 
-            <br/>
+      var resetBtn = <button type="submit" className="reset"> Reset Password </button>;
 
-            <label htmlFor="password-repeat"><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" value={this.state.repeat} onChange={this.handleRepeatChange} required />
-            <br/>
-
-            <button type="submit">Reset Password</button>
+      if (this.state.loading) {
+        resetBtn = (
+          <div className="spinner-wrapper">
+            <div className="spinner-login"></div>
           </div>
-        </form>
+        )
+      }
+
+      return (
+        <div className="forgotpw-page">
+          <Navbar/>
+          <div className="resetpw-wrap">
+        	<form className="resetpw-html" onSubmit={this.submitReset}>
+        		<input id="resetpw-tab" type="radio" name="reset-pw-tab" className="reset-pw" defaultChecked/>
+            <label for="resetpw-tab" className="reset-tab">Reset password</label>
+
+        		<div className="reset-form">
+        			<div className="reset-htm">
+        				<div className="rs-group">
+        					<label htmlFor="rs-user" className="rs-label">
+                    New password
+                    <div className="tooltip"><i className="fa fa-question-circle"></i>
+                       <span className="tooltiptext password-help">
+                        Password should be at least 6 characters long
+                       </span>
+                    </div>
+                  </label>
+        					<input id="rs-pw" type="password" className="rs-pw" value={this.state.password} onChange={this.handlePasswordChange} required/>
+
+                  <br/>
+
+                  <label htmlFor="rs-user" className="rs-label">Re-enter password</label>
+        					<input id="rs-pw-2" type="password" className="rs-pw" value={this.state.repeat} onChange={this.handleRepeatChange} required/>
+        				</div>
+                <div className="reset-button">
+                  {resetBtn}
+                </div>
+        				<div className="reset-hr"></div>
+        			</div>
+        		</div>
+            {errorDiv}
+        	</form>
+        </div>
+      </div>
       );
     } else if (this.state.isLoaded && !this.state.isValid) {
       return (
@@ -129,7 +183,10 @@ class ResetPassword extends React.Component {
         </div>
       );
     } else {
-      return (<div></div>);
+      return (
+        <div>
+          <Preloader/>
+        </div>);
     }
 
   }

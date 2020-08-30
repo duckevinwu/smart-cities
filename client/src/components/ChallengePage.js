@@ -216,9 +216,9 @@ class ChallengePage extends React.Component {
                       </div>
                    </section>
                    <section className="cd-assets">
-                      <h3 className="assets-title">Existing Assets</h3>
+                      <h3 className="assets-title">Additional Resources</h3>
                       <div className="section-content ql-editor"
-                           dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.assets, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                           dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.resources, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
                       </div>
                    </section>
                 </div>
@@ -243,7 +243,7 @@ class ChallengePage extends React.Component {
         <div className={"popup-container " + this.state.showPopup} onClick={this.closePopup}>
           <div className="popup-content">
             <span id="close">&times;</span>
-            <p className="popup-title">Welcome aboard!</p>
+            <p className="popup-title">Welcome aboard</p>
             <p className="popup-text">
               You are officially an Active Solver for <font className={(this.state.challenge.color || 'green') + '-title'}>{this.state.challenge.name}</font>!
             </p>

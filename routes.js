@@ -21,7 +21,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 var mysql = require('mysql');
 
-var domain = 'https://intense-hollows-59794.herokuapp.com';
+var domain = 'https://www.collectivecause.org';
 // var domain = "http://localhost:3000";
 
 const saltRounds = 12;
@@ -107,7 +107,10 @@ function saveRegisterToken(req, res) {
               // send email
               var msg = {
                 to: email,
-                from: 'thecollectivecause@gmail.com',
+                from: {
+                  email: 'no-reply@collectivecause.org',
+                  name: 'Collective Cause'
+                },
                 subject: 'Activate Account',
                 text: confirmUrl,
                 html: '<a href="' + confirmUrl + '">Activate Account</a>'
@@ -229,7 +232,10 @@ function saveToken(req, res) {
             // send email
             var msg = {
               to: email,
-              from: 'thecollectivecause@gmail.com',
+              from: {
+                email: 'no-reply@collectivecause.org',
+                name: 'Collective Cause'
+              },
               subject: 'Password Reset',
               text: resetUrl,
               html: '<a href="' + resetUrl + '">Reset password</a>'

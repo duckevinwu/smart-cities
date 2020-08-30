@@ -39,10 +39,22 @@
   margin-top: -15px;
 }
 
+.profile-bio {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 .profile-bio pre {
-  margin-left: 0px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
   padding-top: 10px;
-  text-align: center;
+  text-align: left;
   padding-bottom: 20px;
   color: white;
   font-family: 'Poppins';

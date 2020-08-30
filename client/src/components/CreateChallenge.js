@@ -327,21 +327,8 @@ export default class CreateChallenge extends React.Component {
               </div>
 
               <div className="input-block large-block quill-block">
-                <label htmlFor="q8">
-                  <div className="quill-label">Existing Assets
-                    <div className="tooltip"><i className="fa fa-question-circle"></i>
-                       <span className="tooltiptext">
-                       List and describe any infrastructure or assets in Philadelphia that might be of use in the challenge. These could be assets that are public, under your company/organizations's control, or agreed upon by the city to use for this challenge.
-                       </span>
-                    </div>
-                  </div>
-                </label>
-                <ReactQuill modules={this.modules} theme="snow" value={this.state.assets} onChange={this.handleAssetsChange} className="sb-form-q quill-q"/>
-              </div>
-
-              <div className="input-block large-block quill-block">
                 <label htmlFor="q9">
-                  <div className="quill-label">Resources for you!
+                  <div className="quill-label">Additional Resources
                     <div className="tooltip"><i className="fa fa-question-circle"></i>
                        <span className="tooltiptext">
                        List any resources that might be useful for the solver to have for coming up with their solution.
@@ -350,32 +337,6 @@ export default class CreateChallenge extends React.Component {
                   </div>
                 </label>
                 <ReactQuill modules={this.modules} theme="snow" value={this.state.resources} onChange={this.handleResourcesChange} className="sb-form-q quill-q"/>
-              </div>
-
-              <div className="input-block large-block quill-block">
-                <label htmlFor="q10">
-                  <div className="quill-label">Eligibility
-                    <div className="tooltip"><i className="fa fa-question-circle"></i>
-                       <span className="tooltiptext">
-                       Provide details on any restrictions you might have on solutions or solvers.
-                       </span>
-                    </div>
-                  </div>
-                </label>
-                <ReactQuill modules={this.modules} theme="snow" value={this.state.eligibility} onChange={this.handleEligibilityChange} className="sb-form-q quill-q"/>
-              </div>
-
-              <div className="input-block large-block quill-block">
-                <label htmlFor="q11">
-                  <div className="quill-label">You're not alone!
-                    <div className="tooltip"><i className="fa fa-question-circle"></i>
-                       <span className="tooltiptext">
-                       Tell the applicants about how they can contact you with any questions they may have.
-                       </span>
-                    </div>
-                  </div>
-                </label>
-                <ReactQuill modules={this.modules} theme="snow" value={this.state.contact} onChange={this.handleContactChange} className="sb-form-q quill-q"/>
               </div>
 
               <div className="input-block large-block quill-block">
