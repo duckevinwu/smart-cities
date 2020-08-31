@@ -58,6 +58,7 @@ height: 10%;
   margin-right: 0 !important;
   right: 20px;
   top: 20px;
+  z-index: 10;
 }
 
 .landing-nav {
@@ -86,7 +87,7 @@ height: 10%;
   height: 98px;
   margin-bottom: 2px;
   line-height: 100px;
-  width: 20vw;
+  width: 25vw;
   text-align: center;
   color: #939393; /* Color of the link text */
   transition: background-color 0.5s 0.2s ease, color 0.3s ease;
@@ -145,13 +146,13 @@ height: 10%;
   left: 0vw;
 }
 .landing-nav li:nth-child(2):hover ~ .slide {
-  left: 20vw;
+  left: 25vw;
 }
 .landing-nav li:nth-child(3):hover ~ .slide {
-  left: 40vw;
+  left: 50vw;
 }
  .landing-nav li:nth-child(4):hover ~ .slide {
-  left: 60vw;
+  left: 75vw;
 }
 .landing-nav li:nth-child(5):hover ~ .slide {
  left: 80vw;
@@ -187,7 +188,7 @@ nav li:nth-child(7):hover ~ .slide {
 .landing-section .title {
   max-width: 80%;
   width: 100%;
-  padding-top: 40vh;
+  padding-top: 32vh;
 /*     align-self: center; */
   transform: translateY(-50px);
   margin: 0 auto;
@@ -231,6 +232,52 @@ nav li:nth-child(7):hover ~ .slide {
 
 .title-text {
 font-family: 'Montserrat', sans-serif;
+}
+
+.title-text-wrapper {
+  margin-bottom: 12px;
+  display: flex;
+  align-items:flex-end;
+  width:100%;
+}
+
+.title-new-text {
+  font-size: 3.5vw;
+  color: #efefef;
+  text-transform: uppercase;
+  transform: translateX(-100%);
+  animation: byBottom 1s ease both;
+  font-weight: 900;
+  letter-spacing: 0.25vw;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.collective-text {
+  display:inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1vw;
+}
+
+.cause-text {
+  display:inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cause-font {
+  width:50px;
+}
+
+.logo-new-v2 {
+  height: auto;
+  width: 12vw;
+   margin: 0;
+   padding: 0;
+   color: #F9F1E9;
+  /*    text-align: center; */
+
+  z-index: 1;
 }
 
 .title-subtext {
@@ -613,11 +660,11 @@ line-height: 30px;
 }
 
 .who-title {
-/*   position: absolute; */
-  text-align: right;
   padding-top: 8%;
   padding-bottom: 3%;
-  padding-right: 10%;
+  width: 50vw;
+  float:right;
+  text-align: center;
   color: white;
   text-transform: none;
   font-family: 'Montserrat', sans-serif;

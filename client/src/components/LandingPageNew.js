@@ -23,7 +23,6 @@ export default class LandingPageNew extends React.Component {
             <li><a href="#how-section" className="landing-link">How this works</a></li>
             <li><a href="/aboutus" className="landing-link">About us</a></li>
             <li><a href="/challengecenter" className="landing-link">Challenge Center</a></li>
-            <li><a href="/about" className="landing-link">About Smart Cities</a></li>
             <li><a href="/newsletter" className="landing-link">Just Cause</a></li>
             <li className="slide"></li>
           </ul>
@@ -33,9 +32,13 @@ export default class LandingPageNew extends React.Component {
         <img className="logoLetters" src="https://i.imgur.com/sFUkpIV.png"></img>
         <a className="button-landing login-button-lp" href="/login">Login</a>
           <div className="title">
-            <span className="title-text">Collective <font className="goldText">Cause</font>
-              <img className="logo-new" src="https://i.imgur.com/VEZS91f.png"></img>
-            </span>
+            <div className="title-text-wrapper">
+              <div className="title-new-text collective-text">Collective</div>
+              <div className="title-new-text cause-text">
+                <img className="logo-new-v2" src="https://i.imgur.com/VEZS91f.png"></img>
+                <font className="goldText">Cause</font>
+              </div>
+            </div>
             <span className="title-subtext"> We post urban challenges for <font className="you">you to solve.</font></span>
           </div>
         </section>

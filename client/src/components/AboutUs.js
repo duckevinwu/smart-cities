@@ -13,9 +13,15 @@ export default class AboutUs extends React.Component {
       <section className="au-section newsletter-section">
         <a href="/"><img className="logoLetters" src="https://i.imgur.com/sFUkpIV.png"></img></a>
           <div className="title">
-            <span className="title-text">About <font className="goldText">Us</font>
-              <img className="au-logo" src="https://i.imgur.com/VEZS91f.png"></img>
-            </span>
+          <div className="title-text-wrapper">
+            <div className="title-new-text collective-text nl-title">
+              <img className="logo-new-v2" src="https://i.imgur.com/VEZS91f.png"></img>
+              About
+            </div>
+            <div className="title-new-text cause-text nl-title">
+              <font className="goldText">Us</font>
+            </div>
+          </div>
             <span className="au-title-2"> <b>Your partners in urban innovation</b> </span>
         <span className="au-title-subtext">
           We're an <font className="you">open innovation</font> platform dedicated to urban challenges. We work with cities, corporations, universities, and nonprofits to find impactful open innovation challenges, and we post them in full detail for you. Our goal is simple: Enable anyone to solve urban innovation challenges and provide awesome incentives in the process.
