@@ -28,6 +28,7 @@ import Fellows from './Fellows';
 import EditProfile from './EditProfile';
 import Newsletter from './Newsletter';
 import AboutUs from './AboutUs';
+import PostNewsletterSignup from './PostNewsletterSignup';
 
 export default class App extends React.Component {
 
@@ -167,6 +168,13 @@ export default class App extends React.Component {
 							path="/aboutus"
 							render={(props) => (
 								<AboutUs />
+							)}
+						/>
+						<Route
+							exact
+							path="/thankyou"
+							render={(props) => (
+								<PostNewsletterSignup />
 							)}
 						/>
 					</Switch>

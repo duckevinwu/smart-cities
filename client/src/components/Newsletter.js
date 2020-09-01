@@ -28,11 +28,13 @@ export default class Newsletter extends React.Component {
         </div>
 
         <div className="email-wrap">
-          <div className="nl-left">
-            <input type="text" id="name" className="input-email" required />
-            <label htmlFor="name" className="nl-label">Your email</label>
-          </div>
-          <div className="nl-right"><button type="submit" className="nl-submit">Try it out</button></div>
+          <form action="https://collectivecause.us17.list-manage.com/subscribe/post?u=7b5e60ed610df6c6b3d300c87&amp;id=e0a5087159" method="post">
+            <div className="nl-left">
+              <input type="email" id="mce-EMAIL" name="EMAIL" className="input-email" required />
+              <label htmlFor="mce-EMAIL" className="nl-label">Your email</label>
+            </div>
+            <div className="nl-right"><button type="submit" className="nl-submit">Try it out</button></div>
+          </form>
         </div>
         </section>
       </div>
