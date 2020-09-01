@@ -44,6 +44,7 @@ export default class UserIdeas extends React.Component {
       if (this.state.ideas.length === 0) {
         return (
           <div className="ui-none-wrapper">
+            <p className="ui-none-text">Your submissions for our challenges will show up here.</p>
             <p className="ui-none-text">Visit the <a href="/challengecenter" className="ui-link">Challenge Center</a> to get started!</p>
           </div>
         )

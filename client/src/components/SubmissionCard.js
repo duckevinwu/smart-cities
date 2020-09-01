@@ -11,6 +11,7 @@ class SubmissionCard extends React.Component {
       challenge: {}
     }
 
+		this.clickEdit = this.clickEdit.bind(this);
     this.clickReview = this.clickReview.bind(this);
 	}
 
@@ -18,6 +19,11 @@ class SubmissionCard extends React.Component {
     this.setState({
       challenge: this.props.challenge
     })
+  }
+
+	clickEdit() {
+    var url = '/editchallenge/' + this.state.challenge.challenge_id;
+    this.props.history.push(url);
   }
 
   clickReview() {
@@ -39,6 +45,7 @@ class SubmissionCard extends React.Component {
 
             <div className="admin-bottom">
                <div className="admin-buttonWrap">
+							 		<button type="button" className="review edit-button" onClick={this.clickEdit}> Edit </button>
                   <button type="button" className="review" onClick={this.clickReview}> Review </button>
                </div>
                <div className="admin-timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}

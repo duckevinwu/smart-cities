@@ -120,6 +120,8 @@
 
 /* This controls the button */
 .admin-buttonWrap {
+  display: flex;
+  flex-direction: row;
    position: absolute;
    top: 70%;
    left: 85%;
@@ -145,4 +147,8 @@
 	 color: white;
 	 border-radius: 30px;
    cursor: pointer;
+}
+
+.edit-button {
+  margin-right: 20px;
 }

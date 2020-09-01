@@ -387,6 +387,84 @@ function createChallenge(req, res) {
   }
 }
 
+// ------------------------ EDIT CHALLENGE ------------------------
+function editChallenge(req, res) {
+
+  var challengeInfo = req.body.challengeInfo;
+  var userId = req.user.user_id;
+
+  var challengeId = challengeInfo.id;
+  var name = challengeInfo.name;
+  var tagline = challengeInfo.tagline;
+  var start = challengeInfo.startDateString;
+  var end = challengeInfo.endDateString;
+  var reward = challengeInfo.reward;
+  var brief = challengeInfo.brief;
+  var description = challengeInfo.description;
+  var assets = challengeInfo.assets;
+  var imgUrl = challengeInfo.imageUrl;
+  var logoUrl = challengeInfo.logoUrl;
+  var color = challengeInfo.color;
+  var resources = challengeInfo.resources;
+  var eligibility = challengeInfo.eligibility;
+  var contact = challengeInfo.contact;
+  var prize = challengeInfo.prize;
+  var submission = challengeInfo.submission;
+
+  // if user id doesn't exist, don't create challenge
+  if (!userId) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  } else {
+    // save challenge into database
+    var insertQuery = `
+      UPDATE Challenge
+      SET name = ?, start = ?, end = ?, reward = ?, tagline = ?, brief = ?, description = ?, prize = ?, submission = ?, imgurl = ?, logourl = ?, color = ?, resources = ?
+      WHERE challenge_id = ? AND owner = ?
+    `;
+    connection.query(insertQuery, [name, start, end, reward, tagline, brief, description, prize, submission, imgUrl, logoUrl, color, resources, challengeId, userId], function(err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.send({status: 'fail'});
+      } else {
+        return res.send({status: 'success'});
+      }
+    });
+  }
+}
+// ----------------------- CHALLENGE OWNER EDIT --------------------------
+function isChallengeOwnerEdit(req, res) {
+
+  if (!req.user) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  }
+
+  var challengeId = req.params.challengeid;
+  var userId = req.user.user_id;
+
+  if (!userId) {
+    return res.send({status: 'fail', message: 'not logged in'});
+  } else {
+    // get challenge owner from db
+    var query = `
+      SELECT *
+      FROM Challenge
+      WHERE challenge_id = ?
+    `;
+    connection.query(query, [challengeId], function(err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.send({status: 'fail'});
+      } else {
+        if (userId === rows[0].owner) {
+          return res.send({status: 'success', challenge: rows[0]});
+        } else {
+          return res.send({status: 'fail', message: 'not owner of challenge'});
+        }
+      }
+    });
+  }
+}
+
 // ----------------------- GET CREATED CHALLENGES --------------------
 function getMyChallenges(req, res) {
   var userId = req.user.user_id;
@@ -883,5 +961,7 @@ module.exports = {
   updateProfile: updateProfile,
   becomeSolver: becomeSolver,
   isSolver: isSolver,
-  getASC: getASC
+  getASC: getASC,
+  editChallenge: editChallenge,
+  isChallengeOwnerEdit: isChallengeOwnerEdit
 }

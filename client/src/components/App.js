@@ -29,6 +29,7 @@ import EditProfile from './EditProfile';
 import Newsletter from './Newsletter';
 import AboutUs from './AboutUs';
 import PostNewsletterSignup from './PostNewsletterSignup';
+import EditChallenge from './EditChallenge';
 
 export default class App extends React.Component {
 
@@ -112,6 +113,13 @@ export default class App extends React.Component {
 							path="/challenges/:id"
 							render={(props) => (
 								<ChallengePage {...props} />
+							)}
+						/>
+						<Route
+							exact
+							path="/editchallenge/:id"
+							render={(props) => (
+								<EditChallenge {...props} />
 							)}
 						/>
 						<Route

@@ -33,6 +33,7 @@ export default class UserActivelySolving extends React.Component {
       if (this.state.challenges.length === 0) {
         return (
           <div className="ui-none-wrapper">
+            <p className="ui-none-text">This is where you'll see the challenges you're working on.</p>
             <p className="ui-none-text">Visit the <a href="/challengecenter" className="ui-link">Challenge Center</a> to get started!</p>
           </div>
         )

@@ -202,6 +202,12 @@ app.get('/api/issolver/:challengeid', routes.isSolver);
 // ----------------- GET ACTIVELY SOLVING CHALLENGES ----------
 app.get('/api/getasc', routes.getASC);
 
+// ----------------- EDIT CHALLENGE ------------------------
+app.post('/api/editchallenge', routes.editChallenge);
+
+// ---------------- CHALLENGE OWNER EDIT I------------------
+app.get('/api/challengeowneredit/:challengeid', routes.isChallengeOwnerEdit);
+
 // Connects React app with Express server in production
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files

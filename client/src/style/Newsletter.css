@@ -130,6 +130,24 @@
     animation: linkAfter 1s 1s ease both;
   }
 
+  .au-title-subtext .you {
+      position: relative;
+      display: inline-block;
+      margin-left: 0rem;
+      text-decoration: none;
+      color: #E0C707;
+    }
+    .au-title-subtext .you::after {
+      content: "";
+      height: 2px;
+      background-color: #f7ca18;
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      width: 0;
+      animation: linkAfter 1s 1s ease both;
+    }
+
  @-moz-keyframes pop {
     0% {
       transform: translateY(100%);

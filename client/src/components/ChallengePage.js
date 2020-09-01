@@ -168,9 +168,9 @@ class ChallengePage extends React.Component {
                           By becoming an <font className="goldText">Active Solver</font> of this challenge, you will:
                         </p>
                         <ul className="details-list">
-                          <li>Gain access to information essential to crafting your solution, including a deep dive into the challenge and a list of resources and existing assets you could use.</li>
+                          <li>Gain access to information essential to crafting your solution, including background information on the challenge and a list of resources that you could use.</li>
                           <li>Have the ability to submit your solution for expert review and a chance at winning the listed prize.</li>
-                          <li>Show your interest and support in solving this important urban challenge!</li>
+                          <li>Learn how your solutions will be evaluated.</li>
                         </ul>
                       </div>
                     </details>

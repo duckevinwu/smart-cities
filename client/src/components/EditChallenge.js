@@ -1,18 +1,23 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import '../style/Form.css';
 import { appendScript } from '../js/AppendScript';
+import { convertDateMsDash } from '../js/ConvertDate'
 import Navbar from './Navbar';
 import PostCreation from './PostCreation';
 import ReactQuill from 'react-quill';
+import Preloader from './Preloader';
 //import PageNavbar from './PageNavbar';
 
-export default class CreateChallenge extends React.Component {
+class EditChallenge extends React.Component {
   constructor(props) {
     super(props);
 
     // The state maintained by this React Component.
     // This component maintains the list of people.
     this.state = {
+      isLoaded: false,
+      id: "",
       name: "",
       tagline: "",
       imageUrl: "",
@@ -165,7 +170,7 @@ export default class CreateChallenge extends React.Component {
     const validate = window.confirm('Are you sure?');
 
     if (validate) {
-      fetch("/api/createchallenge", {
+      fetch("/api/editchallenge", {
         method: "post",
         headers: {
           'Accept': 'application/json',
@@ -198,9 +203,55 @@ export default class CreateChallenge extends React.Component {
 
   // React function that is called when the page load.
   componentDidMount() {
-    appendScript('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
-    appendScript('//cdn.jsdelivr.net/jquery.dirtyforms/2.0.0/jquery.dirtyforms.min.js');
-    appendScript('https://cdn.jsdelivr.net/gh/duckevinwu/external-js@0.2/FormAnimation.min.js');
+
+    var challengeId = this.props.match.params.id;
+
+    // get challenge details
+    this.setState({
+      id: challengeId
+    })
+
+    fetch("/api/challengeowneredit/" + challengeId,
+		{
+			method: "GET"
+		}).then(res => {
+			return res.json();
+		}, err => {
+			console.log(err);
+		}).then(data => {
+      if (data.status === 'success') {
+        var challenge = data.challenge;
+        this.setState({
+          name: challenge.name,
+          tagline: challenge.tagline,
+          imageUrl: challenge.imgurl,
+          logoUrl: challenge.logourl,
+          color: challenge.color,
+          startDate: convertDateMsDash(challenge.start),
+          startDateString: challenge.start,
+          endDate: convertDateMsDash(challenge.end),
+          endDateString: challenge.end,
+          reward: challenge.reward,
+          brief: challenge.brief,
+          description: challenge.description,
+          resources: challenge.resources,
+          prize: challenge.prize,
+          submission: challenge.submission,
+        })
+
+        appendScript('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+        appendScript('//cdn.jsdelivr.net/jquery.dirtyforms/2.0.0/jquery.dirtyforms.min.js');
+        appendScript('https://cdn.jsdelivr.net/gh/duckevinwu/external-js@0.2/FormAnimation.min.js');
+
+        this.setState({
+          isLoaded: true
+        });
+
+      } else {
+        this.props.history.push('/login?redirect=' + this.props.location.pathname);
+      }
+
+		});
 
   }
 
@@ -219,6 +270,12 @@ export default class CreateChallenge extends React.Component {
   }
 
   render() {
+
+    if (!this.state.isLoaded) {
+      return (
+        <Preloader/>
+      )
+    }
 
     if (this.state.submitted) {
       return (
@@ -375,3 +432,5 @@ export default class CreateChallenge extends React.Component {
     }
   }
 }
+
+export default withRouter(EditChallenge);
