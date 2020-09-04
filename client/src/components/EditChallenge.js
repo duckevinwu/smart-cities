@@ -237,6 +237,7 @@ class EditChallenge extends React.Component {
           resources: challenge.resources,
           prize: challenge.prize,
           submission: challenge.submission,
+          contact: challenge.contact
         })
 
         appendScript('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
@@ -419,6 +420,19 @@ class EditChallenge extends React.Component {
                   </div>
                 </label>
                 <ReactQuill modules={this.modules} theme="snow" value={this.state.submission} onChange={this.handleSubmissionChange} className="sb-form-q quill-q"/>
+              </div>
+
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q14">
+                  <div className="quill-label">FAQ
+                    <div className="tooltip"><i className="fa fa-question-circle"></i>
+                       <span className="tooltiptext">
+                       List any frequently asked questions and their answers for this challenge.
+                       </span>
+                    </div>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.contact} onChange={this.handleContactChange} className="sb-form-q quill-q"/>
               </div>
 
               <div className="input-block">

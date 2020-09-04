@@ -88,7 +88,7 @@ export default class LandingPageNew extends React.Component {
                 <i className="fa fa-lightbulb-o goldText"></i>
                 <h2> <b>Earn</b> </h2>
                 <p>
-                  We're here to turn your ideas into tangible value. That's why each of our challenges has a substantial cash reward.
+                  We’re here to turn your ideas into tangible value. That’s why you’ll earn a cash reward every time you solve one of our challenges.
                 </p>
               </div>
             </div>
@@ -97,7 +97,7 @@ export default class LandingPageNew extends React.Component {
                 <i className="fa fa-users blue-text"></i>
                 <h2> <b>Impact</b> </h2>
                 <p>
-                  Ever dream of changing the world without any means of doing so? Now you can. By solving our challenges, you will impact the lives of everyday individuals and drive large-scale change in communities around the world.
+                  If you want to make a difference in the world through your ideas, you’re in the right place. Our challenges are supported by established organizations, such as the Philadelphia Office of Innovation and Technology, and substantiated by research and evidence. By solving these challenges, you’ll make a real difference in communities around the world.
                 </p>
               </div>
             </div>
@@ -107,7 +107,7 @@ export default class LandingPageNew extends React.Component {
                 <i className="fa fa-laptop green-text"></i>
                 <h2><b>Learn</b></h2>
                 <p>
-                You won't leave our site without learning a thing or two about social issues and potential areas of innovation. Our challenges are chock-full of amazing information that will leave you wanting more.
+                You won’t leave our site without learning a thing or two about social issues and potential areas of innovation. Our challenges are chock-full of amazing, easily-digestible information that will leave you wanting more.
                 </p>
               </div>
             </div>
@@ -117,7 +117,7 @@ export default class LandingPageNew extends React.Component {
                 <i className="fa fa-rocket red-text"></i>
                 <h2> <b>Beyond</b> </h2>
                 <p>
-                  We know that your ideas might have bigger aspirations beyond winning our challenges. So, if you win one of our challenges, we'll be here to support your aspirations —whether that's marketing your idea more or even helping you turn your idea into your own company.
+                  If you win one of our challenges and have bigger aspirations, such as applying your idea to more locations or users, we’re here to support you. Whether that’s marketing your idea more, finding relevant partnerships, or even attracting investors, we’ll be by your side every step of the way.
                 </p>
               </div>
             </div>
@@ -128,7 +128,7 @@ export default class LandingPageNew extends React.Component {
         <section className="who-section landing-page">
           <h1 className="who-title"> <font className="blue-text">Who</font> can use this <font className="cc-underline-blue">platform?</font></h1>
           <div className="who-body">
-            This is an open innovation platform, so we invite <font className="blue-text">anyone</font> to solve our challenges. Whether you're a student, professor, community organizer, corporate worker, entrepreneur, freelancer, etc., we welcome <font className="blue-text">you</font> with open arms. The more the merrier, so feel free to apply with a group, your company/organization, your uncle Joe, your college roommate, or <font className="blue-text">anyone</font> else. That said, <font className="blue-text">some</font> of our challenges might have some eligibility restrictions, so make sure you check those out on each challenge's detail page. Our challenges are designed to be <font className="blue-text">easily</font> digestable, <font className="blue-text">informative</font>, and <font className="blue-text">entertaining</font>. So get out there —we can't wait to see your ideas.
+            This is an open innovation platform, so we invite <font className="blue-text">anyone</font> to solve our challenges. Whether you're a student, professor, community organizer, corporate worker, entrepreneur, freelancer, etc., we welcome <font className="blue-text">you</font> with open arms. The more the merrier, so feel free to apply with your friends, class, school group, professor, company/organization, or <font className="blue-text">anyone</font> else. That said, <font className="blue-text">some</font> of our challenges might have some eligibility restrictions, so make sure you check those out on each challenge's detail page. Our challenges are designed to be <font className="blue-text">easily understandable</font>, <font className="blue-text">informative</font>, and <font className="blue-text">entertaining</font>. So get out there —we can't wait to see your ideas.
           </div>
         </section>
        </div>

@@ -364,6 +364,19 @@ export default class CreateChallenge extends React.Component {
                 <ReactQuill modules={this.modules} theme="snow" value={this.state.submission} onChange={this.handleSubmissionChange} className="sb-form-q quill-q"/>
               </div>
 
+              <div className="input-block large-block quill-block">
+                <label htmlFor="q14">
+                  <div className="quill-label">FAQ
+                    <div className="tooltip"><i className="fa fa-question-circle"></i>
+                       <span className="tooltiptext">
+                       List any frequently asked questions and their answers for this challenge.
+                       </span>
+                    </div>
+                  </div>
+                </label>
+                <ReactQuill modules={this.modules} theme="snow" value={this.state.contact} onChange={this.handleContactChange} className="sb-form-q quill-q"/>
+              </div>
+
               <div className="input-block">
                  <button type="submit" className="submit-button sb-form-q">Submit</button>
               </div>

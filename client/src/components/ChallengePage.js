@@ -97,7 +97,6 @@ class ChallengePage extends React.Component {
       console.log(err);
     })
     .then(data => {
-      console.log(data);
       if (data.status === 'success') {
         // handle success
         var challengeObj = this.state.challenge;
@@ -170,7 +169,7 @@ class ChallengePage extends React.Component {
                         <ul className="details-list">
                           <li>Gain access to information essential to crafting your solution, including background information on the challenge and a list of resources that you could use.</li>
                           <li>Have the ability to submit your solution for expert review and a chance at winning the listed prize.</li>
-                          <li>Learn how your solutions will be evaluated.</li>
+                          <li>Learn how your solution will be evaluated.</li>
                         </ul>
                       </div>
                     </details>
@@ -191,6 +190,10 @@ class ChallengePage extends React.Component {
              <li className="nav-item tab-head">
                 <a id="prize-tab" data-toggle="tab" href="#prize" role="tab" aria-controls="prize" aria-selected="false"
                    className="nav-link text-uppercase font-weight-bold rounded-0">Prize</a>
+             </li>
+             <li className="nav-item tab-head">
+                <a id="faq-tab" data-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false"
+                   className="nav-link text-uppercase font-weight-bold rounded-0">FAQ</a>
              </li>
              <li className="nav-item tab-head">
                 <a id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2"
@@ -231,6 +234,14 @@ class ChallengePage extends React.Component {
                   </div>
                </section>
              </div>
+             <div id="faq" role="tabpanel" aria-labelledby="faq-tab" className="tab-pane fade px-4">
+               <section className="cd-faq">
+                  <h3 className="faq-title">Frequently Asked Questions</h3>
+                  <div className="section-content ql-editor"
+                       dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.contact, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                  </div>
+               </section>
+             </div>
              <div id="profile2" role="tabpanel" aria-labelledby="profile-tab" className="tab-pane fade px-4">
                 <Submission challengeId={this.state.challengeId} details={this.state.challenge.submission} />
              </div>
@@ -253,6 +264,7 @@ class ChallengePage extends React.Component {
         <div className="container py-5 cd-page">
           <div className="shadow mb-5 details-card">
           <div className="card-content">
+            <div className="cover-container" style={{background: "linear-gradient(rgba(0,0,0,0.6), #232430), url(" + this.state.challenge.imgurl + ")"}}>
              <img src={this.state.challenge.logourl || 'https://i.imgur.com/jMSGGPk.png'} className={"cd-logo " + this.state.challenge.color + "-img"}/>
              <div className="cd-details">
                 <div className="cd-timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
@@ -263,6 +275,7 @@ class ChallengePage extends React.Component {
                 </div>
              </div>
              <h1 className="cd-title">{this.state.challenge.name}</h1>
+             </div>
              <br/>
              <div className="cd-tagline">
                 <p>{this.state.challenge.tagline}</p>

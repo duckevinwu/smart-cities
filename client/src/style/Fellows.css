@@ -82,6 +82,11 @@
   padding-right: 1rem;
 }
 
+.long-card {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem;
+}
+
 .card-fellow:nth-child(even)img{
     order: 2;
 }

@@ -23,7 +23,7 @@ export default class PostSubmission extends React.Component {
           <br/>
           <br/>
           You should expect a response from us shortly after the closing date of the challenge.
-          Should you have any questions or comments in the meantime, please feel free to reach out to us at [insert email].
+          Should you have any questions or comments in the meantime, please feel free to reach out to us at team@collectivecause.org.
           <br/>
           <br/>
           Thanks, again, for making a difference in your city.
