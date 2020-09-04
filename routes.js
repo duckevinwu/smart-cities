@@ -15,6 +15,7 @@ var config = {
 var randToken = require('rand-token');
 var bcrypt = require('bcrypt');
 var sgMail = require('@sendgrid/mail');
+const nodemailer = require("nodemailer");
 
 // configure sendgrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -28,6 +29,17 @@ const saltRounds = 12;
 
 config.connectionLimit = 10;
 var connection = mysql.createPool(config);
+
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+  host: "smtp.dreamhost.com",
+  port: 465,
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: process.env.DH_USER, // generated ethereal user
+    pass: process.env.DH_PASS, // generated ethereal password
+  },
+});
 
 /* -------------------------------------------------- */
 /* ------------------- Route Handlers --------------- */
@@ -104,7 +116,8 @@ function saveRegisterToken(req, res) {
 
               var confirmUrl = domain + '/confirmation/' + email + '/' + token;
 
-              // send email
+              // send email sendgrid
+              /*
               var msg = {
                 to: email,
                 from: {
@@ -124,6 +137,23 @@ function saveRegisterToken(req, res) {
                   console.log(error);
                   res.send({status: 'fail', message: 'error sending email'});
                 });
+                */
+
+                // send mail with defined transport object
+               transporter.sendMail({
+                 from: '"Collective Cause" <team@collectivecause.org>', // sender address
+                 to: email, // list of receivers
+                 subject: "Account Activation", // Subject line
+                 text: confirmUrl, // plain text body
+                 html: '<a href="' + confirmUrl + '">Activate Account</a>', // html body
+               }, function(error, info) {
+                 if (error) {
+                   console.log(error);
+                   return res.send({status: 'fail'})
+                 } else {
+                   return res.send({status: 'success'})
+                 }
+               });
 
             }
           });
@@ -230,25 +260,41 @@ function saveToken(req, res) {
             var resetUrl = domain + '/resetpassword/' + email + '/' + token;
 
             // send email
-            var msg = {
-              to: email,
-              from: {
-                email: 'no-reply@collectivecause.org',
-                name: 'Collective Cause'
-              },
-              subject: 'Password Reset',
-              text: resetUrl,
-              html: '<a href="' + resetUrl + '">Reset password</a>'
-            }
+            // var msg = {
+            //   to: email,
+            //   from: {
+            //     email: 'no-reply@collectivecause.org',
+            //     name: 'Collective Cause'
+            //   },
+            //   subject: 'Password Reset',
+            //   text: resetUrl,
+            //   html: '<a href="' + resetUrl + '">Reset password</a>'
+            // }
+            //
+            // sgMail
+            //   .send(msg)
+            //   .then(() => {
+            //     res.send({status: 'success', message: 'success'});
+            //   }, error => {
+            //     console.log(error);
+            //     res.send({status: 'fail', message: 'error sending email'});
+            //   });
 
-            sgMail
-              .send(msg)
-              .then(() => {
-                res.send({status: 'success', message: 'success'});
-              }, error => {
-                console.log(error);
-                res.send({status: 'fail', message: 'error sending email'});
-              });
+            // send mail with defined transport object
+           transporter.sendMail({
+             from: '"Collective Cause" <team@collectivecause.org>', // sender address
+             to: email, // list of receivers
+             subject: "Reset Password", // Subject line
+             text: resetUrl, // plain text body
+             html: '<a href="' + resetUrl + '">Reset password</a>', // html body
+           }, function(error, info) {
+             if (error) {
+               console.log(error);
+               return res.send({status: 'fail'})
+             } else {
+               return res.send({status: 'success'})
+             }
+           });
 
           }
         });
