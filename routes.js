@@ -139,13 +139,16 @@ function saveRegisterToken(req, res) {
                 });
                 */
 
+                var emailTextBody = "Welcome to Collective Cause! Visit this link (" + confirmUrl + ") to activate your account. We're thrilled to have you, and we can't wait see your ideas. If you ever want to say hi or give us some feedback, feel free to reach out to us at team@collectivecause.org. \n \n Kindly, \n Your Team at Collective Cause"
+                var emailHtmlBody = "Welcome to Collective Cause! Visit this <a href=" + confirmUrl + ">link</a> to activate your account. We're thrilled to have you, and we can't wait to see your ideas. If you ever want to say hi or give us some feedback, feel free to reach out to us at team@collectivecause.org. <br> <br> Kindly, <br> Your team at Collective Cause"
+
                 // send mail with defined transport object
                transporter.sendMail({
                  from: '"Collective Cause" <team@collectivecause.org>', // sender address
                  to: email, // list of receivers
                  subject: "Account Activation", // Subject line
-                 text: confirmUrl, // plain text body
-                 html: '<a href="' + confirmUrl + '">Activate Account</a>', // html body
+                 text: emailTextBody, // plain text body
+                 html: emailHtmlBody, // html body
                }, function(error, info) {
                  if (error) {
                    console.log(error);
@@ -280,13 +283,16 @@ function saveToken(req, res) {
             //     res.send({status: 'fail', message: 'error sending email'});
             //   });
 
+            var emailTextBody = "Oh no! You forgot your password. But don't worry - we got your back. Reset your password at this link (" + resetUrl + ") and get back out there. \n \n Kindly, \n Your team at Collective Cause";
+            var emailHtmlBody = "Oh no! You forgot your password. But don't worry - we got your back. Reset your password <a href=" + resetUrl + ">here</a> and get back out there. <br> <br> Kindly, <br> Your team at Collective Cause";
+
             // send mail with defined transport object
            transporter.sendMail({
              from: '"Collective Cause" <team@collectivecause.org>', // sender address
              to: email, // list of receivers
              subject: "Reset Password", // Subject line
-             text: resetUrl, // plain text body
-             html: '<a href="' + resetUrl + '">Reset password</a>', // html body
+             text: emailTextBody, // plain text body
+             html: emailHtmlBody, // html body
            }, function(error, info) {
              if (error) {
                console.log(error);

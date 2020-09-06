@@ -67,16 +67,16 @@ export default class IdeaModal extends React.Component {
                 <p><font className="goldText">Team members:</font> {this.state.idea.team || 'N/A'}</p>
                 <p><font className="goldText">Solution Overview:</font></p>
                 <div className="modal-summary ql-editor"
-                     dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.idea.content, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                     dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.idea.content, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                 </div>
                 <p><font className="goldText">About you:</font></p>
                 <div className="modal-summary ql-editor"
-                     dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.idea.about_you, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                     dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.idea.about_you, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                 </div>
                 <p><font className="goldText">Willing to interview:</font> {this.state.idea.interview}</p>
                 <p><font className="goldText">Additional info:</font></p>
                 <div className="modal-summary ql-editor"
-                     dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.idea.other_info, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                     dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.idea.other_info, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                 </div>
               </div>
 

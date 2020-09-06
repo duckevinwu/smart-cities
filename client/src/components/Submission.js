@@ -52,7 +52,7 @@ class Submission extends React.Component {
           <section className="cd-submission">
              <h3 className="submission-title">Submission Details</h3>
              <div className="section-content ql-editor"
-                  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.details, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.details, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
              </div>
           </section>
         </>

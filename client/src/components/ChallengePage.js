@@ -155,7 +155,7 @@ class ChallengePage extends React.Component {
                  <section className="cd-brief">
                     <h3 className="brief-title"> Brief </h3>
                     <div className="section-content ql-editor"
-                         dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.brief, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                         dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.brief, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                     </div>
                  </section>
                  <section className="cd-become-solver">
@@ -209,19 +209,19 @@ class ChallengePage extends React.Component {
                    <section className="cd-brief">
                       <h3 className="brief-title"> Brief </h3>
                       <div className="section-content ql-editor"
-                           dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.brief, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                           dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.brief, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                       </div>
                    </section>
                    <section className="cd-description">
                       <h3 className="description-title">Deep Dive</h3>
                       <div className="section-content ql-editor"
-                           dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.description, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                           dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.description, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                       </div>
                    </section>
                    <section className="cd-assets">
                       <h3 className="assets-title">Additional Resources</h3>
                       <div className="section-content ql-editor"
-                           dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.resources, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                           dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.resources, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                       </div>
                    </section>
                 </div>
@@ -230,7 +230,7 @@ class ChallengePage extends React.Component {
                <section className="cd-prize">
                   <h3 className="prize-title">Prize Details</h3>
                   <div className="section-content ql-editor"
-                       dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.prize, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                       dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.prize, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                   </div>
                </section>
              </div>
@@ -238,7 +238,7 @@ class ChallengePage extends React.Component {
                <section className="cd-faq">
                   <h3 className="faq-title">Frequently Asked Questions</h3>
                   <div className="section-content ql-editor"
-                       dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.contact, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'] })}}>
+                       dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.contact, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                   </div>
                </section>
              </div>
