@@ -470,10 +470,10 @@ function editChallenge(req, res) {
     // save challenge into database
     var insertQuery = `
       UPDATE Challenge
-      SET name = ?, start = ?, end = ?, reward = ?, tagline = ?, brief = ?, description = ?, prize = ?, submission = ?, imgurl = ?, logourl = ?, color = ?, resources = ?
+      SET name = ?, start = ?, end = ?, reward = ?, tagline = ?, brief = ?, description = ?, prize = ?, submission = ?, imgurl = ?, logourl = ?, color = ?, resources = ?, contact = ?
       WHERE challenge_id = ? AND owner = ?
     `;
-    connection.query(insertQuery, [name, start, end, reward, tagline, brief, description, prize, submission, imgUrl, logoUrl, color, resources, challengeId, userId], function(err, rows, fields) {
+    connection.query(insertQuery, [name, start, end, reward, tagline, brief, description, prize, submission, imgUrl, logoUrl, color, resources, contact, challengeId, userId], function(err, rows, fields) {
       if (err) {
         console.log(err);
         return res.send({status: 'fail'});
