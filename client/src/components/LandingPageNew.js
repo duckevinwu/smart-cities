@@ -48,7 +48,7 @@ export default class LandingPageNew extends React.Component {
             <div className="browse"> Browse the <br/><font className="cc-underline"><b>Challenge Center</b></font></div>
 
           <div className="browse-text">
-            <font className="goldText">Welcome</font> to Collective Cause! Here's how this works: We post diverse urban challenges that can shape the <font className="goldText">future</font> of cities. By solving our challenges, you can <font className="goldText">launch</font> your big idea in cities across the nation, <font className="goldText">learn</font> a ton of cool information about social issues, <font className="goldText">become</font> a Collective Cause Fellow, and earn large <font className="goldText">cash</font> prizes. Anyone can solve our challenges. All you need is your brain, a healthy sense of creativity, and a desire to do some good in this world.
+            <font className="goldText">Welcome</font> to Collective Cause! Here's how this works: We post diverse urban challenges that can shape the <font className="goldText">future</font> of cities. By solving our challenges, you can <font className="goldText">launch</font> your big idea in cities across the nation, <font className="goldText">learn</font> a ton of cool information about social issues, <font className="goldText">become</font> a Cause Fellow, and earn large <font className="goldText">cash</font> prizes. Anyone can solve our challenges. All you need is your brain, a healthy sense of creativity, and a desire to do some good in this world.
         </div>
           <div className="button-position">
           <a className="button-landing" href="/challengecenter"> Enter Challenge Center</a>

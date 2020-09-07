@@ -687,6 +687,23 @@ line-height: 30px;
   letter-spacing: 2px;
 }
 
+@media only screen and (max-width: 1000px) {
+  .who-section {
+    background: none !important;
+  }
+
+  .who-title {
+    float: none;
+    width: 100%;
+  }
+
+  .who-body {
+    padding: 0;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
 .goldText {
   color:#E0C707;
 }
