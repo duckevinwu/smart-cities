@@ -23,10 +23,12 @@ class ChallengePage extends React.Component {
       isSolver: false,
       showPopup: '',
       buttonLoading: false,
-      loggedIn: false
+      loggedIn: false,
+      readTime: ''
     }
 
     this.clickActiveSolver = this.clickActiveSolver.bind(this);
+    this.htmlTextCount = this.htmlTextCount.bind(this);
     this.closePopup = this.closePopup.bind(this);
 
   }
@@ -60,14 +62,24 @@ class ChallengePage extends React.Component {
 				var challengeObj = data[0];
 				var solverObj = data[1];
 
+        var challenge = challengeObj.challenge[0];
+
+        let readTime = ((this.htmlTextCount(challenge.brief) + this.htmlTextCount(challenge.description)
+                        + this.htmlTextCount(challenge.resources)) / 1000).toFixed();
+
 				this.setState({
-					challenge: challengeObj.challenge[0],
+					challenge: challenge,
           isSolver: data[1].isSolver,
           loggedIn: data[1].loggedIn,
-					isLoaded: true
+					isLoaded: true,
+          readTime: readTime
 				})
 
 			});
+  }
+
+  htmlTextCount(htmlStr) {
+    return (htmlStr.replace(/<[^>]+>/g, '')).length;
   }
 
   clickActiveSolver() {
@@ -267,11 +279,13 @@ class ChallengePage extends React.Component {
             <div className="cover-container" style={{background: "linear-gradient(rgba(0,0,0,0.6), #232430), url(" + this.state.challenge.imgurl + ")"}}>
              <img src={this.state.challenge.logourl || 'https://i.imgur.com/jMSGGPk.png'} className={"cd-logo " + this.state.challenge.color + "-img"}/>
              <div className="cd-details">
-                <div className="cd-timeframe"><i className="fa fa-clock-o"></i> {convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
+                <div className=""><i className="fa fa-clock-o"></i> &nbsp;{convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
                 </div>
-                <div className="cd-participants"><i className="fa fa-user"></i> {this.state.challenge.sum} solvers
+                <div className=""><i className="fa fa-user"></i> &nbsp;{this.state.challenge.sum} solvers
                 </div>
-                <div className="cd-reward"><i className="fa fa-trophy"></i> {this.state.challenge.reward}
+                <div className=""><i className="fa fa-trophy"></i> &nbsp;{this.state.challenge.reward}
+                </div>
+                <div className=""><i className="fa fa-book"></i> &nbsp;{this.state.readTime} min read
                 </div>
              </div>
              <h1 className="cd-title">{this.state.challenge.name}</h1>

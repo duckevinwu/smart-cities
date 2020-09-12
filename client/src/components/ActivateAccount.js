@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import '../style/ActivateAccount.css';
 import Navbar from './Navbar';
+import Preloader from './Preloader';
 //import '../style/Dashboard.css';
 //import PageNavbar from './PageNavbar';
 
@@ -58,47 +59,30 @@ class ActivateAccount extends React.Component {
 
     if (this.state.isLoaded && this.state.isValid) {
       return (
-        <div className="aa-wrapper">
-          <Navbar/>
-          <div className="aa-page">
-            <h1 className="confirmation"> Your account has been activated
-              <br/>
-              Click <a className="login-link" href="/login">here</a> to login
-            </h1>
-
-            <div className="night">
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-              <div className="shooting_star"></div>
-            </div>
-          </div>
+        <div className="ps-wrapper">
+          <h1 className="thank-you-text">
+            Success! Your profile = activated.
+          </h1>
+          <br/>
+          <a href="/login" className="back-profile">Login Now</a>
         </div>
       );
     } else if (this.state.isLoaded && !this.state.isValid) {
       return (
-        <div>
-          <p>Invalid link - please try to <a href="/login">register</a> again.</p>
+        <div className="ps-wrapper">
+          <h1 className="thank-you-text">
+            Invalid link - please try again.
+          </h1>
+          <br/>
+          <a href="/login" className="back-profile">Register</a>
         </div>
       );
     } else {
-      return (<div></div>);
+      return (
+        <div>
+          <Preloader/>
+        </div>
+      );
     }
 
   }
