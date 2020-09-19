@@ -44,11 +44,20 @@ export default class LandingPageNew extends React.Component {
         </section>
 
         <section id="how-section">
+          <div className="">
+            <div className="intro-title">
+              Innovate <font className="cc-underline">Here</font>
+            </div>
+            <div className="intro-text">
+              Collective Cause is an open innovation platform dedicated to urban challenges. If you want to impact urban issues that affect everyday individuals (while earning amazing prizes), then you're in the right place. Our challenges are designed to be easily understandable so that anyone can tackle them. Guided by our core values of inclusivity, equity, and collaboration, we're a community of innovators seeking to change urban environments, and we're thrilled to have you. Start using our platform in three simple steps:
+            </div>
+            <div className="arrow down"></div>
+          </div>
           <div className="subsection">
             <div className="browse"> Browse the <br/><font className="cc-underline"><b>Challenge Center</b></font></div>
 
           <div className="browse-text">
-            <font className="goldText">Welcome</font> to Collective Cause! Here's how this works: We post diverse urban challenges that can shape the <font className="goldText">future</font> of cities. By solving our challenges, you can <font className="goldText">launch</font> your big idea in cities across the nation, <font className="goldText">learn</font> a ton of cool information about social issues, <font className="goldText">become</font> a Cause Fellow, and earn large <font className="goldText">cash</font> prizes. Anyone can solve our challenges. All you need is your brain, a healthy sense of creativity, and a desire to do some good in this world.
+            We post diverse urban challenges that can shape the <font className="goldText bt">future</font> of cities. By solving our challenges, you can <font className="goldText bt">launch</font> your big idea in cities across the nation, <font className="goldText bt">learn</font> a ton of cool information about social issues, <font className="goldText bt">become</font> a Cause Fellow, and earn large <font className="goldText bt">cash</font> prizes. Anyone can solve our challenges. All you need is your brain, a healthy sense of creativity, and a desire to do some good in this world.
         </div>
           <div className="button-position">
           <a className="button-landing" href="/challengecenter"> Enter Challenge Center</a>
@@ -60,7 +69,7 @@ export default class LandingPageNew extends React.Component {
             <h1 className="browse"> Create an  <font className="cc-underline-blue"><b>account</b></font></h1>
 
           <div className="browse-text">
-            Our site is <font className="blue-text">all</font> about our user community. By creating an account, you'll join our <font className="blue-text">diverse</font> community of innovators who are making a difference in the world, and you'll have the ability to <font className="blue-text">submit</font> solutions to our challenges. Creating an account is absolutely <font className="blue-text">free</font> and takes about 30 seconds, so what are you waiting for?
+            Our site is <font className="blue-text bt">all</font> about our user community. By creating an account, you'll join our <font className="blue-text bt">diverse</font> community of innovators who are making a difference in the world, and you'll have the ability to <font className="blue-text bt">submit</font> solutions to our challenges. Creating an account is absolutely <font className="blue-text bt">free</font> and takes about 30 seconds, so what are you waiting for?
         </div>
           <div className="button-position">
           <a className="button-landing blue-variation" href="/login"> Create an account</a>
@@ -71,7 +80,7 @@ export default class LandingPageNew extends React.Component {
             <h1 className="browse"> Submit your <font className="cc-underline-green"><b>solution</b></font></h1>
 
           <div className="browse-text padding-bottom">
-            When you expand the details of one of our challenges, we give you <font className="green-text">all</font> the information you need to submit your innovative solution. If you think we can do a better job (or just feel like saying hi) just <font className="green-text">reach out</font> to us at team@collectivecause.org —we'll <font className="green-text">always</font> respond.
+            When you expand the details of one of our challenges, we give you <font className="green-text bt">all</font> the information you need to submit your innovative solution. If you think we can do a better job (or just feel like saying hi) just <font className="green-text bt">reach out</font> to us at team@collectivecause.org —we'll <font className="green-text bt">always</font> respond.
         </div>
             <div className="button-position">
             <a className="button-landing green-variation" href="mailto:team@collectivecause.org"> Contact us</a>
@@ -85,7 +94,7 @@ export default class LandingPageNew extends React.Component {
           <div className="why-container">
             <div className="why-box">
               <div>
-                <i className="fa fa-lightbulb-o goldText"></i>
+                <i className="fa fa-lightbulb-o goldText bt"></i>
                 <h2> <b>Earn</b> </h2>
                 <p>
                   We’re here to turn your ideas into tangible value. That’s why you’ll earn a cash reward every time you solve one of our challenges.
@@ -94,7 +103,7 @@ export default class LandingPageNew extends React.Component {
             </div>
             <div className="why-box">
               <div>
-                <i className="fa fa-users blue-text"></i>
+                <i className="fa fa-users blue-text bt"></i>
                 <h2> <b>Impact</b> </h2>
                 <p>
                   If you want to make a difference in the world through your ideas, you’re in the right place. Our challenges are supported by established organizations, such as the Philadelphia Office of Innovation and Technology, and substantiated by research and evidence. By solving these challenges, you’ll make a real difference in communities around the world.
@@ -104,7 +113,7 @@ export default class LandingPageNew extends React.Component {
 
             <div className="why-box">
               <div>
-                <i className="fa fa-laptop green-text"></i>
+                <i className="fa fa-laptop green-text bt"></i>
                 <h2><b>Learn</b></h2>
                 <p>
                 You won’t leave our site without learning a thing or two about social issues and potential areas of innovation. Our challenges are chock-full of amazing, easily-digestible information that will leave you wanting more.
@@ -126,9 +135,10 @@ export default class LandingPageNew extends React.Component {
 
 
         <section className="who-section landing-page">
-          <h1 className="who-title"> <font className="blue-text">Who</font> can use this <font className="cc-underline-blue">platform?</font></h1>
+          <div className="urban-image"></div>
+          <h1 className="who-title"> <font className="blue-text bt">Who</font> can use this <font className="cc-underline-blue">platform?</font></h1>
           <div className="who-body">
-            This is an open innovation platform, so we invite <font className="blue-text">anyone</font> to solve our challenges. Whether you're a student, professor, community organizer, corporate worker, entrepreneur, freelancer, etc., we welcome <font className="blue-text">you</font> with open arms. The more the merrier, so feel free to apply with your friends, class, school group, professor, company/organization, or <font className="blue-text">anyone</font> else. That said, <font className="blue-text">some</font> of our challenges might have some eligibility restrictions, so make sure you check those out on each challenge's detail page. Our challenges are designed to be <font className="blue-text">easily understandable</font>, <font className="blue-text">informative</font>, and <font className="blue-text">entertaining</font>. So get out there —we can't wait to see your ideas.
+            This is an open innovation platform, so we invite <font className="blue-text bt">anyone</font> to solve our challenges. Whether you're a student, professor, community organizer, corporate worker, entrepreneur, freelancer, etc., we welcome <font className="blue-text bt">you</font> with open arms. The more the merrier, so feel free to apply with your friends, class, school group, professor, company/organization, or <font className="blue-text bt">anyone</font> else. That said, <font className="blue-text bt">some</font> of our challenges might have some eligibility restrictions, so make sure you check those out on each challenge's detail page. Our challenges are designed to be <font className="blue-text bt">easily understandable</font>, <font className="blue-text bt">informative</font>, and <font className="blue-text bt">entertaining</font>. So get out there —we can't wait to see your ideas.
           </div>
         </section>
        </div>

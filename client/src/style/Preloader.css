@@ -77,3 +77,20 @@
                 transform: translateY(0px);
     }
 }
+
+.load-text {
+  position: absolute;
+  bottom: 20px;
+  color: white;
+  font-size: 18px;
+  animation: showText 0s 5s forwards;
+  visibility: hidden;
+}
+
+@keyframes showText {
+  to   { visibility: visible; }
+}
+
+.reload-link {
+  text-decoration: underline;
+}

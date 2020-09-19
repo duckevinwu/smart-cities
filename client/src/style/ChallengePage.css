@@ -174,7 +174,7 @@ h3 {
   text-align: center;
   font-size: 35px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   color: white;
 	margin-top: 125px;
   margin-bottom: 0;
@@ -217,8 +217,8 @@ h3 {
 
 .cd-brief {
   background: linear-gradient(to right,
-      rgba(6, 214, 160, 1) 0%,
-      rgba(6, 214, 160, 1) 10px,
+      rgba(224, 199, 7, 1) 0%,
+      rgba(224, 199, 7, 1) 10px,
 			transparent 10px,
       transparent 100%
   );
@@ -232,15 +232,15 @@ h3 {
 .brief-title {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: rgba(6, 214, 160, 1)
+  font-weight: 500;
+  color: rgba(224, 199, 7, 1)
 /*   letter-spacing: 2px; */
 }
 
 .cd-description {
   background: linear-gradient(to right,
-      rgb(144, 213, 241, 1) 0%,
-			rgb(144, 213, 241, 1) 10px,
+      rgba(87, 184, 255, 1) 0%,
+			rgba(87, 184, 255, 1) 10px,
       transparent  10px,
       transparent 100%
   );
@@ -254,15 +254,15 @@ h3 {
 .description-title {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: rgb(144, 213, 241, 1);
+  font-weight: 500;
+  color: rgba(87, 184, 255, 1)
 /*   letter-spacing: 2px; */
 }
 
 .cd-assets {
   background: linear-gradient(to right,
-      rgb(203, 162, 240, 1) 0%,
-			rgb(203, 162, 240, 1) 10px,
+      rgba(73, 220, 177, 1)0%,
+			rgba(73, 220, 177, 1) 10px,
       transparent 10px,
       transparent 100%
   );
@@ -278,15 +278,15 @@ h3 {
 .assets-title {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: rgb(203, 162, 240, 1)
+  font-weight: 500;
+  color: rgba(73, 220, 177, 1)
 /*   letter-spacing: 2px; */
 }
 
 .cd-prize {
   background: linear-gradient(to right,
-      rgb(240, 226, 162, 1) 0%,
-			rgb(240, 226, 162, 1) 10px,
+      rgba(87, 184, 255, 1) 0%,
+			rgba(87, 184, 255, 1) 10px,
       transparent 10px,
       transparent 100%
   );
@@ -302,15 +302,15 @@ h3 {
 .prize-title {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: rgb(240, 226, 162, 1);
+  font-weight: 500;
+  color: rgba(87, 184, 255, 1)
 /*   letter-spacing: 2px; */
 }
 
 .cd-submission {
   background: linear-gradient(to right,
-      #ffadad 0%,
-			#ffadad 10px,
+      #C782FF 0%,
+			#C782FF 10px,
       transparent 10px,
       transparent 100%
   );
@@ -326,15 +326,15 @@ h3 {
 .submission-title {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: #ffadad;
+  font-weight: 500;
+  color: #C782FF;
 /*   letter-spacing: 2px; */
 }
 
 .cd-faq {
   background: linear-gradient(to right,
-      #c5c3c6 0%,
-			#c5c3c6 10px,
+      #E36355 0%,
+			#E36355 10px,
       transparent 10px,
       transparent 100%
   );
@@ -350,8 +350,8 @@ h3 {
 .faq-title {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: #c5c3c6;
+  font-weight: 500;
+  color: #E36355;
 /*   letter-spacing: 2px; */
 }
 

@@ -60,20 +60,20 @@ body {
 
 .blue-card {
   background: linear-gradient(to right,
-      rgba(27, 163, 245, 0.5) 0%,
+      rgba(87, 184, 255, 0.5) 0%,
       #2a313b  20%,
       #2a313b 100%
   ) !important;
-  border-color: rgba(27, 163, 245, 0.5) !important;
+  border-color: rgba(87, 184, 255, 0.5) !important;
 }
 
 .green-card {
   background: linear-gradient(to right,
-      rgba(6, 214, 160, 0.5) 0%,
+      rgba(73, 220, 177, 0.5) 0%,
       #2a313b  20%,
       #2a313b 100%
   ) !important;
-  border-color: rgba(6, 214, 160, 0.5) !important;
+  border-color: rgba(73, 220, 177, 0.5) !important;
 }
 
 .yellow-card {
@@ -87,15 +87,15 @@ body {
 
 .purple-card {
   background: linear-gradient(to right,
-      rgba(233, 102, 255, 0.5) 0%,
+      rgba(199, 130, 255, 0.5) 0%,
       #2a313b  20%,
       #2a313b 100%
   ) !important;
-  border-color: rgba(233, 102, 255, 0.5) !important;
+  border-color: rgba(199, 130, 255, 0.5) !important;
 }
 
 .blue-title {
-  color: #1BA3F5 !important;
+  color: #57B8FF !important;
 }
 
 .yellow-title {
@@ -103,15 +103,15 @@ body {
 }
 
 .purple-title {
-  color: #E966FF !important;
+  color: #C782FF !important;
 }
 
 .green-title {
-  color: #06D6A0 !important;
+  color: #49DCB1 !important;
 }
 
 .blue-hr {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #1BA3F5, #1BA3F5) !important;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #57B8FF, #57B8FF) !important;
 }
 
 .yellow-hr {
@@ -119,15 +119,15 @@ body {
 }
 
 .purple-hr {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #E966FF, #E966FF) !important;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #C782FF, #C782FF) !important;
 }
 
 .green-hr {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(6, 214, 160), rgba(6, 214, 160)) !important;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #49DCB1, #49DCB1) !important;
 }
 
 .blue-img {
-  border: 2px solid #1BA3F5 !important;
+  border: 2px solid #57B8FF !important;
 }
 
 .yellow-img {
@@ -135,11 +135,11 @@ body {
 }
 
 .purple-img {
-  border: 2px solid #E966FF !important;
+  border: 2px solid #C782FF !important;
 }
 
 .green-img {
-  border: 2px solid #06D6A0 !important;
+  border: 2px solid #49DCB1 !important;
 }
 
 /* end colors */
@@ -168,7 +168,7 @@ body {
 
 .card-title {
   font-family: "Poppins", sans-serif;
-  font-weight: 100;
+  font-weight: 500;
   font-size: 25px;
   color: #06D6A0;
   margin-bottom: 5px;

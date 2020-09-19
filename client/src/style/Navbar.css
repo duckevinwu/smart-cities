@@ -68,9 +68,9 @@ nav {
 
 .nav-logo {
   position: absolute;
-  top: 0%;
-  max-height: 100px;
-  left: 25%;
+  top: 10px;
+  max-height: 75px;
+  left: 30%;
 }
 
 .navLoggedIn {

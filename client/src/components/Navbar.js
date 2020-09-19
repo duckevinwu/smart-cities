@@ -75,7 +75,7 @@ class Navbar extends React.Component {
 
             <div className="overlay"></div>
             <nav className="navLoggedOut">
-              <img src="https://i.imgur.com/XoWNpJK.png" className="nav-logo" alt="cc-logo"/>
+              <img src="https://i.imgur.com/sFUkpIV.png" className="nav-logo" alt="cc-logo"/>
             <ul>
               <li className="nav-home-lo"><a className="whiteLink" href="/"><i className="fa fa-home"></i> Home</a></li>
               <li className="nav-challenge-center-lo"><a className="whiteLink" href="/challengecenter"><i className="fa fa-bullseye"></i> Challenge Center</a></li>
@@ -93,7 +93,7 @@ class Navbar extends React.Component {
 
 	            <div className="overlay"></div>
 	            <nav className="navAdmin">
-	              <img src="https://i.imgur.com/XoWNpJK.png" className="nav-logo" alt="cc-logo"/>
+	              <img src="https://i.imgur.com/sFUkpIV.png" className="nav-logo" alt="cc-logo"/>
 	            <ul>
 	              <li className="nav-home-admin"><a className="whiteLink" href="/"><i className="fa fa-home"></i> Home</a></li>
 	              <li className="nav-challenge-center-admin"><a className="whiteLink" href="/challengecenter"><i className="fa fa-bullseye"></i> Challenge Center</a></li>
@@ -113,7 +113,7 @@ class Navbar extends React.Component {
 
 	            <div className="overlay"></div>
 	            <nav className="navLoggedIn">
-	              <img src="https://i.imgur.com/XoWNpJK.png" className="nav-logo" alt="cc-logo"/>
+	              <img src="https://i.imgur.com/sFUkpIV.png" className="nav-logo" alt="cc-logo"/>
 	            <ul>
 	              <li className="nav-home"><a className="whiteLink" href="/"><i className="fa fa-home"></i> Home</a></li>
 	              <li className="nav-challenge-center"><a className="whiteLink" href="/challengecenter"><i className="fa fa-bullseye"></i> Challenge Center</a></li>
