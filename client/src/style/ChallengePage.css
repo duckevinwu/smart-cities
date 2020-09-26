@@ -150,6 +150,7 @@ h3 {
 .details-card {
 	background: #232430;
   border-radius: 20px;
+	letter-spacing: 0.20px;
 }
 
 .nav-tabs {

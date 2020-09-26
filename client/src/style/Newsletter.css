@@ -386,6 +386,7 @@
   text-transform: none;
   line-height: 30px;
   font-size: 0.7rem;
+  letter-spacing: 0.20vw !important;
 }
 
 .au-section {

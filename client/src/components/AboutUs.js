@@ -46,19 +46,19 @@ export default class AboutUs extends React.Component {
           <h1 className="mission-subheadings"> Equ<font className="cc-underline">ity</font></h1>
 
           <div className="mission-subtext">
-            <font className="goldText">No</font> solution from this site should <font className="goldText">disproportionately</font> harm citizens on the basis of their geographic location, race, ethnicity, socioeconomic status, age, and any other defining characteristic. <font className="goldText">All</font> solutions will be judged <font className="goldText">fairly</font> without any biases.
+            <font className="goldText">No</font> solution from this site should harm citizens on the basis of their geographic location, race, ethnicity, socioeconomic status, age, and any other defining characteristic. <font className="goldText">All</font> solutions will be judged <font className="goldText">fairly</font> without any biases.
             </div>
 
           <h1 className="mission-subheadings"> <font className="cc-underline">Inclu</font>sion</h1>
 
           <div className="mission-subtext">
-            Open innovation cannot proceed without inclusive access to <font className="goldText">all</font>. As long as you have an internet connection and can access this website, we want to give you an <font className="goldText">equal chance</font> at succeeding and solving challenges. Thus, <font className="goldText">regardless</font> of your educational background, area of expertise, current occupation, hair color, or favorite animal, we <font className="goldText">believe</font> in your ability to solve these challenges, and we <font className="goldText">can't wait</font> to see your big ideas.
+            Open innovation cannot proceed without inclusive access to <font className="goldText">all</font>. As long as you have an internet connection and can access this website, we want to give you an <font className="goldText">equal chance</font> at succeeding and solving challenges. Thus, <font className="goldText">regardless</font> of your educational background, area of expertise, current occupation, hair color, or favorite animal, we <font className="goldText">believe</font> in your ability to solve these challenges. We also try to market our challenges to a broad and diverse audience of potential solvers. If you want to help us market to more individuals, please reach out to us.
           </div>
 
           <h1 className="mission-subheadings"> Quality of <font className="cc-underline">Life</font></h1>
 
           <div className="mission-subtext">
-            The <font className="goldText">foremost</font> question behind any social innovation should be as follows: Am I improving the <font className="goldText">quality</font> of life of those that I'm impacting, or not? This is <font className="goldText">the</font> guiding principle that we follow to not only source new challenges, but also choose winners.
+            The <font className="goldText">foremost</font> question behind any social innovation should be: Am I improving the <font className="goldText">quality</font> of life of those that I'm impacting, or not? This is <font className="goldText">the</font> guiding principle that we follow to not only source new challenges, but also choose winners.
           </div>
 
           <h1 className="mission-subheadings"> Collab<font className="cc-underline">oration</font></h1>

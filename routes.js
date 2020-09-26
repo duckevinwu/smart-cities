@@ -139,8 +139,8 @@ function saveRegisterToken(req, res) {
                 });
                 */
 
-                var emailTextBody = "Welcome to Collective Cause! Visit this link (" + confirmUrl + ") to activate your account. We're thrilled to have you, and we can't wait see your ideas. If you ever want to say hi or give us some feedback, feel free to reach out to us at team@collectivecause.org. \n \n Kindly, \n Your Team at Collective Cause"
-                var emailHtmlBody = "Welcome to Collective Cause! Visit this <a href=" + confirmUrl + ">link</a> to activate your account. We're thrilled to have you, and we can't wait to see your ideas. If you ever want to say hi or give us some feedback, feel free to reach out to us at team@collectivecause.org. <br> <br> Kindly, <br> Your team at Collective Cause"
+                var emailTextBody = "Welcome to Collective Cause! Visit this link (" + confirmUrl + ") to activate your account. We're thrilled to have you, and we can't wait see your ideas. If you ever want to say hi or give us some feedback, feel free to reach out to us at team@collectivecause.org. \n \n Best, \n Kevin \n Collective Cause \n Philadelphia, PA \n team@collectivecause.org"
+                var emailHtmlBody = "Welcome to Collective Cause! Visit this <a href=" + confirmUrl + ">link</a> to activate your account. We're thrilled to have you, and we can't wait to see your ideas. If you ever want to say hi or give us some feedback, feel free to reach out to us at team@collectivecause.org. <br> <br> Best, <br> Kevin <br> Collective Cause <br> Philadelphia, PA <br> team@collectivecause.org"
 
                 // send mail with defined transport object
                transporter.sendMail({
@@ -283,8 +283,8 @@ function saveToken(req, res) {
             //     res.send({status: 'fail', message: 'error sending email'});
             //   });
 
-            var emailTextBody = "Oh no! You forgot your password. But don't worry - we got your back. Reset your password at this link (" + resetUrl + ") and get back out there. \n \n Kindly, \n Your team at Collective Cause";
-            var emailHtmlBody = "Oh no! You forgot your password. But don't worry - we got your back. Reset your password <a href=" + resetUrl + ">here</a> and get back out there. <br> <br> Kindly, <br> Your team at Collective Cause";
+            var emailTextBody = "Oh no! You forgot your password. But don't worry - we got your back. Reset your password at this link (" + resetUrl + ") and get back out there. \n \n Best, \n Kevin \n Collective Cause \n Philadelphia, PA \n team@collectivecause.org";
+            var emailHtmlBody = "Oh no! You forgot your password. But don't worry - we got your back. Reset your password <a href=" + resetUrl + ">here</a> and get back out there. <br> <br> Best, <br> Kevin <br> Collective Cause <br> Philadelphia, PA <br> team@collectivecause.org";
 
             // send mail with defined transport object
            transporter.sendMail({
@@ -696,9 +696,14 @@ function getIdeas(req, res) {
   var challengeId = parseInt(req.params.challengeid);
 
   var query = `
-    SELECT i.idea_id, i.challenge, i.submit_time, u.email, i.status
-    FROM Idea i JOIN User u ON i.creator = u.user_id
-    WHERE i.challenge = ?
+    WITH temp AS (
+      SELECT i.idea_id, i.challenge, i.submit_time, u.email, i.status, u.user_id
+      FROM Idea i JOIN User u ON i.creator = u.user_id
+      WHERE i.challenge = ?
+    )
+    SELECT t1.*
+    FROM temp t1 LEFT JOIN temp t2 ON t1.user_id = t2.user_id AND t1.submit_time < t2.submit_time
+    WHERE t2.idea_id IS NULL
   `;
   connection.query(query, [challengeId], function(err, rows, fields) {
     if (err) {
