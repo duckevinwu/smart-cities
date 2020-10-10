@@ -1,3 +1,16 @@
+// read .env file config
+require('dotenv').config();
+
+// Code below for testing in production
+
+var config = {
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
+  port: process.env.DB_PORT
+}
+
 const bodyParser = require('body-parser');
 const express = require('express');
 var routes = require("./routes.js");
@@ -5,6 +18,7 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
+var MySQLStore = require('express-mysql-session')(session);
 
 // passport config
 require('./config/passport')(passport);
@@ -15,11 +29,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+var sessionStore = new MySQLStore(config);
+
 // Express session
 app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
+  key: 'session_cookie_name',
+	secret: 'session_cookie_secret',
+	store: sessionStore,
+	resave: false,
+	saveUninitialized: false
 }));
 
 // Passport middleware
