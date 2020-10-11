@@ -22,11 +22,11 @@ export default class AboutUs extends React.Component {
               <font className="goldText">Us</font>
             </div>
           </div>
-            <span className="au-title-2"> <b>Your partners in urban innovation</b> </span>
+            <span className="au-title-2"> <b>Your partners in open innovation</b> </span>
         <span className="au-title-subtext">
-          We're an <font className="you">open innovation</font> platform dedicated to urban challenges. We work with cities, corporations, universities, and nonprofits to find impactful open innovation challenges, and we post them in full detail for you. Our goal is simple: Enable anyone to solve urban innovation challenges and provide awesome incentives in the process.
+          We're an <font className="you">open innovation</font> platform that works with cities, corporations, universities, and nonprofits to find impactful challenges. We then post these challenges in full detail for anyone to solve and we don’t use any complex jargon that would alienate potential solvers. Our goal is simple: Enable anyone to solve innovation challenges and provide awesome incentives in the process.
           <br/> <br/>
-          We're also a <font className="you">community</font>. When you register an account with us, you're joining a diverse community of urban innovators who genuinely care about our world.
+          We're also a <font className="you">community</font>. When you register an account with us, you’re joining a diverse community of innovators who genuinely care about our world.
           <br/> <br/>
           We want you to have an <font className="you">amazing</font> experience on this site, so if there's anything we can do to make it better, please don't be afraid to let us know at team@collectivecause.org.
 
@@ -40,7 +40,7 @@ export default class AboutUs extends React.Component {
 
           <div className="mission-text">
             We srive to accelerate <font className="goldText">open</font> innovation so that anyone can <font className="goldText">impact</font> social causes, <font className="goldText">earn</font> well-deserved rewards, and join a diverse <font className="goldText">community</font> of innovators.
-            Founded in 2018 by students at the University of Pennsylvania, our mission is guided by 5 principles:
+            The mission is guided by 5 principles:
           </div>
 
           <h1 className="mission-subheadings"> Equ<font className="cc-underline">ity</font></h1>

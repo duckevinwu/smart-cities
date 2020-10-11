@@ -85,6 +85,27 @@ class IdeaForm extends React.Component {
       return;
     }
 
+    if (this.state.idea.length > 64000) {
+      this.setState({
+        error: "Your Solution Overview section is a bit too long! Feel free to email us your solution if you can't shorten it."
+      })
+      return;
+    }
+
+    if (this.state.aboutYou.length > 64000) {
+      this.setState({
+        error: "Your About You section is a bit too long! Feel free to email us your solution if you can't shorten it."
+      })
+      return;
+    }
+
+    if (this.state.otherInfo.length > 64000) {
+      this.setState({
+        error: "Your Other Information section is a bit too long! Feel free to email us your solution if you can't shorten it."
+      })
+      return;
+    }
+
     const validate = window.confirm('Are you sure?');
 
     if (validate) {

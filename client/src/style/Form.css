@@ -535,3 +535,7 @@ ql-snow.ql-toolbar button:hover,
 .ql-action {
   color: blue !important;
 }
+
+.edit-welcome-text {
+  margin-bottom: 50px;
+}

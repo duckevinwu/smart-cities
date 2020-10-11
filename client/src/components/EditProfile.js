@@ -23,6 +23,8 @@ class EditProfile extends React.Component {
       state: "",
       city: "",
       bio: "",
+      education: "",
+      interests: "",
       firstLog: false
     }
 
@@ -32,6 +34,8 @@ class EditProfile extends React.Component {
     this.handleStateChange = this.handleStateChange.bind(this);
     this.handleCityChange = this.handleCityChange.bind(this);
     this.handleBioChange = this.handleBioChange.bind(this);
+    this.handleEducationChange = this.handleEducationChange.bind(this);
+    this.handleInterestsChange = this.handleInterestsChange.bind(this);
     this.submitChanges = this.submitChanges.bind(this);
 
   }
@@ -69,6 +73,18 @@ class EditProfile extends React.Component {
   handleBioChange(e) {
     this.setState({
       bio: e.target.value
+    })
+  }
+
+  handleEducationChange(e) {
+    this.setState({
+      education: e.target.value
+    })
+  }
+
+  handleInterestsChange(e) {
+    this.setState({
+      interests: e.target.value
     })
   }
 
@@ -116,7 +132,6 @@ class EditProfile extends React.Component {
 			console.log(err);
 		}).then(data => {
 
-      console.log(data)
       var user = data.user;
 
       this.setState({
@@ -127,6 +142,8 @@ class EditProfile extends React.Component {
         state: (user.state ? user.state : ''),
         city: (user.city ? user.city : ''),
         bio: (user.bio ? user.bio : ''),
+        education: (user.education ? user.education : ''),
+        interests: (user.interests ? user.interests : ''),
         firstLog: this.props.firstLog
       })
 
@@ -151,7 +168,10 @@ class EditProfile extends React.Component {
       if (this.state.firstLog) {
         navbar = <div></div>
         welcomeText = (
-          <h2 className="goldText">First - a little about you!</h2>
+          <div className="edit-welcome-text">
+            <h2 className="goldText">Build your Collective Cause profile!</h2>
+            <p className="whiteText">Your profile will be reviewed when you submit solutions for challenges.</p>
+          </div>
         )
       }
 
@@ -172,13 +192,13 @@ class EditProfile extends React.Component {
 
               <div className="input-block">
                  <label htmlFor="q2" className="sb-label sb-name">What's your phone number?</label>
-                 <input type="tel" id="q2" className="text-question sb-form-q" placeholder="1234567890"
+                 <input type="tel" id="q2" className="text-question sb-form-q" placeholder="(123) 456-7890. We won’t spam call you, promise"
                   value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} required
                  />
               </div>
 
               <div className="input-block">
-                 <label htmlFor="q3" className="sb-label sb-name">What's your title?</label>
+                 <label htmlFor="q3" className="sb-label sb-name">Give yourself a great title!</label>
                  <input type="text" id="q3" className="text-question sb-form-q" placeholder="Job, education, etc"
                   value={this.state.title} onChange={this.handleTitleChange}
                  />
@@ -251,9 +271,23 @@ class EditProfile extends React.Component {
                  />
               </div>
 
+              <div className="input-block">
+                 <label htmlFor="q7" className="sb-label sb-name">What's your highest level of education completed/are pursuing?</label>
+                 <input type="text" id="q7" className="text-question sb-form-q" placeholder="BA in Political Science from University of Delaware"
+                  value={this.state.education} onChange={this.handleEducationChange} maxlength="255"
+                 />
+              </div>
+
               <div className="input-block large-block">
                  <label htmlFor="q6" className="sb-label sb-idea">Give yourself a brief bio!</label>
-                 <textarea id="q6" className="text-question sb-form-q textarea-q" value={this.state.bio} onChange={this.handleBioChange}></textarea>
+                 <textarea id="q6" className="text-question sb-form-q textarea-q" value={this.state.bio} onChange={this.handleBioChange} placeholder="If you could summarize yourself in a paragraph, what would you say? You can talk about your passions, hobbies, goals, or anything else."></textarea>
+              </div>
+
+              <div className="input-block">
+                 <label htmlFor="q8" className="sb-label sb-name">What areas of innovation are you most passionate about?</label>
+                 <input type="text" id="q8" className="text-question sb-form-q" placeholder="Autonomous technology, renewable energy, etc"
+                  value={this.state.interests} onChange={this.handleInterestsChange} maxlength="255"
+                 />
               </div>
 
               <div className="input-block">

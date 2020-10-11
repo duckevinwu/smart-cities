@@ -902,11 +902,11 @@ function updateProfile(req, res) {
 
   var query = `
     UPDATE User
-    SET name = ?, phone = ?, title = ?, state = ?, city = ?, bio = ?, logged = ?
+    SET name = ?, phone = ?, title = ?, state = ?, city = ?, bio = ?, logged = ?, education = ?, interests = ?
     WHERE user_id = ?
   `
 
-  connection.query(query, [details.fullName, details.phoneNumber, details.title, details.state, details.city, details.bio, true, userId], function(err, rows, fields) {
+  connection.query(query, [details.fullName, details.phoneNumber, details.title, details.state, details.city, details.bio, true, details.education, details.interests, userId], function(err, rows, fields) {
     if (err) {
       console.log(err);
       return res.send({status: 'fail'})
