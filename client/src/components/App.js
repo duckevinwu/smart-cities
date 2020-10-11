@@ -30,6 +30,7 @@ import Newsletter from './Newsletter';
 import AboutUs from './AboutUs';
 import PostNewsletterSignup from './PostNewsletterSignup';
 import EditChallenge from './EditChallenge';
+import Feedback from './Feedback';
 
 export default class App extends React.Component {
 
@@ -183,6 +184,13 @@ export default class App extends React.Component {
 							path="/thankyou"
 							render={(props) => (
 								<PostNewsletterSignup />
+							)}
+						/>
+						<Route
+							exact
+							path="/feedback"
+							render={(props) => (
+								<Feedback />
 							)}
 						/>
 					</Switch>

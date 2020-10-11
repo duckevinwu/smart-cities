@@ -310,8 +310,8 @@ h3 {
 
 .cd-submission {
   background: linear-gradient(to right,
-      #C782FF 0%,
-			#C782FF 10px,
+      #9A84FF 0%,
+			#9A84FF 10px,
       transparent 10px,
       transparent 100%
   );
@@ -328,14 +328,14 @@ h3 {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
-  color: #C782FF;
+  color: #9A84FF;
 /*   letter-spacing: 2px; */
 }
 
 .cd-faq {
   background: linear-gradient(to right,
-      #E36355 0%,
-			#E36355 10px,
+      #E2766A 0%,
+			#E2766A 10px,
       transparent 10px,
       transparent 100%
   );
@@ -352,7 +352,7 @@ h3 {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
-  color: #E36355;
+  color: #E2766A;
 /*   letter-spacing: 2px; */
 }
 

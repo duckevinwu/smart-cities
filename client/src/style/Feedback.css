@@ -1,0 +1,42 @@
+.suggest-title {
+  color: white;
+  font-size: 25px;
+  padding-top: 60px;
+  margin: 0 auto;
+  letter-spacing: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.suggest-text {
+  color: white;
+  max-width: 60%;
+  min-width: 325px;
+  padding-top: 30px;
+  margin: 0 auto;
+  text-align: left;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  letter-spacing: 2px;
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.iframe-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.feedback-form-iframe {
+  margin-bottom: 50px;
+  height: 1000px;
+}
+
+@media only screen and (max-width: 500px) {
+  .feedback-form-iframe {
+    height: 1100px;
+  }
+}

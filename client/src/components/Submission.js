@@ -44,10 +44,23 @@ class Submission extends React.Component {
 
   render() {
     if (this.state.isLoggedIn) {
+
+      var submitButton = (
+        <a href={"/submitidea/" + this.props.challengeId}><button className="submitbutton">Submit Idea</button></a>
+      )
+
+      var date = new Date();
+
+      if (date.getTime() < this.props.start) {
+        submitButton = <p className="whiteText">This challenge has not opened yet.</p>
+      } else if (date.getTime() > this.props.end) {
+        submitButton = <p className="whiteText">This challenge has closed.</p>
+      }
+
       return (
         <>
           <div className="submitbuttonwrapper">
-            <a href={"/submitidea/" + this.props.challengeId}><button className="submitbutton">Submit Idea</button></a>
+            {submitButton}
           </div>
           <section className="cd-submission">
              <h3 className="submission-title">Submission Details</h3>

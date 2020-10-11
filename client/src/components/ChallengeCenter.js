@@ -52,6 +52,11 @@ export default class ChallengeCenter extends React.Component {
           <div className="grid">
             {this.state.challenges}
           </div>
+          <div className="feedback-button-position">
+            <a href="/feedback" target="_blank">
+              <button className="feedback">Let us know what challenges you want to see &nbsp; <i className="fa fa-arrow-right"></i></button>
+            </a>
+          </div>
         </div>
       );
     } else {

@@ -8,6 +8,12 @@ export default class LandingPageNew extends React.Component {
     super(props);
 
     this.state = {};
+
+    this.joinSlack = this.joinSlack.bind(this);
+  }
+
+  joinSlack() {
+    window.open('https://join.slack.com/t/collective-cause/shared_invite/zt-hyx6mdv8-1HBnll1O3b7eiWn3QVamuQ')
   }
 
   componentDidMount() {
@@ -21,8 +27,8 @@ export default class LandingPageNew extends React.Component {
         <nav className="landing-nav">
           <ul>
             <li><a href="#how-section" className="landing-link">How this works</a></li>
-            <li><a href="/aboutus" className="landing-link">About us</a></li>
             <li><a href="/challengecenter" className="landing-link">Challenge Center</a></li>
+            <li><a href="/aboutus" className="landing-link">About us</a></li>
             <li className="slide"></li>
           </ul>
         </nav>
@@ -142,7 +148,7 @@ export default class LandingPageNew extends React.Component {
                      To foster collaboration and communication, we created a Slack group where you can find partners to tackle our challenges, ask questions about our challenges, and message the Collective Cause team directly. Once you join, you'll see instructions on how to use this Slack group effectively. We hope that this group can incite creativity and inspire you in your journey to solve open innovation challenges.
                    </div>
                    <div className="button-join-position">
-                     <button type="button" className="button-join"> Join our Slack </button>
+                     <button type="button" className="button-join" onClick={this.joinSlack}> Join our Slack </button>
                    </div>
                  </div>
                </div>

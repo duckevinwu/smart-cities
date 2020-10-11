@@ -63,6 +63,7 @@ class ChallengePage extends React.Component {
 				var solverObj = data[1];
 
         var challenge = challengeObj.challenge[0];
+        console.log(challenge)
 
         let readTime = ((this.htmlTextCount(challenge.brief) + this.htmlTextCount(challenge.description)
                         + this.htmlTextCount(challenge.resources)) / 1000).toFixed();
@@ -205,7 +206,7 @@ class ChallengePage extends React.Component {
              </li>
              <li className="nav-item tab-head">
                 <a id="faq-tab" data-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false"
-                   className="nav-link text-uppercase font-weight-bold rounded-0">FAQ</a>
+                   className="nav-link text-uppercase font-weight-bold rounded-0">Community</a>
              </li>
              <li className="nav-item tab-head">
                 <a id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2"
@@ -248,14 +249,14 @@ class ChallengePage extends React.Component {
              </div>
              <div id="faq" role="tabpanel" aria-labelledby="faq-tab" className="tab-pane fade px-4">
                <section className="cd-faq">
-                  <h3 className="faq-title">Frequently Asked Questions</h3>
+                  <h3 className="faq-title">Community</h3>
                   <div className="section-content ql-editor"
                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.challenge.contact, { ADD_TAGS: ["iframe"], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] })}}>
                   </div>
                </section>
              </div>
              <div id="profile2" role="tabpanel" aria-labelledby="profile-tab" className="tab-pane fade px-4">
-                <Submission challengeId={this.state.challengeId} details={this.state.challenge.submission} />
+                <Submission challengeId={this.state.challengeId} details={this.state.challenge.submission} start={this.state.challenge.start} end={this.state.challenge.end} />
              </div>
           </div>
         )

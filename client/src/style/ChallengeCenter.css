@@ -237,3 +237,37 @@ body {
   padding: 2px;
   margin-bottom: 2%;
 }
+
+/* challenge feedback button */
+.feedback {
+  background-color: #1e1f27;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border-color: #9A84FF;
+  letter-spacing: 0.5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-family: 'Poppins'
+}
+
+.feedback-button-position {
+  position: fixed;
+  bottom: -3px;
+  right: 10px;
+}
+
+ .feedback:hover, .feedback:link:hover, .feedback:visited:hover{
+	 background:#9A84FF;
+	 border: 1px solid #1e1f27;
+	 color: black;
+}
+
+.feedback:hover .fa-arrow-right {
+  color: black;
+}
+
+.fa-arrow-right {
+  color: #9A84FF;
+  transform: scale(1.2,1);
+}
