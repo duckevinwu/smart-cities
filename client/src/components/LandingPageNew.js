@@ -23,46 +23,34 @@ export default class LandingPageNew extends React.Component {
             <li><a href="#how-section" className="landing-link">How this works</a></li>
             <li><a href="/aboutus" className="landing-link">About us</a></li>
             <li><a href="/challengecenter" className="landing-link">Challenge Center</a></li>
-            <li><a href="/newsletter" className="landing-link">Just Cause</a></li>
             <li className="slide"></li>
           </ul>
         </nav>
 
         <section className="landing-section landing-page">
-        <img className="logoLetters" src="https://i.imgur.com/sFUkpIV.png"></img>
+        <img className="logoLetters" src="https://i.imgur.com/sFUkpIV.png" alt="logo-letters"></img>
         <a className="button-landing login-button-lp" href="/login">Login</a>
           <div className="title">
             <div className="title-text-wrapper">
               <div className="title-new-text collective-text">Collective</div>
               <div className="title-new-text cause-text">
-                <img className="logo-new-v2" src="https://i.imgur.com/VEZS91f.png"></img>
+                <img className="logo-new-v2" src="https://i.imgur.com/VEZS91f.png" alt="skyline"></img>
                 <font className="goldText">Cause</font>
               </div>
             </div>
-            <span className="title-subtext"> We post urban challenges for <font className="you">you to solve.</font></span>
+            <span className="title-subtext"> We post innovation challenges for <font className="you">you to solve.</font></span>
           </div>
         </section>
 
         <section id="how-section">
           <div className="">
             <div className="intro-title">
-              Innovate <font className="cc-underline">Here</font>
+              Open Innovation for collective <font className="cc-underline">good</font>
             </div>
             <div className="intro-text">
-              Collective Cause is an open innovation platform dedicated to urban challenges. If you want to impact urban issues that affect everyday individuals (while earning amazing prizes), then you're in the right place. Our challenges are designed to be easily understandable so that anyone can tackle them. Guided by our core values of inclusivity, equity, and collaboration, we're a community of innovators seeking to change urban environments, and we're thrilled to have you. Start using our platform in three simple steps:
+              "You can't change the world if you're an ordinary person" is the phrase we strive to defy. If you want to join a community of everyday innovators who solve societal issues, you're in the right place. We post easily-understandable innovation challenges that anyone (yes, you) can tackle. Start using our platform in three simple steps:
             </div>
             <div className="arrow down"></div>
-          </div>
-          <div className="subsection">
-            <div className="browse"> Browse the <br/><font className="cc-underline"><b>Challenge Center</b></font></div>
-
-          <div className="browse-text">
-            We post diverse urban challenges that can shape the <font className="goldText bt">future</font> of cities. By solving our challenges, you can <font className="goldText bt">launch</font> your big idea in cities across the nation, <font className="goldText bt">learn</font> a ton of cool information about social issues, <font className="goldText bt">become</font> a Cause Fellow, and earn large <font className="goldText bt">cash</font> prizes. Anyone can solve our challenges. All you need is your brain, a healthy sense of creativity, and a desire to do some good in this world.
-        </div>
-          <div className="button-position">
-          <a className="button-landing" href="/challengecenter"> Enter Challenge Center</a>
-            <a className="button-landing" href="/fellows"> About our Fellowship</a>
-          </div>
           </div>
 
           <div className="subsection">
@@ -70,9 +58,21 @@ export default class LandingPageNew extends React.Component {
 
           <div className="browse-text">
             Our site is <font className="blue-text bt">all</font> about our user community. By creating an account, you'll join our <font className="blue-text bt">diverse</font> community of innovators who are making a difference in the world, and you'll have the ability to <font className="blue-text bt">submit</font> solutions to our challenges. Creating an account is absolutely <font className="blue-text bt">free</font> and takes about 30 seconds, so what are you waiting for?
-        </div>
+          </div>
           <div className="button-position">
           <a className="button-landing blue-variation" href="/login"> Create an account</a>
+          </div>
+          </div>
+
+          <div className="subsection">
+            <div className="browse"> Browse the <br/><font className="cc-underline"><b>Challenge Center</b></font></div>
+
+          <div className="browse-text">
+            We post diverse innovation challenges that can shape the <font className="goldText bt">future</font> of cities, technology, corporations, and more. By solving one of our challenges, you can <font className="goldText bt">scale</font> your big idea, <font className="goldText bt">become</font> a Cause Fellow, and earn large <font className="goldText bt">cash</font> prizes. And here’s the kicker: Anyone can solve our challenges. All you need is your brain, a healthy sense of creativity, and a desire to do some good in this world.
+        </div>
+          <div className="button-position">
+          <a className="button-landing" href="/challengecenter"> Enter Challenge Center</a>
+            <a className="button-landing" href="/fellows"> About our Fellowship</a>
           </div>
           </div>
 
@@ -87,7 +87,6 @@ export default class LandingPageNew extends React.Component {
           </div>
           </div>
         </section>
-
 
         <div id="why-section" className="why-section">
           <h1 className="why-title"> Why use this platform? </h1>
@@ -132,6 +131,23 @@ export default class LandingPageNew extends React.Component {
             </div>
           </div>
          </div>
+
+         <section className="community-section">
+            <div className="card-wide">
+               <div className="community-row">
+                 <img src="https://i.imgur.com/QEzapp1.jpg" className="card-image-3" alt="slack-logo"/>
+                 <div className="community-column">
+                   <div className="card-title-wide">Join our <font className="cc-underline-green"><b>community</b></font></div>
+                   <div className="description-wide">
+                     To foster collaboration and communication, we created a Slack group where you can find partners to tackle our challenges, ask questions about our challenges, and message the Collective Cause team directly. Once you join, you'll see instructions on how to use this Slack group effectively. We hope that this group can incite creativity and inspire you in your journey to solve open innovation challenges.
+                   </div>
+                   <div className="button-join-position">
+                     <button type="button" className="button-join"> Join our Slack </button>
+                   </div>
+                 </div>
+               </div>
+             </div>
+         </section>
 
 
         <section className="who-section landing-page">
