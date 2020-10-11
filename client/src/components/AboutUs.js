@@ -40,7 +40,7 @@ export default class AboutUs extends React.Component {
 
           <div className="mission-text">
             We srive to accelerate <font className="goldText">open</font> innovation so that anyone can <font className="goldText">impact</font> social causes, <font className="goldText">earn</font> well-deserved rewards, and join a diverse <font className="goldText">community</font> of innovators.
-            The mission is guided by 5 principles:
+            The mission is guided by 4 principles:
           </div>
 
           <h1 className="mission-subheadings"> Equ<font className="cc-underline">ity</font></h1>

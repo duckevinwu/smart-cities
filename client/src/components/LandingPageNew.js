@@ -54,7 +54,7 @@ export default class LandingPageNew extends React.Component {
               Open Innovation for collective <font className="cc-underline">good</font>
             </div>
             <div className="intro-text">
-              "You can't change the world if you're an ordinary person" is the phrase we strive to defy. If you want to join a community of everyday innovators who solve societal issues, you're in the right place. We post easily-understandable innovation challenges that anyone (yes, you) can tackle. Start using our platform in three simple steps:
+              "You can't change the world if you're an ordinary person" is the phrase we strive to defy. If you want to join a community of everyday innovators who solve societal issues, you're in the right place. We post easily-understandable innovation challenges that anyone (yes, you) can tackle. You can even earn cash prizes (among other rewards) while you’re at it. Start using our platform in three simple steps:
             </div>
             <div className="arrow down"></div>
           </div>

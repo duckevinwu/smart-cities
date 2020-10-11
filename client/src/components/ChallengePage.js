@@ -63,7 +63,6 @@ class ChallengePage extends React.Component {
 				var solverObj = data[1];
 
         var challenge = challengeObj.challenge[0];
-        console.log(challenge)
 
         let readTime = ((this.htmlTextCount(challenge.brief) + this.htmlTextCount(challenge.description)
                         + this.htmlTextCount(challenge.resources)) / 1000).toFixed();
@@ -282,7 +281,7 @@ class ChallengePage extends React.Component {
              <div className="cd-details">
                 <div className=""><i className="fa fa-clock-o"></i> &nbsp;{convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
                 </div>
-                <div className=""><i className="fa fa-user"></i> &nbsp;{this.state.challenge.sum} solvers
+                <div className=""><i className="fa fa-user"></i> &nbsp;{(this.state.challenge.challenge_id === 30) ? this.state.challenge.sum + 13 : this.state.challenge.sum + 6} solvers
                 </div>
                 <div className=""><i className="fa fa-trophy"></i> &nbsp;{this.state.challenge.reward}
                 </div>

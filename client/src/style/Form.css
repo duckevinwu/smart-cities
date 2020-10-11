@@ -501,6 +501,7 @@ ql-snow.ql-toolbar button:hover,
 
 .ql-editor {
   font-size: 120%;
+  line-height: 1.6
 }
 
 .ql-editor.ql-blank::before {
