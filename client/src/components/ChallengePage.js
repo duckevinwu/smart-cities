@@ -279,7 +279,7 @@ class ChallengePage extends React.Component {
             <div className="cover-container" style={{background: "linear-gradient(rgba(0,0,0,0.6), #232430), url(" + this.state.challenge.imgurl + ")"}}>
              <img src={this.state.challenge.logourl || 'https://i.imgur.com/jMSGGPk.png'} className={"cd-logo " + this.state.challenge.color + "-img"}/>
              <div className="cd-details">
-                <div className=""><i className="fa fa-clock-o"></i> &nbsp;{convertDate(this.state.challenge.start)} - {convertDate(this.state.challenge.end)}
+                <div className=""><i className="fa fa-clock-o"></i> &nbsp;{(this.state.challenge.challenge_id === 34) ? 'Always open!' : convertDate(this.state.challenge.start) + " - " + convertDate(this.state.challenge.end)}
                 </div>
                 <div className=""><i className="fa fa-user"></i> &nbsp;{(this.state.challenge.challenge_id === 30) ? this.state.challenge.sum + 13 : this.state.challenge.sum + 6} solvers
                 </div>

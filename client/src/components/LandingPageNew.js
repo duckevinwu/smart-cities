@@ -29,6 +29,7 @@ export default class LandingPageNew extends React.Component {
             <li><a href="#how-section" className="landing-link">How this works</a></li>
             <li><a href="/challengecenter" className="landing-link">Challenge Center</a></li>
             <li><a href="/aboutus" className="landing-link">About us</a></li>
+            <li><a href="/partnership" className="landing-link">Partner with us</a></li>
             <li className="slide"></li>
           </ul>
         </nav>
@@ -44,7 +45,7 @@ export default class LandingPageNew extends React.Component {
                 <font className="goldText">Cause</font>
               </div>
             </div>
-            <span className="title-subtext"> We post innovation challenges for <font className="you">you to solve.</font></span>
+            <span className="title-subtext">Innovate for good. Earn prizes. <font className="you">Impact.</font></span>
           </div>
         </section>
 

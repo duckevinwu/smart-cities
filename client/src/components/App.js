@@ -31,6 +31,9 @@ import AboutUs from './AboutUs';
 import PostNewsletterSignup from './PostNewsletterSignup';
 import EditChallenge from './EditChallenge';
 import Feedback from './Feedback';
+import CreationPartner from './CreationPartner'
+import OrganizationalPartner from './OrganizationalPartner';
+import Partnership from './Partnership';
 
 export default class App extends React.Component {
 
@@ -191,6 +194,27 @@ export default class App extends React.Component {
 							path="/feedback"
 							render={(props) => (
 								<Feedback />
+							)}
+						/>
+						<Route
+							exact
+							path="/organizationalpartner"
+							render={(props) => (
+								<OrganizationalPartner />
+							)}
+						/>
+						<Route
+							exact
+							path="/creationpartner"
+							render={(props) => (
+								<CreationPartner />
+							)}
+						/>
+						<Route
+							exact
+							path="/partnership"
+							render={(props) => (
+								<Partnership />
 							)}
 						/>
 					</Switch>

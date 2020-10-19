@@ -12,6 +12,8 @@ url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" r
   color: inherit;
   text-decoration: inherit;
   display: block;
+  height: 100%;
+  padding-top: 40px;
 }
 
 .landing-page {
@@ -86,8 +88,7 @@ height: 10%;
   display: inline-block;
   height: 98px;
   margin-bottom: 2px;
-  padding-top: 40px;
-  width: 33vw;
+  width: 25vw;
   text-align: center;
   color: #939393; /* Color of the link text */
   transition: background-color 0.5s 0.2s ease, color 0.3s ease;
@@ -146,10 +147,10 @@ height: 10%;
   left: 0vw;
 }
 .landing-nav li:nth-child(2):hover ~ .slide {
-  left: 33vw;
+  left: 25vw;
 }
 .landing-nav li:nth-child(3):hover ~ .slide {
-  left: 66vw;
+  left: 50vw;
 }
  .landing-nav li:nth-child(4):hover ~ .slide {
   left: 75vw;
@@ -877,6 +878,10 @@ line-height: 30px;
   color: #E36355;
 }
 
+.purple-text {
+  color: #9A84FF;
+}
+
 .bt {
   font-weight: 500;
 }
@@ -918,6 +923,26 @@ line-height: 30px;
 
   .button-landing {
     margin-right: 0 !important;
+  }
+
+  .landing-nav {
+    height: 120px;
+  }
+
+  .landing-nav li {
+    height: auto;
+    float: none;
+    display: block;
+    width: 100vw;
+    font-size: 16px;
+  }
+
+  .landing-link {
+    padding-top: 3px;
+  }
+
+  .landing-nav li.slide {
+    display: none;
   }
 
 }

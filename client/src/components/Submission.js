@@ -29,7 +29,6 @@ class Submission extends React.Component {
 		}, err => {
 			console.log(err);
 		}).then(data => {
-      console.log(data)
       var isAuthenticated = data.authenticated
       var id = data.userId
       if (isAuthenticated === 'true') {
@@ -51,7 +50,9 @@ class Submission extends React.Component {
 
       var date = new Date();
 
-      if (date.getTime() < this.props.start) {
+      if (this.props.challengeId === '34') {
+        submitButton = <a href="mailto:team@collectivecause.org"><button className="submitbutton">Submit Idea</button></a>
+      } else if (date.getTime() < this.props.start) {
         submitButton = <p className="whiteText">This challenge has not opened yet.</p>
       } else if (date.getTime() > this.props.end) {
         submitButton = <p className="whiteText">This challenge has closed.</p>
