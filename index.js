@@ -18,6 +18,7 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
+const enforce = require('express-sslify');
 var MySQLStore = require('express-mysql-session')(session);
 
 // passport config
@@ -43,6 +44,9 @@ app.use(session({
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// force https
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 
 /* ---------------------------------------------------------------- */
