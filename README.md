@@ -1,6 +1,6 @@
 # Smart Cities
 
-Currently hosted [here](https://intense-hollows-59794.herokuapp.com/dashboard) using db we made in class
+Currently hosted [here](https://intense-hollows-59794.herokuapp.com) using db we made in class
 
 ## Installation (local)
 
